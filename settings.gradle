@@ -1,7 +1,5 @@
 import org.gradle.internal.os.OperatingSystem
 
-
-
 pluginManagement {
     repositories {
         mavenLocal()
@@ -25,5 +23,3 @@ pluginManagement {
         }
     }
 }
-
-include 'spline_generator'
