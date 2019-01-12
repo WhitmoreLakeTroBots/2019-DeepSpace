@@ -1,0 +1,104 @@
+apply plugin: 'base'
+apply plugin: 'java'
+apply plugin: 'application'
+
+def robotDeployDir = "${rootProject.projectDir}/src/main/deploy"
+mkdir robotDeployDir
+
+def isWindows (){
+  return (System.properties['os.name'].toLowerCase().contains("windows"))
+}
+
+def isLinux() {
+  return (System.properties['os.name'].toLowerCase().contains("linux"))
+}
+
+dependencies {
+    compileClasspath fileTree(dir: 'libs/pathfinder', include: "**/*.jar")
+    runtimeClasspath fileTree(dir: 'libs/pathfinder', include: "**/*.jar")
+    compileClasspath fileTree(dir: 'libs/jniloader/JNILoader/1.0.1', include: "**/*.jar")
+    runtimeClasspath fileTree(dir: 'libs/jniloader/JNILoader/1.0.1', include: "**/*.jar")
+}
+
+application {
+    applicationName = "WL Robotics Spline Generator"
+    mainClassName ='org.wlrobotics.splinegenerator.TroBotSplineGenerator'
+}
+
+task cleanCVS(type: Delete) {
+  delete fileTree("${robotDeployDir}").matching {
+    include "*.cvs"
+  }
+  delete fileTree("${robotDeployDir}").matching {
+    include "*.cvs"
+  }
+  delete file ("${robotDeployDir}/gnuPlotCommands.txt")
+  delete file ("${robotDeployDir}/plotSpline.txt")
+  delete file ("${robotDeployDir}/2019DDS_Spline_Field.png")
+
+  delete file ("${project.projectDir}/gnuPlotCommands.txt")
+  // delete file ("${project.projectDir}/2019DDS_Spline_Field.png")
+}
+
+task moveCVS() {
+  finalizedBy "appendGnuPlot"
+  
+  doLast {
+    ant.move (todir: "${robotDeployDir}", failonerror:true,) {
+      fileset (dir: "${project.projectDir}") {
+        include (name: "*.cvs")
+      }
+    }
+
+    ant.copy (todir: "${robotDeployDir}", failonerror:true, preservelastmodified:true) {
+      fileset (dir: "${project.projectDir}/src/main/resources") {
+        include (name: "*.png")
+        include (name: "*.txt")
+      }
+    }
+  }
+}
+
+task gen () {
+    group "WL Robotics Spline Generator"
+    description "gnuPlot with the text file plotSpline.txt"
+    dependsOn('run')
+}
+
+task plot (){
+    group "WL Robotics Spline Generator"
+    description "gnuPlot with the text file plotSpline.txt"
+    dependsOn('run')
+    finalizedBy "plot_win"
+    finalizedBy "plot_lin"
+}
+
+task plot_win (type:Exec) {
+  // plots on Windows only
+  onlyIf {isWindows ()}
+  workingDir "${robotDeployDir}"
+  executable 'C:/Program Files/gnuplot/bin/gnuplot.exe'
+  args "${robotDeployDir}/plotSpline.txt", '-p'
+}
+
+task plot_lin (type:Exec) {
+  onlyIf { isLinux() }
+  workingDir = "${robotDeployDir}"
+  ignoreExitValue =  true
+  commandLine "gnuplot", "${robotDeployDir}/plotSpline.txt", "-p"
+}
+
+task appendGnuPlot(){
+  doLast{
+    def dest = new File ("${robotDeployDir}/plotSpline.txt")
+    def src = new File ("${project.projectDir}/gnuPlotCommands.txt")
+    src.eachLine {line ->
+      dest.append(line + "\n")
+    }
+    dest.append("replot\n")
+  }
+}
+
+clean.finalizedBy ("cleanCVS")
+run.dependsOn ("cleanCVS")
+run.finalizedBy ("moveCVS")
