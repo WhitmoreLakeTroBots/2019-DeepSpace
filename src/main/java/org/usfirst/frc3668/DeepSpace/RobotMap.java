@@ -16,24 +16,24 @@ public class RobotMap {
     public static AHRS navx;
 
     public static void init() {
-		rightDrive1 = new WPI_TalonSRX(Settings.chassisRightDrive1CanID);
+		rightDrive1 = new TalonSRX(Settings.chassisRightDrive1CanID);
 		rightDrive1.setNeutralMode(NeutralMode.Brake);
 		rightDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0,
 				Settings.talonTimeOut);
 		rightDrive1.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		rightDrive1.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
-		rightDrive2 = new WPI_TalonSRX(Settings.chassisRightDrive2CanID);
+		rightDrive2 = new TalonSRX(Settings.chassisRightDrive2CanID);
 		rightDrive2.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		rightDrive2.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 		rightDrive2.setNeutralMode(NeutralMode.Brake);
 
-		leftDrive1 = new WPI_TalonSRX(Settings.chassisLeftDrive1CanID);
+		leftDrive1 = new TalonSRX(Settings.chassisLeftDrive1CanID);
 		leftDrive1.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		leftDrive1.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 		leftDrive1.setNeutralMode(NeutralMode.Brake);
 		leftDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0,
 				Settings.talonTimeOut);
-		leftDrive2 = new WPI_TalonSRX(Settings.chassisLeftDrive2CanID);
+		leftDrive2 = new TalonSRX(Settings.chassisLeftDrive2CanID);
 		leftDrive2.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		leftDrive2.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 		leftDrive2.setNeutralMode(NeutralMode.Brake);

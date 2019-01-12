@@ -10,8 +10,11 @@
 
 
 package org.usfirst.frc3668.DeepSpace.commands;
-import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc3668.DeepSpace.OI;
 import org.usfirst.frc3668.DeepSpace.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
@@ -43,6 +46,7 @@ public class cmdTeleopDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        Robot.subChassis.Drive(Robot.oi.joyDrive);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -54,11 +58,14 @@ public class cmdTeleopDrive extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.subChassis.DriveMan(0, 0);
+        
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        Robot.subChassis.DriveMan(0, 0);
     }
 }
