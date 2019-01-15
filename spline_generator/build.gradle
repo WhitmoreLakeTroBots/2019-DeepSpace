@@ -1,6 +1,8 @@
 apply plugin: 'base'
 apply plugin: 'java'
 
+import java.nio.file.*
+
 def robotDeployDir = "${rootProject.projectDir}/src/main/deploy"
 mkdir robotDeployDir
 
@@ -18,7 +20,32 @@ configurations {
 
 def jni_version = "1.0.1"
 def pathfinder_version = "2019.1.11"
-def depRootDir = "${System.env.USERPROFILE}/wlrobotics-deps/jaci"
+def depRootDir = "UNKNOWN"
+
+def wldep_locations = [
+  "${System.env.USERPROFILE}/wlrobotics-deps/jaci", 
+  "c:/wlrobotics-deps/jaci",
+  "d:/wlrobotics-deps/jaci",
+  "${System.env.WLROBOTICS_DEPS_HOME}/wlrobotics-deps/jaci",
+  "${System.env.HOME}/wlrobotics-deps/jaci"
+ ]
+
+  File f = null
+  wldep_locations.each { wl_loc ->
+    f = new File (wl_loc)
+    if (f.exists()) {
+      println "wlrobotics-deps/jaci was found at ${f.getPath()}"
+      depRootDir = wl_loc
+    }
+  }
+
+  if (depRootDir == "UNKNOWN") {
+    wldep_locations.each { wl_loc ->
+      f = new File (wl_loc)
+      println "wlrobotics-deps not found at ${f.getPath()}"
+      }
+    throw new Exception("wlrobotics-deps not found !!!")
+  }
 
 dependencies {
     // Pathfinder dependencies
