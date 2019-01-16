@@ -1,0 +1,48 @@
+set terminal wxt size 1500,750
+set multiplot
+set xrange[0:3248]
+set yrange[0:1609]
+unset tics
+unset border
+set lmargin at screen 0.1
+set rmargin at screen 0.9
+set bmargin at screen 0.1
+set tmargin at screen 0.9
+plot '2019DDS_Spline_Field.png' binary filetype=png w rgbimage
+set xrange[0:16.5354]
+set yrange[0:8.000]
+set border
+set tics
+set datafile separator ','
+set key autotitle columnhead
+unset key
+plot 'AutonCenter_HCL_CL3_00.cvs' using 2:3 w lp lt rgb 'red'
+plot 'AutonCenter_HCL_CL3_01.cvs' using 2:3 w lp lt rgb 'red'
+plot 'AutonCenter_HCL_CL3_02.cvs' using 2:3 w lp lt rgb 'red'
+plot 'AutonCenter_HCR_CR3_00.cvs' using 2:3 w lp lt rgb 'orange'
+plot 'AutonCenter_HCR_CR3_01.cvs' using 2:3 w lp lt rgb 'orange'
+plot 'AutonCenter_HCR_CR3_02.cvs' using 2:3 w lp lt rgb 'orange'
+plot 'AutonRight_HR1_HCR_00.cvs' using 2:3 w lp lt rgb 'royalblue'
+plot 'AutonRight_HR1_HCR_01.cvs' using 2:3 w lp lt rgb 'royalblue'
+plot 'AutonRight_HR1_HCR_02.cvs' using 2:3 w lp lt rgb 'royalblue'
+plot 'AutonRight_HR1_HCR_03.cvs' using 2:3 w lp lt rgb 'royalblue'
+plot 'AutonLeft_HL1_HCL_00.cvs' using 2:3 w lp lt rgb 'blue'
+plot 'AutonLeft_HL1_HCL_01.cvs' using 2:3 w lp lt rgb 'blue'
+plot 'AutonLeft_HL1_HCL_02.cvs' using 2:3 w lp lt rgb 'blue'
+plot 'AutonLeft_HL1_HCL_03.cvs' using 2:3 w lp lt rgb 'blue'
+plot 'AutonCenter_HCR_CR2_00.cvs' using 2:3 w lp lt rgb 'orchid'
+plot 'AutonCenter_HCR_CR2_01.cvs' using 2:3 w lp lt rgb 'orchid'
+plot 'AutonCenter_HCR_CR2_02.cvs' using 2:3 w lp lt rgb 'orchid'
+plot 'AutonRight_HR2_HCR_00.cvs' using 2:3 w lp lt rgb 'gold'
+plot 'AutonRight_HR2_HCR_01.cvs' using 2:3 w lp lt rgb 'gold'
+plot 'AutonRight_HR2_HCR_02.cvs' using 2:3 w lp lt rgb 'gold'
+plot 'AutonRight_HR2_HCR_03.cvs' using 2:3 w lp lt rgb 'gold'
+plot 'AutonRight_HR3_HCR_00.cvs' using 2:3 w lp lt rgb 'coral'
+plot 'AutonRight_HR3_HCR_01.cvs' using 2:3 w lp lt rgb 'coral'
+plot 'AutonRight_HR3_HCR_02.cvs' using 2:3 w lp lt rgb 'coral'
+plot 'AutonRight_HR3_HCR_03.cvs' using 2:3 w lp lt rgb 'coral'
+plot 'AutonLeft_HL3_HCL_00.cvs' using 2:3 w lp lt rgb 'steelblue'
+plot 'AutonLeft_HL3_HCL_01.cvs' using 2:3 w lp lt rgb 'steelblue'
+plot 'AutonLeft_HL3_HCL_02.cvs' using 2:3 w lp lt rgb 'steelblue'
+plot 'AutonLeft_HL3_HCL_03.cvs' using 2:3 w lp lt rgb 'steelblue'
+replot

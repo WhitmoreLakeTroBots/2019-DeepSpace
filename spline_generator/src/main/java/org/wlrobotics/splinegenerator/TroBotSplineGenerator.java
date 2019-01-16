@@ -29,6 +29,27 @@ public class TroBotSplineGenerator extends Object {
 		HL1_HCL.generate();
 		HL1_HCL = null;
 
+		AutonCenter_HCR_CR2 HCR_CR2 = new AutonCenter_HCR_CR2(config);
+		HCR_CR2.generate();
+		HCR_CR2 = null;
+
+		AutonRight_HR2_HCR HR2_HCR = new AutonRight_HR2_HCR(config);
+		HR2_HCR.generate();
+		HR2_HCR = null;
+
+
+		test test = new test(config);
+		//test.generate();
+		test = null;
+
+		AutonRight_HR3_HCR HR3_HCR = new AutonRight_HR3_HCR(config);
+		HR3_HCR.generate();
+		HR3_HCR = null;
+
+		AutonLeft_HL3_HCL HL3_HLR = new AutonLeft_HL3_HCL(config);
+		HL3_HLR.generate();
+		HL3_HLR = null;
+
 		System.out.println("TroBot Splines Generation: Complete");
 	}
 }
