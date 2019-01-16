@@ -32,14 +32,6 @@ AutonCenter_HCL_CL3 (Trajectory.Config conf) {
       Waypoint[] points = new Waypoint[] {
         new Waypoint(1.00, 6.00, 0),
         new Waypoint(3.00, 6.00, 0),
-        new Waypoint(4.00, 5.00, Pathfinder.d2r(90))
-      };
-      return (Pathfinder.generate(points, config));
-    }
-
-    private Trajectory gen_Auton_HCL_CL3_04(){
-      Waypoint[] points = new Waypoint[] {
-        new Waypoint(4.00, 5.00, Pathfinder.d2r(-90)),
         new Waypoint(6.50, 6.00, Pathfinder.d2r(0)),
         new Waypoint(7.75, 5.20, Pathfinder.d2r(-90)),
         new Waypoint(7.75, 4.66, Pathfinder.d2r(-90))
@@ -51,7 +43,6 @@ AutonCenter_HCL_CL3 (Trajectory.Config conf) {
     segments.add (gen_Auton_HCL_CL3_01());
     segments.add (gen_Auton_HCL_CL3_02());
     segments.add (gen_Auton_HCL_CL3_03());
-    segments.add (gen_Auton_HCL_CL3_04());
     write();
   }
 }
