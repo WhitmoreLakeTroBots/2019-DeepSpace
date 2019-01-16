@@ -87,12 +87,12 @@ public class subChassis extends Subsystem {
     return RobotMap.rightDrive1.getSelectedSensorPosition(0);
     }
     public int getLeftEncoderTics(){
-    return RobotMap.leftDrive1.getSelectedSensorPosition(0);
+    return -RobotMap.leftDrive1.getSelectedSensorPosition(0);
     }
     public int getEncoderAvgTic(){
         return (int)(getRightEncoderTics()+getLeftEncoderTics())/2;
     }
-	public double getEncoderAvgDistInch() {
+	public double getEncoderAvgDistMeters() {
 		double retVal = 0;
 		double leftDistance = getLeftEncoderDist();
 		double rightDistance = getRightEncoderDist();
@@ -111,7 +111,7 @@ public class subChassis extends Subsystem {
 	}
 
 	public double getLeftEncoderDist() {
-		return RobotMap.leftDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+		return -RobotMap.leftDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
 	}
 
 	public void resetRightEncoder() {
