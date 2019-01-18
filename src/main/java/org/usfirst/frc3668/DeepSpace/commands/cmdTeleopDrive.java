@@ -48,7 +48,7 @@ public class cmdTeleopDrive extends Command {
     @Override
     protected void execute() {
         Robot.subChassis.Drive(Robot.oi.joyDrive);
-        System.err.println("Heading: " + Robot.subChassis.getNormaliziedNavxAngle());
+        //System.err.println("Heading: " + Robot.subChassis.getNormaliziedNavxAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()

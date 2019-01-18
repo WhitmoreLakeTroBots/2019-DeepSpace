@@ -16,14 +16,14 @@ public class Settings {
     public static final int chassisDriveMaxCurrentLimit = 55;
     public static final int chassisDriveMaxCurrentTimeout = 500;
     public static final double chassisEncoderDeadValueThreshold = 0.5;
-    public static final double splineKp = 0.1;
-    public static final double splineKi = 0.00;
-    public static final double splineKd = 0.000;
-    public static final double splineKf = 0;
+    public static final double splineKp = 0.2;
+    public static final double splineKi = 0.01;
+    public static final double splineKd = 0.00;
+    public static final double splineKf = 0.01;
     public static final double maxVelocity = 4.667;
     public static final double maxAccel = 3;
     public static final double maxJerk = 5;
-    public static final double chassisTurnScalar = -0.015;
+    public static final double chassisTurnScalar = -0.001;
 
     //Interface Settings
     public static final int joyDrivePort = 0;

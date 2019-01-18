@@ -53,8 +53,13 @@ public class subChassis extends Subsystem {
 	}
 
 	public void DriveMan(double leftThrottle, double rightThrottle) {
-		setLeftMotors(leftThrottle);
-		setRightMotors(-rightThrottle);
+		if(Robot.isDriveInverted){
+			setLeftMotors(leftThrottle);
+			setRightMotors(-rightThrottle);
+		} else {
+			setLeftMotors(-leftThrottle);
+			setRightMotors(rightThrottle);
+		}
 	}
 
 	public void setRightMotors(double throttle) {
