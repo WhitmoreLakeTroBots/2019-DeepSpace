@@ -1,6 +1,3 @@
-
-
-
 package org.usfirst.frc3668.DeepSpace.commands;
 
 import java.io.File;
@@ -15,12 +12,18 @@ import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
 
 public class cmdSplineFollower extends Command {
+    double splineLength;
     EncoderFollower follower;
     Trajectory trajectory;
+    File spline;
+
+    int pointCount = 0;
+    double trajLen;
 
     public cmdSplineFollower(String fileName) {
-        File spline = new File(fileName);
+        spline = new File(fileName);
         trajectory = Pathfinder.readFromCSV(spline);
+        trajLen = trajectory.length();
         requires(Robot.subChassis);
     }
 
@@ -28,8 +31,6 @@ public class cmdSplineFollower extends Command {
     @Override
     protected void initialize() {
         Robot.subChassis.resetBothEncoders(); 
-        System.err.println("Spline File:");
-        System.err.print(trajectory);
         follower = new EncoderFollower(trajectory);
         follower.configureEncoder(Robot.subChassis.getEncoderAvgTic(), Settings.chassisEncoderTicsPerRevolution, Settings.chassisWheelDiameter);
         follower.configurePIDVA(Settings.splineKp, Settings.splineKi, Settings.splineKd, 1/ Settings.maxVelocity, Settings.splineKf );
@@ -38,19 +39,24 @@ public class cmdSplineFollower extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+      pointCount ++;
       double output = follower.calculate(Robot.subChassis.getRightEncoderTics()); 
       double heading = Robot.subChassis.getNormaliziedNavxAngle();
       double desiredHeading = Pathfinder.r2d(follower.getHeading());
       double angleDifference = Pathfinder.boundHalfDegrees(desiredHeading - heading);
       double turnVal = Settings.chassisTurnScalar * angleDifference;
-      System.err.println(String.format("Right Encoder: %1$d \t Left Encoder: %2$d \t Avg Encoder: %3$d \t Navx: %4$.3f \t Spline Output: %5$.3f", Robot.subChassis.getRightEncoderTics(), Robot.subChassis.getLeftEncoderTics(), Robot.subChassis.getEncoderAvgTic(), Robot.subChassis.getNormaliziedNavxAngle(), output));
-      //Robot.subChassis.DriveMan(output + turnVal,output - turnVal );
+      System.err.println(String.format("Right Encoder: %1$d \t Left Encoder: %2$d \t Avg Encoder: %3$d \t Navx: %4$.3f \t dHeading: %5$.3f \t Spline Output: %6$.3f \t PerComp: %7$.3f", Robot.subChassis.getRightEncoderTics(), Robot.subChassis.getLeftEncoderTics(), Robot.subChassis.getEncoderAvgTic(), Robot.subChassis.getNormaliziedNavxAngle(), desiredHeading, output, percentComplete()));
+      Robot.subChassis.DriveMan(output - turnVal, output + turnVal);
+    }
+
+    protected double percentComplete (){
+        return pointCount / trajLen;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false; //Robot.subChassis.getEncoderAvgDistInch() == trajectory.length();
+        return percentComplete() == 1;
     }
 
     // Called once after isFinished returns true
