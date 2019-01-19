@@ -24,7 +24,7 @@ abstract class BaseAutonGenerator extends Object {
   void write (){
     int fileCounter = 0;
     for (Trajectory trajectory:segments){
-      String trajFileName = this.baseFileName + "_" +  String.format("%02d", fileCounter) + ".cvs";
+      String trajFileName = this.baseFileName + ".cvs";
       File trajFile = new File(trajFileName);
   	  splineWriter.writeTrajectory(trajectory, trajFile);
       splineWriter.writePlotCommand(String.format(gnuPlotString, trajFileName));
