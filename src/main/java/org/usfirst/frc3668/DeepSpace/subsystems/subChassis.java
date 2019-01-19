@@ -89,10 +89,18 @@ public class subChassis extends Subsystem {
 
     }
     public int getRightEncoderTics(){
-    return RobotMap.rightDrive1.getSelectedSensorPosition(0);
+		if(Robot.isDriveInverted){
+			return RobotMap.rightDrive1.getSelectedSensorPosition(0);
+		} else {
+			return -RobotMap.rightDrive1.getSelectedSensorPosition(0);
+		}
     }
     public int getLeftEncoderTics(){
-    return -RobotMap.leftDrive1.getSelectedSensorPosition(0);
+		if(Robot.isDriveInverted){
+			return -RobotMap.leftDrive1.getSelectedSensorPosition(0);
+		} else {
+			return RobotMap.leftDrive1.getSelectedSensorPosition(0);
+		}
     }
     public int getEncoderAvgTic(){
         return (int)(getRightEncoderTics()+getLeftEncoderTics())/2;
@@ -112,11 +120,19 @@ public class subChassis extends Subsystem {
 	}
 
 	public double getRightEncoderDist() {
-		return RobotMap.rightDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+		if(Robot.isDriveInverted){
+			return RobotMap.rightDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+		} else {
+			return -RobotMap.rightDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+		}
 	}
 
 	public double getLeftEncoderDist() {
-		return -RobotMap.leftDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+		if(Robot.isDriveInverted){
+			return -RobotMap.leftDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+		} else {
+			return RobotMap.leftDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+		}
 	}
 
 	public void resetRightEncoder() {
