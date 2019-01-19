@@ -5,7 +5,6 @@ import java.io.File;
 import org.usfirst.frc3668.DeepSpace.Robot;
 import org.usfirst.frc3668.DeepSpace.Settings;
 
-import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.command.Command;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;

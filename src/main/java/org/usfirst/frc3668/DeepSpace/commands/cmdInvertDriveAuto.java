@@ -5,6 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdInvertDriveAuto extends Command{
 
+    public cmdInvertDriveAuto(){
+    }
+
     @Override
     protected void initialize() {
         requires(Robot.subChassis);

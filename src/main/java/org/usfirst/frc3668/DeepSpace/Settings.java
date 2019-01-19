@@ -1,6 +1,6 @@
 package org.usfirst.frc3668.DeepSpace;
 
-public class Settings {	
+public class Settings {
     public static final double joyDriveDeadband = 0.05;
     public static final double chassisRightSideScalar = 1;
     public static final double chassisLeftSideScalar = 1;
@@ -24,6 +24,22 @@ public class Settings {
     public static final double maxAccel = 3;
     public static final double maxJerk = 5;
     public static final double chassisTurnScalar = -0.001;
+
+    public enum actions{
+        moveArm, placeHatch, graspHatch, placeCargo, graspCargo, invertDrive, spline
+    }
+
+    public enum startLocation{
+        left, right, center
+    }
+
+    public enum locations{
+        CSCL, CSCR, CSL1, CSL2, CSL3, CSR1, CSR2, CSR3, LSL, LSR, DCL, DCR
+    }
+
+    public enum startGameElementType{
+        cargo, hatch
+    }
 
     //Interface Settings
     public static final int joyDrivePort = 0;
