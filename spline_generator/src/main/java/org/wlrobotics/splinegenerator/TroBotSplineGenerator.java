@@ -13,50 +13,74 @@ public class TroBotSplineGenerator extends Object {
 		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC,
 				Trajectory.Config.SAMPLES_HIGH, deltaTime, maxVel, maxAccel, maxJerk);
 
-		AutonCenter_HCL_CL3 HCL_CL3 = new AutonCenter_HCL_CL3(config);
-		//HCL_CL3.generate();
-		HCL_CL3 = null;
 
-		AutonCenter_HCR_CR3 HCR_CR3 = new AutonCenter_HCR_CR3(config);
-		//HCR_CR3.generate();
-		HCR_CR3 = null;
+		Spline_StartCenter_CSCL startCenter_CSCL = new Spline_StartCenter_CSCL(config);
+		startCenter_CSCL.generate();
+		startCenter_CSCL = null;
 
-		AutonRight_HR1_HCR HR1_HCR = new AutonRight_HR1_HCR(config);
-		//HR1_HCR.generate();
-		HR1_HCR = null;
+		Spline_StartCenter_CSCR startCenter_CSCR = new Spline_StartCenter_CSCR(config);
+		startCenter_CSCR.generate();
+		startCenter_CSCR = null;
 
-		AutonLeft_HL1_HCL HL1_HCL = new AutonLeft_HL1_HCL(config);
-		//HL1_HCL.generate();
-		HL1_HCL = null;
+		Spline_CSCL_DCL CSCL_DCL = new Spline_CSCL_DCL(config);
+		CSCL_DCL.generate();
+		CSCL_DCL = null;
+		
+		Spline_CSCL_LSL CSCL_LSL = new Spline_CSCL_LSL(config);
+		CSCL_LSL.generate();
+		CSCL_LSL = null;
 
-		AutonCenter_HCR_CR2 HCR_CR2 = new AutonCenter_HCR_CR2(config);
-		HCR_CR2.generate();
-		HCR_CR2 = null;
+		Spline_CSCR_DCR CSCR_DCR = new Spline_CSCR_DCR(config);
+		CSCR_DCR.generate();
+		CSCR_DCR = null;
 
-		AutonCenter_HCL_CR2 HCL_CR2 = new AutonCenter_HCL_CR2(config);
-		HCL_CR2.generate();
-		HCL_CR2 = null;
+		Spline_CSCR_LSR CSCR_LSR = new Spline_CSCR_LSR(config);
+		CSCR_LSR.generate();
+		CSCR_LSR = null;
 
-		AutonRight_HR2_HCR HR2_HCR = new AutonRight_HR2_HCR(config);
-		//HR2_HCR.generate();
-		HR2_HCR = null;
+		Spline_DCL_CSL1 DCL_CSL1 = new Spline_DCL_CSL1(config);
+		DCL_CSL1.generate();
+		DCL_CSL1 = null; 
 
+		Spline_DCL_CSL2 DCL_CSL2 = new Spline_DCL_CSL2(config);
+		DCL_CSL2.generate();
+		DCL_CSL2 = null;
+
+		Spline_DCL_CSL3 DCL_CSL3 = new Spline_DCL_CSL3(config);
+		DCL_CSL3.generate();
+		DCL_CSL3 = null;
+
+		Spline_DCR_CSR1 DCR_CSR1 = new Spline_DCR_CSR1(config);
+		DCR_CSR1.generate();
+		DCR_CSR1 = null; 
+
+		Spline_DCR_CSR2 DCR_CSR2 = new Spline_DCR_CSR2(config);
+		DCR_CSR2.generate();
+		DCR_CSR2 = null;
+
+		Spline_DCR_CSR3 DCR_CSR3 = new Spline_DCR_CSR3(config);
+		DCR_CSR3.generate();
+		DCR_CSR3 = null;
+
+		Spline_LSL_CSCL LSL_CSCL = new Spline_LSL_CSCL(config);
+		LSL_CSCL.generate();
+		LSL_CSCL = null;
+
+		Spline_LSL_CSCR LSL_CSCR = new Spline_LSL_CSCR(config);
+		LSL_CSCR.generate();
+		LSL_CSCR = null;
+
+		Spline_LSR_CSCL LSR_CSCL = new Spline_LSR_CSCL(config);
+		LSR_CSCL.generate();
+		LSR_CSCL = null;
+
+		Spline_LSR_CSCR LSR_CSCR = new Spline_LSR_CSCR(config);
+		LSR_CSCR.generate();
+		LSR_CSCR = null;
 
 		test test = new test(config);
 		//test.generate();
 		test = null;
-
-		AutonRight_HR3_HCR HR3_HCR = new AutonRight_HR3_HCR(config);
-		//HR3_HCR.generate();
-		HR3_HCR = null;
-
-		AutonLeft_HL3_HCL HL3_HLR = new AutonLeft_HL3_HCL(config);
-		//HL3_HLR.generate();
-		HL3_HLR = null;
-
-		AutonLeft_HL2_HCL HL2_HLR = new AutonLeft_HL2_HCL(config);
-		//HL2_HLR.generate();
-		HL2_HLR = null;
 
 		System.out.println("TroBot Splines Generation: Complete");
 	}
