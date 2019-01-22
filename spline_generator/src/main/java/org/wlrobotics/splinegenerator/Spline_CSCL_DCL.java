@@ -4,6 +4,8 @@ import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
 
+import org.wlrobotics.splinegenerator.*;
+
 class Spline_CSCL_DCL extends BaseAutonGenerator {
 
   Spline_CSCL_DCL (Trajectory.Config conf) {

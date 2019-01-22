@@ -43,7 +43,7 @@ public class cmdSplineFollower extends Command {
       double heading = Robot.subChassis.getNormaliziedNavxAngle();
       double desiredHeading = Pathfinder.r2d(follower.getHeading());
       double angleDifference = Pathfinder.boundHalfDegrees(desiredHeading - heading);
-      double turnVal = Settings.chassisTurnScalar * angleDifference;
+      double turnVal = Settings.splineTurnScalar * angleDifference;
       System.err.println(String.format("Right Encoder: %1$d \t Left Encoder: %2$d \t Avg Encoder: %3$d \t Navx: %4$.3f \t dHeading: %5$.3f \t Spline Output: %6$.3f \t PerComp: %7$.3f", Robot.subChassis.getRightEncoderTics(), Robot.subChassis.getLeftEncoderTics(), Robot.subChassis.getEncoderAvgTic(), Robot.subChassis.getNormaliziedNavxAngle(), desiredHeading, output, percentComplete()));
       Robot.subChassis.DriveMan(output - turnVal, output + turnVal);
     }

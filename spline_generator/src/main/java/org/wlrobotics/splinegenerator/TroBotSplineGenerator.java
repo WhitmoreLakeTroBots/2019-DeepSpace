@@ -2,6 +2,8 @@ package org.wlrobotics.splinegenerator;
 
 import jaci.pathfinder.Trajectory;
 
+import org.wlrobotics.splinegenerator.*;
+
 public class TroBotSplineGenerator extends Object {
 
 	static final double deltaTime = 0.02;

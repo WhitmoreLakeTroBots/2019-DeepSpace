@@ -75,7 +75,7 @@ public class subChassis extends Subsystem {
 	public void Drive(double move, double rotate) {
 		double rightMotorThrottle;
 		double leftMotorThrottle;
-		if (Robot.isDriveInverted) {
+		if (!Robot.isDriveInverted) {
 			rightMotorThrottle = (rotate + move) * Settings.chassisRightSideScalar;
 			leftMotorThrottle = (rotate - move) * Settings.chassisLeftSideScalar;
 			setLeftMotors(leftMotorThrottle);	
