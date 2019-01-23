@@ -25,7 +25,7 @@ public class Settings {
     public static final int joyArtPort = 1;
 
     //Auto Settings
-    public static final double autoTurnSpeed = -0.27; //0.12 for tile;
+    public static final double autoTurnSpeed = -0.23; //0.12 for tile;
     public static final double autoProfileDriveSpeed = 1.00;//3.683; //In meters from 145 inches
 
     public static enum chassisTurnDirection {
@@ -55,7 +55,7 @@ public class Settings {
     public static final double profileDriveKp = 0.1;
 	public static final double profileDriveKi = 0.002;
     public static final double profileDriveKd = 0.0009;
-    public static final double profileDriveStraightGyroKp = -0.02;
+    public static final double profileDriveStraightGyroKp = -0.10;
     public static final double profileMovementThreshold = 0.01;
     public static final double profileInitVelocity = 0.0;
     public static final double profileEndTimeScalar = 1.3;

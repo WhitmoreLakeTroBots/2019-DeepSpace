@@ -25,7 +25,7 @@ public class cmdTurnGyro extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		System.err.println("TURNING");
+		System.err.println(String.format("cmdTurnGyro %1$.3f", _desiredHeading));
 	}
 
 	// Called repeatedly when this Command is scheduled to run

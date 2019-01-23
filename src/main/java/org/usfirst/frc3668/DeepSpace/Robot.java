@@ -199,6 +199,8 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+        SmartDashboard.putNumber("tx", tx.getDouble(0));
+        SmartDashboard.putNumber("ty", ty.getDouble(0));
         Scheduler.getInstance().run();
     }
 }
