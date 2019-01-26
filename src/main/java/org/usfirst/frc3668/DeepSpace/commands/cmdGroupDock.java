@@ -24,7 +24,7 @@ public class cmdGroupDock extends CommandGroup {
             addSequential(new cmdTurnGyro(Settings.autoTurnSpeed, absoluteHeading));
           //  addSequential(new cmdProfileDrive(absoluteHeading, Settings.autoProfileDriveSpeed, dist));
         } else {
-            addSequential(new cmdTurnGyro(Settings.autoTurnSpeed, absoluteHeading));
+            addSequential(new cmdDelay(0));
             //addSequential(new cmdGroupDelay(Settings.delayMiliseconds));;
             /*System.err.println("We are forced to cancel; vert angle = 0");
             this.cancel();
