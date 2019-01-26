@@ -112,7 +112,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("First Destentation", firstLocChooser);
         SmartDashboard.putData("Second Game Type", secondGameTypeChooser);
         SmartDashboard.putData("Second Location", secondLocChooser);
-    }
+    }   
 
     /**
      * This function is called when the disabled button is hit. You can use it to
@@ -125,6 +125,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledPeriodic() {
+        update_smartDashboard();
         Scheduler.getInstance().run();
     }
 
@@ -217,14 +218,16 @@ public class Robot extends TimedRobot {
      */
     double x = 0;
     double y = 0;
-
-    @Override
-    public void teleopPeriodic() {
-        SmartDashboard.putNumber("tx", tx.getDouble(0));
-        SmartDashboard.putNumber("ty", ty.getDouble(0));
+    public void update_smartDashboard() {
+        SmartDashboard.putNumber("tx", tx.getDouble(Settings.llDefaultAngle));
+        SmartDashboard.putNumber("ty", ty.getDouble(Settings.llDefaultAngle));
         Scheduler.getInstance().run();
         xEntry.setDouble(y);
-        yEntry.setDouble(y);
-
+        yEntry.setDouble(y);   
+    }
+    @Override
+    public void teleopPeriodic() {
+        update_smartDashboard();
+       
     }
 }

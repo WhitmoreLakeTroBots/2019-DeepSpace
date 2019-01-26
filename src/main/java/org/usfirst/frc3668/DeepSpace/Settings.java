@@ -16,16 +16,16 @@ public class Settings {
     public static final int chassisDriveMaxCurrentLimit = 55;
     public static final int chassisDriveMaxCurrentTimeout = 500;
     public static final double chassisEncoderDeadValueThreshold = 0.5;
-    public static final double chassisTurnKp = 0.003;
-    public static final double chassisGyroTol = 1.5;
+    public static final double chassisTurnKp = 0.015;
+    public static final double chassisGyroTol = 2.0;
 
     //Interface Settings
     public static final int joyDrivePort = 0;
-    public static final int joyDriveDock = 1;
+    public static final int joyDriveDock = 10;
     public static final int joyArtPort = 1;
 
     //Auto Settings
-    public static final double autoTurnSpeed = -0.23; //0.12 for tile;
+    public static final double autoTurnSpeed = -0.2; //0.12 for tile;
     public static final double autoProfileDriveSpeed = 1.00;//3.683; //In meters from 145 inches
 
     public static enum chassisTurnDirection {
@@ -52,15 +52,15 @@ public class Settings {
     public static final String profileTestLogName = "logs\\motionProfileTestResults";
     public static final String profileLogName = "//media//sda1//motionProfile";
     public static final String profileLogFileExtension = ".txt";
-    public static final double profileDriveKp = 0.2;
+    public static final double profileDriveKp = 0.1;
 	public static final double profileDriveKi = 0.003;
-    public static final double profileDriveKd = 0.0010;
+    public static final double profileDriveKd = 0.0004;
     public static final double profileDriveStraightGyroKp = -0.10;
     public static final double profileMovementThreshold = 0.02;
     public static final double profileInitVelocity = 0.0;
     public static final double profileEndTimeScalar = 1.3;
-    public static final double profileDriveAccelration = 3.00; // meters/sec/sec 
-
+    public static final double profileDriveAccelration = 1.50; // meters/sec/sec 
+    public static final double llDefaultAngle = 99.00;
     //Test Settings
     public static final double delayMiliseconds = 24;
     
@@ -68,12 +68,12 @@ public class Settings {
     public static final double limelightH2T = 0.534;
 
     //Spline Settings
-    public static final double splineKp = 0.2;
-    public static final double splineKi = 0.01;
-    public static final double splineKd = 0.00;
+    public static final double splineKp = 0.03;
+    public static final double splineKi = 0.002;
+    public static final double splineKd = 0.005;
     public static final double splineKf = 0.01;
     public static final double maxVelocity = 4.667;
-    public static final double maxAccel = 3;
+    public static final double maxAccel = 2;
     public static final double maxJerk = 5;
     public static final double splineTurnScalar = -0.001;
 
