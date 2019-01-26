@@ -52,14 +52,17 @@ public class Settings {
     public static final String profileTestLogName = "logs\\motionProfileTestResults";
     public static final String profileLogName = "//media//sda1//motionProfile";
     public static final String profileLogFileExtension = ".txt";
-    public static final double profileDriveKp = 0.1;
-	public static final double profileDriveKi = 0.002;
-    public static final double profileDriveKd = 0.0009;
+    public static final double profileDriveKp = 0.2;
+	public static final double profileDriveKi = 0.003;
+    public static final double profileDriveKd = 0.0010;
     public static final double profileDriveStraightGyroKp = -0.10;
-    public static final double profileMovementThreshold = 0.01;
+    public static final double profileMovementThreshold = 0.02;
     public static final double profileInitVelocity = 0.0;
     public static final double profileEndTimeScalar = 1.3;
     public static final double profileDriveAccelration = 3.00; // meters/sec/sec 
+
+    //Test Settings
+    public static final double delayMiliseconds = 24;
     
     //Limelight Settings
     public static final double limelightH2T = 0.534;
