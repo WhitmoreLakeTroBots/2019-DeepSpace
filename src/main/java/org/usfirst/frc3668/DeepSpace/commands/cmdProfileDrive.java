@@ -7,7 +7,6 @@ import org.usfirst.frc3668.DeepSpace.Settings;
 import org.usfirst.frc3668.DeepSpace.motionProfile.MotionProfiler;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class cmdProfileDrive extends Command {
 	private double _distance;
