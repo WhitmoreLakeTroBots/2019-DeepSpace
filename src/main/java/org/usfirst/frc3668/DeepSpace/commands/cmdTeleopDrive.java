@@ -1,6 +1,5 @@
 package org.usfirst.frc3668.DeepSpace.commands;
 
-import org.usfirst.frc3668.DeepSpace.OI;
 import org.usfirst.frc3668.DeepSpace.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -31,13 +30,14 @@ public class cmdTeleopDrive extends Command {
     @Override
     protected void initialize() {
         Robot.subChassis.resetNavx();
+        Robot.subTail.resetTailEncoder();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
         Robot.subChassis.Drive(Robot.oi.joyDrive);
-        //System.err.println("Heading: " + Robot.subChassis.getNormaliziedNavxAngle());
+        System.err.println("tailencoder" + Robot.subTail.getTailEncoderTics());
     }
 
     // Make this return true when this Command no longer needs to run execute()

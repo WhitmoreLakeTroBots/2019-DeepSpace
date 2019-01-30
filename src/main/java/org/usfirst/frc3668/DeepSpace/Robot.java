@@ -4,7 +4,7 @@ import org.usfirst.frc3668.DeepSpace.subsystems.subCargo;
 import org.usfirst.frc3668.DeepSpace.subsystems.subChassis;
 import org.usfirst.frc3668.DeepSpace.subsystems.subHatch;
 import org.usfirst.frc3668.DeepSpace.subsystems.subLift;
-
+import org.usfirst.frc3668.DeepSpace.subsystems.subTail;
 import org.usfirst.frc3668.DeepSpace.commands.cmdGroupAutoTemplate;
 
 import edu.wpi.first.networktables.NetworkTable;
@@ -39,6 +39,7 @@ public class Robot extends TimedRobot {
     public static subCargo subCargo;
     public static subHatch subHatch;
     public static RobotMap RobotMap;
+    public static subTail subTail;
     public static boolean isDriveInverted = true;
 
     public static NetworkTableInstance inst = null;
@@ -68,6 +69,7 @@ public class Robot extends TimedRobot {
         subLift = new subLift();
         subCargo = new subCargo();
         subHatch = new subHatch();
+        subTail = new subTail();
 
         inst = NetworkTableInstance.getDefault();
         table = inst.getTable("limelight");

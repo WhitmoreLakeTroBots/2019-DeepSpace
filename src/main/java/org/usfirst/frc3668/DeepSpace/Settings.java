@@ -19,6 +19,22 @@ public class Settings {
     public static final double chassisTurnKp = 0.015;
     public static final double chassisGyroTol = 2.0;
 
+    //tail Settings
+    public static final int tailEncoderDIOPortA = 1;
+    public static final int tailEncoderDIOPortB = 0;
+    public static final int tailcanID = 5;
+
+    //swingRotation settings
+    public static final int swingRotationcanID = 6;
+    
+    //frontLift settings
+    public static final int frontLiftcanID = 7;
+
+    //intakeRotation settings
+    public static final int intakeRotationcanID = 8;
+
+    //intake settings
+    
     //Interface Settings
     public static final int joyDrivePort = 0;
     public static final int joyDriveDock = 10;
@@ -65,7 +81,7 @@ public class Settings {
     public static final double delayMiliseconds = 24;
     
     //Limelight Settings
-    public static final double limelightH2T = 0.534;
+    public static final double limelightH2T = -0.3806;
 
     //Spline Settings
     public static final double splineKp = 0.03;
