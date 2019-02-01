@@ -19,21 +19,32 @@ public class Settings {
     public static final double chassisTurnKp = 0.015;
     public static final double chassisGyroTol = 2.0;
 
-    //tail Settings
+    //Tail Settings
     public static final int tailEncoderDIOPortA = 1;
     public static final int tailEncoderDIOPortB = 0;
-    public static final int tailcanID = 5;
+    public static final int tailCanID = 5;
 
-    //swingRotation settings
-    public static final int swingRotationcanID = 6;
+    //Swing settings
+    public static final int swingRotationCanID = 6;
     
-    //frontLift settings
-    public static final int frontLiftcanID = 7;
+    //Lift settings
+    public static final int frontLiftCanID = 7;
+    public static final double liftRearStiltSpeed = 10;
+    public static final double liftRearStiltLength = 20;
 
-    //intakeRotation settings
-    public static final int intakeRotationcanID = 8;
+    //Intake settings
+    public static final int intakeRotationCanID = 8;
+    public static final int intakeCanID = 9;
 
-    //intake settings
+    //Head Settings
+    public static final int headRotationCanID = 10;
+
+    //Hatch Manipulator
+    public static final int hatchManipulatorCanID = 11;
+
+    //Cargo Maniplulator
+    public static final int cargoManipulator1CanID = 12;
+    public static final int cargoManipulator2CanID = 13;
     
     //Interface Settings
     public static final int joyDrivePort = 0;
