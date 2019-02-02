@@ -21,6 +21,7 @@ public class cmdDelay extends Command {
     @Override
     protected void initialize() {
         bDone = false;
+        System.err.println("Adding Delay effect");
     }
 
     // Called repeatedly when this Command is scheduled to run

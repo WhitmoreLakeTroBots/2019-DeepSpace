@@ -12,6 +12,6 @@ public class cmdGroupLevel3 extends CommandGroup {
         addSequential(new cmdRaise());
         addSequential(new cmdLiftDrive());
         addSequential(new cmdRetractFrontLift());
-        addSequential(new cmdProfileDrive());
+        addSequential(new cmdProfileDrive(0, 0));
     }
 }

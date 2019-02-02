@@ -17,7 +17,7 @@ public class Settings {
     public static final int chassisDriveMaxCurrentTimeout = 500;
     public static final double chassisEncoderDeadValueThreshold = 0.5;
     public static final double chassisTurnKp = 0.015;
-    public static final double chassisGyroTol = 2.0;
+    public static final double chassisGyroTol = 1.0;
 
     //Tail Settings
     public static final int tailEncoderDIOPortA = 1;
@@ -48,11 +48,12 @@ public class Settings {
     
     //Interface Settings
     public static final int joyDrivePort = 0;
-    public static final int joyDriveDock = 10;
+    public static final int joyDriveDock = 1;
+    public static final int joyDriveCancelDock = 2;
     public static final int joyArtPort = 1;
 
     //Auto Settings
-    public static final double autoTurnSpeed = -0.2; //0.12 for tile;
+    public static final double autoTurnSpeed = 0.16; //0.12 for tile;
     public static final double autoProfileDriveSpeed = 1.00;//3.683; //In meters from 145 inches
 
     public static enum chassisTurnDirection {
@@ -87,13 +88,15 @@ public class Settings {
     public static final double profileInitVelocity = 0.0;
     public static final double profileEndTimeScalar = 1.3;
     public static final double profileDriveAccelration = 1.50; // meters/sec/sec 
-    public static final double llDefaultAngle = 99.00;
+
     //Test Settings
     public static final double delayMiliseconds = 24;
     
     //Limelight Settings
     public static final double limelightH2T = -0.3806;
-
+    public static final double limelightAngleOffset = 1.1605;
+    public static final double llDefaultAngle = 99.00;
+    public static final double llAecseptableAngle = 27;
     //Spline Settings
     public static final double splineKp = 0.03;
     public static final double splineKi = 0.002;

@@ -25,7 +25,7 @@ public class cmdTurnGyro extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		System.err.println(String.format("cmdTurnGyro %1$.3f", _desiredHeading));
+		System.err.println("cmdTurnGyro " + _desiredHeading);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -33,7 +33,7 @@ public class cmdTurnGyro extends Command {
 		double currHeading = Robot.subChassis.getNormaliziedNavxAngle();
 		double headingDelta = RobotMath.headingDelta(currHeading, _desiredHeading);
 		double scaledHeading = headingDelta * Settings.chassisTurnKp;
-		double scaledHeadingSignum = Math.signum(scaledHeading);
+		double scaledHeadingSignum = -Math.signum(scaledHeading);
 		double throttle = (_initThrottle + Math.abs(scaledHeading)) * scaledHeadingSignum;
 		
 		Robot.subChassis.Drive(0, throttle);

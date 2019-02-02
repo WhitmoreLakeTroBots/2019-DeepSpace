@@ -53,7 +53,7 @@ public class RobotMap {
 		headRotation.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		headRotation.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 		
-		tail = new TalonSRX(Settings.TailCanID);
+		tail = new TalonSRX(Settings.tailCanID);
 		tail.setNeutralMode(NeutralMode.Brake);
 		tail.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		tail.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);

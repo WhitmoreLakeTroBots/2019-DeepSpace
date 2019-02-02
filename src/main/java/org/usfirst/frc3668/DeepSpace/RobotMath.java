@@ -57,6 +57,6 @@ public class RobotMath {
 	}
 
 	public static double calcLimeDist(double vertAngle){
-		return Settings.limelightH2T / Math.tan(Math.toRadians(vertAngle));
+		return Settings.limelightH2T / Math.tan(Math.toRadians(vertAngle + Settings.limelightAngleOffset));
 	}
 }
