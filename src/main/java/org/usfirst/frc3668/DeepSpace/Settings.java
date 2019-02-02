@@ -16,7 +16,9 @@ public class Settings {
     public static final int chassisDriveMaxCurrentLimit = 55;
     public static final int chassisDriveMaxCurrentTimeout = 500;
     public static final double chassisEncoderDeadValueThreshold = 0.5;
-    public static final double chassisTurnKp = 0.015;
+    public static final double chassisTurnKp = 0.005;
+    public static final double chassisTurnKi = 0.0001;
+    public static final double chassisTurnkd = 0.001;
     public static final double chassisGyroTol = 1.0;
 
     //Tail Settings
@@ -53,8 +55,8 @@ public class Settings {
     public static final int joyArtPort = 1;
 
     //Auto Settings
-    public static final double autoTurnSpeed = 0.16; //0.12 for tile;
-    public static final double autoProfileDriveSpeed = 1.00;//3.683; //In meters from 145 inches
+    public static final double autoTurnSpeed = 0.15; //0.12 for tile;
+    public static final double autoProfileDriveSpeed = 3.683; //In meters from 145 inches
 
     public static enum chassisTurnDirection {
 		turnRight, turnLeft
@@ -65,15 +67,15 @@ public class Settings {
     }
 
     public enum startLocation{
-        left, right, center
+        left, right, center, test
     }
 
     public enum locations{
-        CSCL, CSCR, CSL1, CSL2, CSL3, CSR1, CSR2, CSR3, LSL, LSR, DCL, DCR
+        CSCL, CSCR, CSL1, CSL2, CSL3, CSR1, CSR2, CSR3, LSL, LSR, DCL, DCR, test
     }
 
     public enum gameElementType{
-        cargo, hatch
+        cargo, hatch, test
     }
 
     //Profile Settings
@@ -83,7 +85,7 @@ public class Settings {
     public static final double profileDriveKp = 0.1;
 	public static final double profileDriveKi = 0.003;
     public static final double profileDriveKd = 0.0004;
-    public static final double profileDriveStraightGyroKp = -0.10;
+    public static final double profileDriveStraightGyroKp = -0.005;
     public static final double profileMovementThreshold = 0.02;
     public static final double profileInitVelocity = 0.0;
     public static final double profileEndTimeScalar = 1.3;
@@ -95,8 +97,10 @@ public class Settings {
     //Limelight Settings
     public static final double limelightH2T = -0.3806;
     public static final double limelightAngleOffset = 1.1605;
+    public static final double limelightHorzAngleScalar = 0.7655808619;
     public static final double llDefaultAngle = 99.00;
     public static final double llAecseptableAngle = 27;
+    public static final double llDistanceOffset = 0.15;
     //Spline Settings
     public static final double splineKp = 0.03;
     public static final double splineKi = 0.002;
@@ -131,5 +135,5 @@ public class Settings {
 
     public static final String fileExt = ".cvs";
 
-    public static final String test1 = filePerfix + "test_00.cvs";
+    public static final String test1 = filePerfix + "_test";
 }

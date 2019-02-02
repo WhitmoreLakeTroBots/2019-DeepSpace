@@ -158,6 +158,7 @@ public class subChassis extends Subsystem {
 
 	public void resetNavx() {
 		RobotMap.navx.reset();
+		RobotMap.navx.zeroYaw();
 	}
 
 	public double gyroNormalize(double heading) {

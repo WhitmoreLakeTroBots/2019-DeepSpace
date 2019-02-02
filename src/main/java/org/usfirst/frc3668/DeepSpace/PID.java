@@ -83,4 +83,13 @@ public class PID {
 		PIDValue = p + i + d; 
 		return PIDValue;
 	}
+
+	public double calcPID(double error){
+		double p = calcP(error);
+		double i = calcI(error);
+		double d = calcD(error);
+		lastError = error;
+		PIDValue = p + i + d; 
+		return PIDValue;
+	}
 }

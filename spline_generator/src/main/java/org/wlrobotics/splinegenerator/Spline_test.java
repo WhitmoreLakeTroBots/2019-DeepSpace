@@ -4,9 +4,9 @@ import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
 
-class test extends BaseAutonGenerator {
+class Spline_test extends BaseAutonGenerator {
 
-test (Trajectory.Config conf) {
+  Spline_test (Trajectory.Config conf) {
     this.config = conf;
     baseFileName = this.getClass().getSimpleName();
     gnuPlotString = "plot '%s' using 2:3 w lp lt rgb 'black'";

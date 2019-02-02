@@ -75,7 +75,7 @@ public class Robot extends TimedRobot {
         subTail = new subTail();
 
         inst = NetworkTableInstance.getDefault();
-        table = inst.getTable("limelight");
+        table = inst.getTable("limelight-test");
         tx = table.getEntry("tx");
         ty = table.getEntry("ty");
         ta = table.getEntry("ta");
@@ -100,18 +100,23 @@ public class Robot extends TimedRobot {
         startChooser.addOption("Center", Settings.startLocation.center);
         startChooser.addOption("Left", Settings.startLocation.left);
         startChooser.addOption("Right", Settings.startLocation.right);
+        startChooser.addOption("Test", Settings.startLocation.test);
 
         startGameChooser.addOption("Hatch", Settings.gameElementType.hatch);
         startGameChooser.addOption("Cargo", Settings.gameElementType.cargo);
+        startGameChooser.addOption("Test", Settings.gameElementType.test);
 
         firstLocChooser.addOption("CS Center Left", Settings.locations.CSCL);
         firstLocChooser.addOption("CS Center Right", Settings.locations.CSCR);
+        firstLocChooser.addOption("Test", Settings.locations.test);
 
         secondGameTypeChooser.addOption("Hatch", Settings.gameElementType.hatch);
         secondGameTypeChooser.addOption("Cargo", Settings.gameElementType.cargo);
+        secondGameTypeChooser.addOption("Test", Settings.gameElementType.test);
 
         secondLocChooser.addOption("CS Center Left", Settings.locations.CSCL);
         secondLocChooser.addOption("CS Center Right", Settings.locations.CSCR);
+        secondLocChooser.addOption("Test", Settings.locations.test);
 
         SmartDashboard.putData("Start Location", startChooser);
         SmartDashboard.putData("Start Game Type", startGameChooser);
@@ -143,6 +148,8 @@ public class Robot extends TimedRobot {
         Settings.gameElementType secondGameType = secondGameTypeChooser.getSelected();
         Settings.locations secondLoc = secondLocChooser.getSelected();
 
+        Settings.actions[] actions = new Settings.actions[3];
+
         String[] parameters = new String[3];
         parameters[0] = Settings.filePerfix;
         parameters[1] = Settings.filePerfix;
@@ -158,6 +165,12 @@ public class Robot extends TimedRobot {
         case right:
             parameters[0] = parameters[0] + Settings.startRight;
             break;
+        case test:
+            parameters[0] = parameters[0] + Settings.test1;
+            parameters[2] = parameters[2] + Settings.test1;
+            actions[0] = Settings.actions.spline;
+            actions[1] = Settings.actions.invertDrive;
+            actions[2] = Settings.actions.spline;
         }
 
         switch (firstLoc) {
@@ -168,6 +181,8 @@ public class Robot extends TimedRobot {
         case CSCR:
             parameters[0] = parameters[0] + Settings.cargoCenterRight;
             parameters[1] = parameters[1] + Settings.cargoCenterRight;
+            break;
+        case test:
             break;
         }
 
@@ -188,18 +203,22 @@ public class Robot extends TimedRobot {
                 parameters[2] = parameters[2] + Settings.depotCargoRight;
             }
             break;
+        case test:
+            break;
         }
 
         switch (secondLoc) {
             case CSCL:
                 parameters[2] = parameters[2] + Settings.cargoCenterLeft;
+                break;
+            case CSCR:
+                parameters[2] = parameters[2] + Settings.cargoCenterRight;
+            case test:
+                break;
         }
         parameters[0] = parameters[0] + Settings.fileExt;
         parameters[1] = parameters[1] + Settings.fileExt;
         parameters[2] = parameters[2] + Settings.fileExt;
-
-        Settings.actions[] actions = new Settings.actions[1];
-        actions[0] = Settings.actions.placeHatch;
 
         autonomousCommand = new cmdGroupAutoTemplate(actions, parameters);
 
