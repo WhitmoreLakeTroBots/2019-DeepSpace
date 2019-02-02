@@ -112,7 +112,7 @@ public class Settings {
     public static final double splineTurnScalar = -0.001;
 
     //Spline Files
-    public static final String filePerfix = "//home//lvuser//deploy//Spline";
+    public static final String filePerfix = "/home/lvuser/deploy/Spline";
 
     public static final String startCenter = "_StartCenter";
     public static final String startLeft = "_StartLeft";
@@ -135,5 +135,5 @@ public class Settings {
 
     public static final String fileExt = ".cvs";
 
-    public static final String test1 = filePerfix + "_test";
+    public static final String test1 = "_test";
 }
