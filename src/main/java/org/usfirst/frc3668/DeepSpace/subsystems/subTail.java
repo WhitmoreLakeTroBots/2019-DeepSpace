@@ -8,49 +8,42 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc3668.DeepSpace.subsystems;
-
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.usfirst.frc3668.DeepSpace.RobotMap;
+import org.usfirst.frc3668.DeepSpace.Settings;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class subTail extends Subsystem {
-      public subTail() {
-        
-    }
-
-    public void resetTailEncoder() {
-		RobotMap.tail.setSelectedSensorPosition(0, 0, 0);
-    }
+  public subTail() {
+  
+  }
+  double tickAngle = RobotMap.tail.getSelectedSensorPosition() / Settings.ticksPerDeg;
+  public double returnAngle(){
+    return tickAngle ;
     
-    public int getTailEncoderTics(){
-            return RobotMap.tail.getSelectedSensorPosition(0);
-    }
-    
-    public void tailThrotle(double throttle) {
-		RobotMap.tail.set(ControlMode.PercentOutput, throttle);
-		
-	}
-   
+  }
 
+  public int getTailEncoderTics() {
+    return RobotMap.tail.getSelectedSensorPosition(0);
+  }
 
- 
+  public void tailThrotle(double throttle) {
+    RobotMap.tail.set(ControlMode.PercentOutput, throttle);
 
-    @Override
-    public void initDefaultCommand() {
-       
-    }
+  }
 
-    @Override
-    public void periodic() {
-       
+  @Override
+  public void initDefaultCommand() {
 
-    }
+  }
 
-   
+  @Override
+  public void periodic() {
+
+  }
+
 }
-

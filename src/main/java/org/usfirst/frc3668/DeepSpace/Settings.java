@@ -19,10 +19,14 @@ public class Settings {
     public static final double chassisTurnKp = 0.015;
     public static final double chassisGyroTol = 1.0;
 
+    //liftDrive Settings
+    public static final int liftDriveCanID = 14;
+    public static final int liftDriveTicks = 189;
+
     //Tail Settings
-    public static final int tailEncoderDIOPortA = 1;
-    public static final int tailEncoderDIOPortB = 0;
     public static final int tailCanID = 5;
+    public static final int tailTicks = 1316;
+    public static final double ticksPerDeg = 6.8541666;
 
     //Swing settings
     public static final int swingRotationCanID = 6;
@@ -38,6 +42,7 @@ public class Settings {
 
     //Head Settings
     public static final int headRotationCanID = 10;
+    
 
     //Hatch Manipulator
     public static final int hatchManipulatorCanID = 11;

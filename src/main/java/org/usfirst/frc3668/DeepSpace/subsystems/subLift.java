@@ -1,5 +1,8 @@
 package org.usfirst.frc3668.DeepSpace.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import org.usfirst.frc3668.DeepSpace.RobotMap;
 import org.usfirst.frc3668.DeepSpace.Settings;
 import org.usfirst.frc3668.DeepSpace.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -9,8 +12,10 @@ import edu.wpi.first.wpilibj.PIDSource;
 
 public class subLift extends Subsystem {
 
-    public subLift() {
+public subLift() {
+    
     }
+
 
     @Override
     public void initDefaultCommand() {
@@ -27,16 +32,17 @@ public class subLift extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void setFrontLiftMotor(double throttle){
+    public void setLiftMotor(double throttle){
+        RobotMap.frontLift.set(ControlMode.PercentOutput, throttle);
     }
 
-    public void setFrontDriveMotor(double throttle){
+   
+
+    public void resetLiftDriveEncoder(){
+        RobotMap.liftDrive.setSelectedSensorPosition(0, 0, 0);
     }
 
-    public void resetFrontDriveEncoder(){
-    }
-
-    public double getFrontDriveDist(){
+    public double getLiftDriveDist(){
         return 0;
     }
 
