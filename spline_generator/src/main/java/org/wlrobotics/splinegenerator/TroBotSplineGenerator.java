@@ -80,8 +80,8 @@ public class TroBotSplineGenerator extends Object {
 		LSR_CSCR.generate();
 		LSR_CSCR = null;
 
-		test test = new test(config);
-		//test.generate();
+		Spline_test test = new Spline_test(config);
+		test.generate();
 		test = null;
 
 		System.out.println("TroBot Splines Generation: Complete");

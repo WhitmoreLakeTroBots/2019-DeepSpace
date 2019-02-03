@@ -9,6 +9,7 @@ import org.usfirst.frc3668.DeepSpace.motionProfile.MotionProfiler;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdProfileDrive extends Command {
+	private boolean _vision = false;
 	private double _distance;
 	private double _cruiseSpeed;
 	private boolean _isFinished = false;
@@ -40,6 +41,11 @@ public class cmdProfileDrive extends Command {
 		_requestedHeading = Robot.subChassis.getNormaliziedNavxAngle();
 	}
 
+	public cmdProfileDrive(double cruiseSpeed, boolean vision){
+		_vision = vision;
+		_cruiseSpeed = cruiseSpeed;
+	}
+
 	protected void ProfileMockConstructor(double Speed, double distance) {
 		_distance = distance;
 		_absDistance = Math.abs(distance);
@@ -50,13 +56,23 @@ public class cmdProfileDrive extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		System.err.println("Initializing");
+		if(_vision){
+			_distance = RobotMath.calcLimeDist(Robot.ty.getDouble(Settings.llDefaultAngle)) - Settings.llDistanceOffset;
+			if(_distance == Settings.llDefaultAngle - Settings.llDistanceOffset){
+				_isFinished = true;
+			}
+			_absDistance = Math.abs(_distance);
+			_distanceSignum = Math.signum(_distance);
+			_requestedHeading = Robot.subChassis.getNormaliziedNavxAngle();
+		}
+		
 		mp = new MotionProfiler(_absDistance, Settings.profileInitVelocity, _cruiseSpeed,
 				Settings.profileDriveAccelration);
 		Robot.subChassis.resetBothEncoders();
 		_abortTime = _absDistance / _cruiseSpeed;
 		_endTime = mp._stopTime * Settings.profileEndTimeScalar;
 		System.err.println(String.format(
-				"Projected Accelration Time: %1$.3f \tProjected Cruise Time: %2$.3f \t Projected Deccelration Time: %3$.3f \t Projected Length of Drive: %4$.3f \t Given Distance: %5$.3f \t Abort: %6$.3f \t Requested Heading: %7$.3f",
+				"Projected Accelration Time: %1$.3f\tProjected Cruise Time: %2$.3f\tProjected Deccelration Time: %3$.3f \t Projected Length of Drive: %4$.3f \t Given Distance: %5$.3f \t Abort: %6$.3f \t Requested Heading: %7$.3f",
 				mp._accelTime, mp._cruiseTime, mp._deccelTime, mp._stopTime, _distance, _abortTime, _requestedHeading));
 		_startTime = RobotMath.getTime();
 		_isFinished = false;
@@ -118,11 +134,6 @@ public class cmdProfileDrive extends Command {
 		return turnRate;
 	}
 
-	double limelightDistance(double area) {
-		return 0; // Settings.limelightDistEXPC * (Math.pow(Math.E, (Settings.limelightDistEXPS *
-					// area)));
-	}
-
 	public double calculateAngle(double rotation) {
 		return Robot.subChassis.getNormaliziedNavxAngle() - rotation;
 	}
@@ -141,7 +152,7 @@ public class cmdProfileDrive extends Command {
 		System.err.println(String.format(
 				"Projected Accelration Time: %1$.3f \tProjected Cruise Time: %2$.3f \t Projected Deccelration Time: %3$.3f \t Projected Length of Drive: %4$.3f \t Given Distance: %5$.3f",
 				mp._accelTime, mp._cruiseTime, mp._deccelTime, mp._stopTime, _distance));
-
+		_isFinished = false;
 		// mp = null;
 		// log.write();
 		// log = null;

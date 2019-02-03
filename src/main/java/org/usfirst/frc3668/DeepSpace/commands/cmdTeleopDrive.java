@@ -1,6 +1,8 @@
 package org.usfirst.frc3668.DeepSpace.commands;
 
 import org.usfirst.frc3668.DeepSpace.Robot;
+import org.usfirst.frc3668.DeepSpace.RobotMap;
+import org.usfirst.frc3668.DeepSpace.Settings;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -29,13 +31,13 @@ public class cmdTeleopDrive extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.subChassis.resetNavx();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
         Robot.subChassis.Drive(Robot.oi.joyDrive);
+        //System.err.println(String.format("Heading: %1$.3f \t Lime Angle %2$.3f", Robot.subChassis.getNormaliziedNavxAngle(), Robot.tx.getDouble(Settings.llDefaultAngle)));
     }
 
     // Make this return true when this Command no longer needs to run execute()

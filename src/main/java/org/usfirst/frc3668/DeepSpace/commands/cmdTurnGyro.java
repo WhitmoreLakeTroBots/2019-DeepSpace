@@ -1,5 +1,6 @@
 package org.usfirst.frc3668.DeepSpace.commands;
 
+import org.usfirst.frc3668.DeepSpace.PID;
 import org.usfirst.frc3668.DeepSpace.Robot;
 import org.usfirst.frc3668.DeepSpace.RobotMath;
 import org.usfirst.frc3668.DeepSpace.Settings;
@@ -15,6 +16,8 @@ public class cmdTurnGyro extends Command {
 	boolean _isFinished = false;
 	double _rightSignum;
 	double _leftSignum;
+	boolean _vision = false;
+	PID pid = new PID(Settings.chassisTurnKp, Settings.chassisTurnKi, Settings.chassisTurnkd);
 	
 	public cmdTurnGyro(double throttle, double desiredHeading) {
 		requires(Robot.subChassis);
@@ -23,8 +26,24 @@ public class cmdTurnGyro extends Command {
 		
 	}
 
+	public cmdTurnGyro(double throttle, boolean vision){
+		requires(Robot.subChassis);
+		_initThrottle = throttle;
+		_vision = vision;
+	}
+
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		double limeAngle = Robot.tx.getDouble(Settings.llDefaultAngle);
+		if(_vision){
+			if(limeAngle != Settings.llDefaultAngle){
+			limeAngle = limeAngle * Settings.limelightHorzAngleScalar;
+			_desiredHeading = Robot.subChassis.getNormaliziedNavxAngle() + limeAngle;
+			System.err.println("Lime Angle: " + limeAngle);
+			} else {
+				_isFinished = true;
+			}
+		}
 		System.err.println("cmdTurnGyro " + _desiredHeading);
 	}
 
@@ -32,7 +51,7 @@ public class cmdTurnGyro extends Command {
 	protected void execute() {
 		double currHeading = Robot.subChassis.getNormaliziedNavxAngle();
 		double headingDelta = RobotMath.headingDelta(currHeading, _desiredHeading);
-		double scaledHeading = headingDelta * Settings.chassisTurnKp;
+		double scaledHeading = pid.calcPID(headingDelta);
 		double scaledHeadingSignum = -Math.signum(scaledHeading);
 		double throttle = (_initThrottle + Math.abs(scaledHeading)) * scaledHeadingSignum;
 		
@@ -57,6 +76,7 @@ public class cmdTurnGyro extends Command {
 	protected void end() {
 		Robot.subChassis.Drive(0, 0);
 		System.err.println("Finished at " + Robot.subChassis.getNormaliziedNavxAngle());
+		_isFinished = false;
 	}
 
 	// Called when another command which requires one or more of the same
