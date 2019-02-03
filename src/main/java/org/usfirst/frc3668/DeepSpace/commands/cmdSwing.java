@@ -5,9 +5,9 @@ import org.usfirst.frc3668.DeepSpace.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class cmdMoveArm extends Command {
+public class cmdSwing extends Command {
     double angle;
-    public cmdMoveArm(String requestedAngle) {
+    public cmdSwing(String requestedAngle) {
         angle = Double.valueOf(requestedAngle);
            // requires(Robot.subChassis);
         }

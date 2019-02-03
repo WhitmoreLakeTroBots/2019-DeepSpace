@@ -1,7 +1,6 @@
 package org.usfirst.frc3668.DeepSpace.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import java.lang.System;
 
 public class cmdRetractFrontLift extends Command {
     boolean bDone = false;

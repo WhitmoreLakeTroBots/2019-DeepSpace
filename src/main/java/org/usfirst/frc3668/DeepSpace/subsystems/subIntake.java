@@ -7,7 +7,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import org.usfirst.frc3668.DeepSpace.Robot;
 import org.usfirst.frc3668.DeepSpace.RobotMap;
 import org.usfirst.frc3668.DeepSpace.Settings;
-import org.usfirst.frc3668.DeepSpace.commands.cmdTeleopDrive;
+
 
 
 public class subIntake extends Subsystem {

@@ -4,11 +4,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.usfirst.frc3668.DeepSpace.RobotMap;
 import org.usfirst.frc3668.DeepSpace.Settings;
-import org.usfirst.frc3668.DeepSpace.commands.*;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDSource;
 
 public class subSwing extends Subsystem {
 
