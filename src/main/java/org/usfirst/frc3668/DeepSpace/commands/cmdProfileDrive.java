@@ -57,7 +57,7 @@ public class cmdProfileDrive extends Command {
 	protected void initialize() {
 		System.err.println("Initializing");
 		if(_vision){
-			_distance = RobotMath.calcLimeDist(Robot.ty.getDouble(Settings.llDefaultAngle)) - Settings.llDistanceOffset;
+			_distance = RobotMath.calcLimeDist(Robot.lly.getDouble(Settings.llDefaultAngle)) - Settings.llDistanceOffset;
 			if(_distance == Settings.llDefaultAngle - Settings.llDistanceOffset){
 				_isFinished = true;
 			}

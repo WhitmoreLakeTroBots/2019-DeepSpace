@@ -21,7 +21,7 @@ public class cmdTeleopDrive extends Command {
     @Override
     protected void execute() {
         Robot.subChassis.Drive(Robot.oi.joyDrive);
-        //System.err.println(String.format("Heading: %1$.3f \t Lime Angle %2$.3f", Robot.subChassis.getNormaliziedNavxAngle(), Robot.tx.getDouble(Settings.llDefaultAngle)));
+        System.err.println(String.format("Heading: %1$.3f\tPi Angle: %2$.3f", Robot.subChassis.getNormaliziedNavxAngle(), Robot.llx.getDouble(Settings.llDefaultAngle)));
     }
 
     // Make this return true when this Command no longer needs to run execute()

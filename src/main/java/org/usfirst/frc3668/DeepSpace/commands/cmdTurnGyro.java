@@ -34,7 +34,7 @@ public class cmdTurnGyro extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		double limeAngle = Robot.tx.getDouble(Settings.llDefaultAngle);
+		double limeAngle = Robot.llx.getDouble(Settings.llDefaultAngle);
 		if(_vision){
 			if(limeAngle != Settings.llDefaultAngle){
 			limeAngle = limeAngle * Settings.limelightHorzAngleScalar;
