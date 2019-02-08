@@ -42,8 +42,8 @@ public class cmdSplineFollower extends Command {
     protected void execute() {
         pointCount++;
         double output = follower.calculate(Robot.subChassis.getRightEncoderTics());
-        double heading = Robot.subChassis.getNormaliziedNavxAngle();
-        double desiredHeading = Pathfinder.r2d(follower.getHeading());
+        double heading = -Robot.subChassis.getNormaliziedNavxAngle();
+        double desiredHeading = Robot.subChassis.gyroNormalize(Pathfinder.r2d(follower.getHeading()));
         double angleDifference = Pathfinder.boundHalfDegrees(desiredHeading - heading);
         double turnVal = Settings.splineTurnScalar * angleDifference;
         double rightThrottle = output + turnVal;

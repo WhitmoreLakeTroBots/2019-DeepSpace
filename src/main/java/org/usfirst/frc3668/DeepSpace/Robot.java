@@ -109,19 +109,19 @@ public class Robot extends TimedRobot {
 
         startGameChooser.addOption("Hatch", Settings.gameElementType.hatch);
         startGameChooser.addOption("Cargo", Settings.gameElementType.cargo);
-        startGameChooser.addOption("Test", Settings.gameElementType.test);
+        startGameChooser.addOption("Teleop", Settings.gameElementType.teleop);
 
         firstLocChooser.addOption("CS Center Left", Settings.locations.CSCL);
         firstLocChooser.addOption("CS Center Right", Settings.locations.CSCR);
-        firstLocChooser.addOption("Test", Settings.locations.test);
+        firstLocChooser.addOption("Teleop", Settings.locations.teleop);
 
         secondGameTypeChooser.addOption("Hatch", Settings.gameElementType.hatch);
         secondGameTypeChooser.addOption("Cargo", Settings.gameElementType.cargo);
-        secondGameTypeChooser.addOption("Test", Settings.gameElementType.test);
+        secondGameTypeChooser.addOption("Teleop", Settings.gameElementType.teleop);
 
         secondLocChooser.addOption("CS Center Left", Settings.locations.CSCL);
         secondLocChooser.addOption("CS Center Right", Settings.locations.CSCR);
-        secondLocChooser.addOption("Test", Settings.locations.test);
+        secondLocChooser.addOption("Teleop", Settings.locations.teleop);
 
         SmartDashboard.putData("Start Location", startChooser);
         SmartDashboard.putData("Start Game Type", startGameChooser);
@@ -173,9 +173,10 @@ public class Robot extends TimedRobot {
         case test:
             parameters[0] = parameters[0] + Settings.test1;
             parameters[2] = parameters[2] + Settings.test1;
-            actions[0] = Settings.actions.spline;
+            actions[0] = Settings.actions.placeHatch;
             actions[1] = Settings.actions.invertDrive;
-            actions[2] = Settings.actions.spline;
+            //actions[2] = Settings.actions.spline;
+            break;
         }
 
         switch (firstLoc) {
@@ -187,7 +188,7 @@ public class Robot extends TimedRobot {
             parameters[0] = parameters[0] + Settings.cargoCenterRight;
             parameters[1] = parameters[1] + Settings.cargoCenterRight;
             break;
-        case test:
+        case teleop:
             break;
         }
 
@@ -208,7 +209,7 @@ public class Robot extends TimedRobot {
                 parameters[2] = parameters[2] + Settings.depotCargoRight;
             }
             break;
-        case test:
+        case teleop:
             break;
         }
 
@@ -218,7 +219,7 @@ public class Robot extends TimedRobot {
                 break;
             case CSCR:
                 parameters[2] = parameters[2] + Settings.cargoCenterRight;
-            case test:
+            case teleop:
                 break;
         }
         parameters[0] = parameters[0] + Settings.fileExt;

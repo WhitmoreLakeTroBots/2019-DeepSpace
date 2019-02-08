@@ -76,11 +76,11 @@ public class Settings {
     }
 
     public enum locations{
-        CSCL, CSCR, CSL1, CSL2, CSL3, CSR1, CSR2, CSR3, LSL, LSR, DCL, DCR, test
+        CSCL, CSCR, CSL1, CSL2, CSL3, CSR1, CSR2, CSR3, LSL, LSR, DCL, DCR, teleop
     }
 
     public enum gameElementType{
-        cargo, hatch, test
+        cargo, hatch, teleop
     }
 
     //Profile Settings
@@ -108,13 +108,13 @@ public class Settings {
     public static final double llDistanceOffset = 0.15;
     //Spline Settings
     public static final double splineKp = 0.03;
-    public static final double splineKi = 0.002;
+    public static final double splineKi = 0.003;
     public static final double splineKd = 0.005;
-    public static final double splineKf = 0.01;
+    public static final double splineKf = 0.05;
+    public static final double splineTurnScalar = 0.01;
     public static final double maxVelocity = 4.667;
     public static final double maxAccel = 2;
     public static final double maxJerk = 5;
-    public static final double splineTurnScalar = -0.001;
 
     //Spline Files
     public static final String filePerfix = "/home/lvuser/deploy/Spline";

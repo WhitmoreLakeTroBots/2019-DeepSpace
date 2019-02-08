@@ -7,8 +7,8 @@ import org.wlrobotics.splinegenerator.*;
 public class TroBotSplineGenerator extends Object {
 
 	static final double deltaTime = 0.02;
-	static final double maxJerk   = 5.00;
-	static final double maxVel    = 3.25;
+	static final double maxJerk   = 10.00;
+	static final double maxVel    = 5.00;
 	static final double maxAccel  = 3.00;
 	public static void main(String[] args) {
 		

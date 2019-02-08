@@ -14,8 +14,10 @@ class Spline_test extends BaseAutonGenerator {
 
   private Trajectory gen_test_01() {
 		Waypoint[] points = new Waypoint[] {
-			new Waypoint(0.00, 0.00, Pathfinder.d2r(0)),
-			new Waypoint(1.00, 1.00, Pathfinder.d2r(0))
+      new Waypoint(0.00, 0.00, Pathfinder.d2r(0)),
+      new Waypoint(0.10, 0.00, Pathfinder.d2r(0)),
+      new Waypoint(1.20, 0.62, Pathfinder.d2r(90)),
+			new Waypoint(1.20, 0.72, Pathfinder.d2r(90))
 		};
 		return (Pathfinder.generate(points, config));
     }
