@@ -24,14 +24,20 @@ public class Settings {
     //Lift settings
     public static final int frontLiftCanID = 7;
     public static final double liftMaxSpeed = 0.335;
-    public static final double liftElevationTarget = 0;
+    public static final double frontLiftManThrottle = 0.5;
+    public static final int frontLiftManWindow = 15;
+    public static final int frontLiftSlowThreshold = 200;
+    public static final double frontLiftManSlowScalar = 0.4;
+    public static final double liftElevationTargetAngle = 0;
     public static final double liftKp = 0.0;
     public static final double liftKi = 0.0;
     public static final double liftKd = 0.0;
 
     //liftDrive Settings
-    public static final int liftDriveCanID = 14;
-    public static final int liftDriveTicks = 189;
+    public static final int liftDriveCanID = 13;
+    public static final int liftDriveTicsPerRevolution = 189;
+    public static final int liftDriveLevel3Tics = 1000;
+    public static final double liftDriveThrottle = 0.75;
 
     //Tail Settings
     public static final int tailCanID = 5;
@@ -50,30 +56,76 @@ public class Settings {
     public static final double swingSlowThreshold = 15;
     public static final double swingSlowScalar = 0.5;
 
+    public static final double swingHome = 0;
+    public static final double swingLowTrac = 15;
+    public static final double swingLowOmni = -15;
+    public static final double swingMedTrac = 45;
+    public static final double swingMedOmni = -45;
+    public static final double swingHighOmni = 120; 
+
     //Intake settings
     public static final int intakeRotationCanID = 8;
     public static final int intakeCanID = 9;
+    public static final double intakeInThrottle = 1.0;
+    public static final double intakeOutThrottle = -1.0;
 
     //Head Settings
     public static final int headRotationCanID = 10;
+    public static final double headRotationDegreesPerTic = 0.25777; //360 degrees / (497 tics per rev motor * 2.81 gear ratio)
+    public static final double headThrottleUP = 0.5;
+    public static final double headThrottleDOWN = -headThrottleUP;
+    public static final double headSlowThreshold = 15;
+    public static final double headSlowScalar = 0.4;
+    public static final double headWindow = 1.5;
+
+    public static final double cargoOffset90 = 90;
+    public static final double cargoOffsetNeg90 = -90;
     
 
     //Hatch Manipulator
     public static final int hatchManipulatorCanID = 11;
+    public static final double hatchThrottle = 0.5;
+    public static final int hatchSlowThreshold = 100;
+    public static final double hatchSlowScalar = 0.75;
+    public static final int hatchWindow = 1;
+    public static final int hatchClosedTics = 0;
+    public static final int hatchOpenTics = 1000;
 
     //Cargo Maniplulator
-    public static final int cargoManipulator1CanID = 12;
-    public static final int cargoManipulator2CanID = 13;
+    public static final int cargoManipulatorCanID = 12;
+    public static final double cargoInThrottle = 1.0;
+    public static final double cargoOutThrottle = -1.0;
     
     //Interface Settings
     public static final int joyDrivePort = 0;
     public static final int joyDriveDock = 1;
-    public static final int joyDriveCancelDock = 2;
+    public static final int joyDriveInvertDrive = 2;
+    public static final int joyDriveLevel3 = 12;
+    public static final int joyDriveLevel2 = 11;
+    public static final int joyDriveIntakeIn = 3;
+    public static final int joyDriveIntakeOut = 5;
+    public static final int joyDriveCargoIn = 4;
+    public static final int joyDriveCargoOut = 6;
     public static final int joyArtPort = 1;
+    public static final int joyArtSwingHome = 9;
+    public static final int joyArtSwingLowTrac = 7;
+    public static final int joyArtSwingLowOnmi = 11;
+    public static final int joyArtSwingMedTrac = 12; 
+    public static final int joyArtSwingMedOmni = 8;
+    public static final int joyArtSwingHighOmni = 10;
+    public static final int joyArtOffset90 = 5;
+    public static final int joyArtOffsetNeg90 = 3;
 
     //Auto Settings
     public static final double autoTurnSpeed = 0.15; //0.12 for tile;
     public static final double autoProfileDriveSpeed = 3.683; //In meters from 145 inches
+
+    //Level 3 Settings
+    public static final double level3ProfileVelocity = 0.4;
+    public static final double level3ProfileDist = 0.3;
+
+    //Level 2 Settings
+    public static final int level2FrontLiftTics = 1000;
 
     //Profile Settings
     public static final String profileTestLogName = "logs\\motionProfileTestResults";

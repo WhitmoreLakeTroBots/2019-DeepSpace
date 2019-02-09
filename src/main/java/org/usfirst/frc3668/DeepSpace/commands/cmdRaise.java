@@ -29,7 +29,7 @@ public class cmdRaise extends Command {
     protected void execute() {
         double tailThrottle = Settings.tailRaiseThrottle;
         double frontLiftSpeed = Robot.subTail.calcFrontLiftSpeed(tailThrottle);
-        double pidVal = pid.calcError(Settings.liftElevationTarget, Robot.subLift.getRobotPitch());
+        double pidVal = pid.calcError(Settings.liftElevationTargetAngle, Robot.subLift.getRobotPitch());
         frontLiftSpeed = frontLiftSpeed + pidVal;
         Robot.subLift.setLiftMotor(frontLiftSpeed / Settings.liftMaxSpeed);
         Robot.subTail.setTail(tailThrottle);

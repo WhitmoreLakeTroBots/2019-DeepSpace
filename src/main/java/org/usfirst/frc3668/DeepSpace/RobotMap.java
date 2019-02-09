@@ -5,7 +5,6 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
 
 public class RobotMap {
@@ -20,8 +19,7 @@ public class RobotMap {
 	public static TalonSRX intakeRotation;
 	public static TalonSRX intake;
 	public static TalonSRX hatchManipulator;
-	public static TalonSRX cargoManipulator1;
-	public static TalonSRX cargoManipulator2;
+	public static TalonSRX cargoManipulator;
 	public static TalonSRX liftDrive;
 	public static AHRS navx;
 
@@ -97,17 +95,11 @@ public class RobotMap {
 		hatchManipulator.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 		hatchManipulator.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Settings.talonTimeOut);
 
-		cargoManipulator1 = new TalonSRX(Settings.cargoManipulator1CanID);
-		cargoManipulator1.setNeutralMode(NeutralMode.Brake);
-		cargoManipulator1.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
-		cargoManipulator1.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
-		cargoManipulator1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Settings.talonTimeOut);
-
-		cargoManipulator2 = new TalonSRX(Settings.cargoManipulator2CanID);
-		cargoManipulator2.setNeutralMode(NeutralMode.Brake);
-		cargoManipulator2.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
-		cargoManipulator2.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
-		cargoManipulator2.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Settings.talonTimeOut);
+		cargoManipulator = new TalonSRX(Settings.cargoManipulatorCanID);
+		cargoManipulator.setNeutralMode(NeutralMode.Brake);
+		cargoManipulator.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
+		cargoManipulator.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
+		cargoManipulator.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Settings.talonTimeOut);
 
 		navx = new AHRS(SPI.Port.kMXP);
 	}

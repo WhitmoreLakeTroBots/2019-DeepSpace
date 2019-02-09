@@ -1,9 +1,9 @@
 package org.usfirst.frc3668.DeepSpace;
 
 import org.usfirst.frc3668.DeepSpace.commands.cmdGroupAutoTemplate;
-import org.usfirst.frc3668.DeepSpace.subsystems.subCargo;
 import org.usfirst.frc3668.DeepSpace.subsystems.subChassis;
-import org.usfirst.frc3668.DeepSpace.subsystems.subHatch;
+import org.usfirst.frc3668.DeepSpace.subsystems.subHead;
+import org.usfirst.frc3668.DeepSpace.subsystems.subIntake;
 import org.usfirst.frc3668.DeepSpace.subsystems.subLift;
 import org.usfirst.frc3668.DeepSpace.subsystems.subSwing;
 import org.usfirst.frc3668.DeepSpace.subsystems.subTail;
@@ -37,15 +37,16 @@ public class Robot extends TimedRobot {
     public static OI oi;
     public static subChassis subChassis;
     public static subLift subLift;
-    public static subCargo subCargo;
-    public static subHatch subHatch;
+    public static subHead subHead;
     public static RobotMap RobotMap;
     public static subTail subTail;
     public static subSwing subSwing;
+    public static subIntake subIntake;
 
     public static boolean isDriveInverted = true;
     public static double navxOffset = 0.0;
     public static int invertedSplineDirection = 1;
+    public static double headAngleOffset = 0;
 
     public static NetworkTableInstance inst = null;
     public static NetworkTable table = null;
@@ -84,10 +85,10 @@ public class Robot extends TimedRobot {
         subChassis = new subChassis();
         subChassis.resetNavx();
         subLift = new subLift();
-        subCargo = new subCargo();
-        subHatch = new subHatch();
+        subHead = new subHead();
         subTail = new subTail();
         subSwing = new subSwing();
+        subIntake = new subIntake();
 
         inst = NetworkTableInstance.getDefault();
         table = inst.getTable("limelight-test");

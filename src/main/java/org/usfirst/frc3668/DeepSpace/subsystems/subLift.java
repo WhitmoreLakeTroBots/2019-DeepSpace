@@ -8,8 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class subLift extends Subsystem {
 
-public subLift() {
-    
+    public subLift() {
     }
 
 
@@ -28,6 +27,14 @@ public subLift() {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+    public void resetLiftEncoder(){
+        RobotMap.frontLift.setSelectedSensorPosition(0, 0, 0);
+    }
+
+    public double getLiftEncoderTics(){
+        return RobotMap.frontLift.getSelectedSensorPosition();
+    }
+
     public void setLiftMotor(double throttle){
         RobotMap.frontLift.set(ControlMode.PercentOutput, throttle);
     }
@@ -40,12 +47,8 @@ public subLift() {
         RobotMap.liftDrive.setSelectedSensorPosition(0, 0, 0);
     }
 
-    public double getLiftDriveDist(){
+    public double getLiftDriveTics(){
         return RobotMap.liftDrive.getSelectedSensorPosition();
-    }
-
-    public double getRearLiftAngle(){
-        return getRearLiftAngle() / Settings.tailTicksPerDeg;
     }
 
     public double getRobotPitch(){

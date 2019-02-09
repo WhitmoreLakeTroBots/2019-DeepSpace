@@ -5,24 +5,19 @@ import org.usfirst.frc3668.DeepSpace.Settings;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class cmdSwing extends Command {
+public class cmdRotateHeadSlave extends Command {
     double angle;
     double deltaSignum;
     double initAngle;
     boolean isFinished = false;
 
-    public cmdSwing(String requestedAngle) {
-        angle = Double.valueOf(requestedAngle);
-        requires(Robot.subSwing);
+    public cmdRotateHeadSlave() {
+        requires(Robot.subHead);
     }
     
-    public cmdSwing(double requestedAngle){
-        angle = requestedAngle;
-    }
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.headAngleOffset = 0.0;
         initAngle = Robot.subSwing.getSwingAngle();
         deltaSignum = Math.signum(angle - initAngle);
     }
@@ -30,26 +25,27 @@ public class cmdSwing extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        double currentAngle = Robot.subSwing.getSwingAngle();
+        angle = Robot.subSwing.getSwingAngle() + Robot.headAngleOffset;
+        double currentAngle = Robot.subHead.getHeadRotationAngle();
 		double throttle = 0;
 		double deltaAngle = angle - currentAngle;
 		deltaSignum = Math.signum(deltaAngle);
 		if (deltaSignum > 0) {
-			throttle = Settings.swingThrottleUP;
+			throttle = Settings.headThrottleUP;
 		} else {
-			throttle = Settings.swingThrottleDOWN;
+			throttle = Settings.headThrottleDOWN;
 		}
-		if (Math.abs(deltaAngle) <= Settings.swingSlowThreshold) {
-			throttle = throttle *  Settings.swingSlowScalar;
+		if (Math.abs(deltaAngle) <= Settings.headSlowThreshold) {
+			throttle = throttle *  Settings.headSlowScalar;
 		}
-		else if (Math.abs(initAngle - currentAngle) <= Settings.swingSlowThreshold){
-			throttle = throttle * Settings.swingSlowScalar;
+		else if (Math.abs(initAngle - currentAngle) <= Settings.headSlowThreshold){
+			throttle = throttle * Settings.headSlowScalar;
+        }
+        
+        if (currentAngle > angle - Settings.headWindow && currentAngle < angle + Settings.headWindow) {
+			throttle = 0;
 		}
-		
 		Robot.subSwing.setSwingMotor(throttle);
-		if (currentAngle > angle - Settings.swingWindow && currentAngle < angle + Settings.swingWindow) {
-			isFinished = true;
-		}
     }
     
     // Make this return true when this Command no longer needs to run execute()
@@ -61,12 +57,13 @@ public class cmdSwing extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.subHead.setRotationMotor(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-
+        Robot.subHead.setRotationMotor(0);
     }
 }
