@@ -4,11 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.usfirst.frc3668.DeepSpace.RobotMap;
 import org.usfirst.frc3668.DeepSpace.Settings;
-import org.usfirst.frc3668.DeepSpace.commands.*;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDSource;
 
 public class subLift extends Subsystem {
 
@@ -36,35 +32,24 @@ public subLift() {
         RobotMap.frontLift.set(ControlMode.PercentOutput, throttle);
     }
 
-   
+    public void setLiftDriveMotor (double throttle){
+        RobotMap.liftDrive.set(ControlMode.PercentOutput, throttle);
+    }
 
     public void resetLiftDriveEncoder(){
         RobotMap.liftDrive.setSelectedSensorPosition(0, 0, 0);
     }
 
     public double getLiftDriveDist(){
-        return 0;
-    }
-
-    public void setRearLiftMotor(double throttle){
-    }
-
-    public void resetRearLiftEncoder(){
+        return RobotMap.liftDrive.getSelectedSensorPosition();
     }
 
     public double getRearLiftAngle(){
-        return 0;
+        return getRearLiftAngle() / Settings.tailTicksPerDeg;
     }
 
     public double getRobotPitch(){
-        return 0;
-    }
-
-    public double calcFrontLiftSpeed (){
-        double angle = getRearLiftAngle();
-        double numarator = Math.sqrt(Math.pow(Settings.liftRearStiltLength, 2) - Math.pow((Settings.liftRearStiltLength * Math.cos(angle)), 2));
-        double denominator = Settings.liftRearStiltLength * Math.cos(angle);
-        return Settings.liftRearStiltSpeed * Math.cos(Math.atan(numarator/denominator));
+        return RobotMap.navx.getPitch();
     }
 }
 

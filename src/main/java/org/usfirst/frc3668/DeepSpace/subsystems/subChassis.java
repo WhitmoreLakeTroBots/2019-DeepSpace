@@ -153,7 +153,7 @@ public class subChassis extends Subsystem {
 	}
 
 	public double getNormaliziedNavxAngle() {
-		return gyroNormalize(getNavxAngleRaw());
+		return gyroNormalize(getNavxAngleRaw() + Robot.navxOffset);
 	}
 
 	public void resetNavx() {

@@ -21,6 +21,7 @@ class Spline_test extends BaseAutonGenerator {
 		};
 		return (Pathfinder.generate(points, config));
     }
+
     void generate () {
         segments.add (gen_test_01());
         write();

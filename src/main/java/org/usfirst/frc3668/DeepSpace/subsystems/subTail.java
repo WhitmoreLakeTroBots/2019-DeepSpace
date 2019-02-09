@@ -21,9 +21,9 @@ public class subTail extends Subsystem {
   public subTail() {
   
   }
-  double tickAngle = RobotMap.tail.getSelectedSensorPosition() / Settings.ticksPerDeg;
-  public double returnAngle(){
-    return tickAngle ;
+  
+  public double getTailAngle(){
+    return getTailEncoderTics() / Settings.tailTicksPerDeg;
     
   }
 
@@ -31,10 +31,17 @@ public class subTail extends Subsystem {
     return RobotMap.tail.getSelectedSensorPosition(0);
   }
 
-  public void tailThrotle(double throttle) {
+  public void setTail(double throttle) {
     RobotMap.tail.set(ControlMode.PercentOutput, throttle);
 
   }
+
+  public double calcFrontLiftSpeed (double tailThrottle){
+    double angle = getTailAngle();
+    double numarator = Math.sqrt(Math.pow(Settings.tailLength, 2) - Math.pow((Settings.tailLength * Math.cos(angle)), 2));
+    double denominator = Settings.tailLength * Math.cos(angle);
+    return tailThrottle * Settings.tailMaxTipSpeed * Math.cos(Math.atan(numarator/denominator));
+}
 
   @Override
   public void initDefaultCommand() {

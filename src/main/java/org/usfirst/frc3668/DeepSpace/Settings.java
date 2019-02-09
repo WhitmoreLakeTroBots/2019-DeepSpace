@@ -21,6 +21,14 @@ public class Settings {
     public static final double chassisTurnkd = 0.001;
     public static final double chassisGyroTol = 1.0;
 
+    //Lift settings
+    public static final int frontLiftCanID = 7;
+    public static final double liftMaxSpeed = 0.335;
+    public static final double liftElevationTarget = 0;
+    public static final double liftKp = 0.0;
+    public static final double liftKi = 0.0;
+    public static final double liftKd = 0.0;
+
     //liftDrive Settings
     public static final int liftDriveCanID = 14;
     public static final int liftDriveTicks = 189;
@@ -28,15 +36,19 @@ public class Settings {
     //Tail Settings
     public static final int tailCanID = 5;
     public static final int tailTicks = 1316;
-    public static final double ticksPerDeg = 6.8541666;
+    public static final double tailTicksPerDeg = 6.8541666;
+    public static final double tailRaiseThrottle = 1.0;
+    public static final double tailMaxTipSpeed = 0.51816;
+    public static final double tailLength = 0.508;
 
     //Swing settings
     public static final int swingRotationCanID = 6;
-    
-    //Lift settings
-    public static final int frontLiftCanID = 7;
-    public static final double liftRearStiltSpeed = 10;
-    public static final double liftRearStiltLength = 20;
+    public static final double swingDegreesPerTic = 0.00497332; //360 / (17.672 gear ratio * 4096 tics per revoltion)
+    public static final double swingThrottleUP = 0.5;
+    public static final double swingThrottleDOWN = -swingThrottleUP;
+    public static final double swingWindow = 1.5;
+    public static final double swingSlowThreshold = 15;
+    public static final double swingSlowScalar = 0.5;
 
     //Intake settings
     public static final int intakeRotationCanID = 8;
@@ -63,26 +75,6 @@ public class Settings {
     public static final double autoTurnSpeed = 0.15; //0.12 for tile;
     public static final double autoProfileDriveSpeed = 3.683; //In meters from 145 inches
 
-    public static enum chassisTurnDirection {
-		turnRight, turnLeft
-	}
-
-    public enum actions{
-        moveArm, placeHatch, graspHatch, placeCargo, graspCargo, invertDrive, spline
-    }
-
-    public enum startLocation{
-        left, right, center, test
-    }
-
-    public enum locations{
-        CSCL, CSCR, CSL1, CSL2, CSL3, CSR1, CSR2, CSR3, LSL, LSR, DCL, DCR, teleop
-    }
-
-    public enum gameElementType{
-        cargo, hatch, teleop
-    }
-
     //Profile Settings
     public static final String profileTestLogName = "logs\\motionProfileTestResults";
     public static final String profileLogName = "//media//sda1//motionProfile";
@@ -105,16 +97,43 @@ public class Settings {
     public static final double limelightHorzAngleScalar = 0.7655808619;
     public static final double llDefaultAngle = 99.00;
     public static final double llAecseptableAngle = 27;
-    public static final double llDistanceOffset = 0.15;
+    public static final double llDistanceOffset = 0.00;
+
     //Spline Settings
-    public static final double splineKp = 0.03;
-    public static final double splineKi = 0.003;
-    public static final double splineKd = 0.005;
-    public static final double splineKf = 0.05;
-    public static final double splineTurnScalar = 0.01;
+    public static final double splineOmniKp = 0.03;
+    public static final double splineOmniKi = 0.003;
+    public static final double splineOmniKd = 0.005;
+    public static final double splineOmniKf = 0.05;
+    public static final double splineOmniTurnScalar = 0.01;
+    public static final double splineTracKp = 0.015;
+    public static final double splineTracKi = 0.005;
+    public static final double splineTracKd = 0.005;
+    public static final double splineTracKf = 0.00;
+    public static final double splineTracTurnScalar = 0.02;
     public static final double maxVelocity = 4.667;
     public static final double maxAccel = 2;
     public static final double maxJerk = 5;
+
+    //Auto Enums
+    public static enum chassisTurnDirection {
+		turnRight, turnLeft
+	}
+
+    public enum actions{
+        moveArm, placeHatch, graspHatch, placeCargo, graspCargo, invertDrive, spline
+    }
+
+    public enum startLocation{
+        left, right, center, test
+    }
+
+    public enum locations{
+        CSCL, CSCR, CSL1, CSL2, CSL3, CSR1, CSR2, CSR3, LSL, LSR, DCL, DCR, teleop
+    }
+
+    public enum gameElementType{
+        cargo, hatch, teleop
+    }
 
     //Spline Files
     public static final String filePerfix = "/home/lvuser/deploy/Spline";
@@ -141,4 +160,5 @@ public class Settings {
     public static final String fileExt = ".cvs";
 
     public static final String test1 = "_test";
+    public static final String test2 = "_test2";
 }

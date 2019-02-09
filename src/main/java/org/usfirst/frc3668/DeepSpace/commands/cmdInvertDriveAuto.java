@@ -18,9 +18,14 @@ public class cmdInvertDriveAuto extends Command{
     protected void execute() {
         if(Robot.isDriveInverted){
             Robot.isDriveInverted = false;
+          // Robot.navxOffset = 180;
+            Robot.invertedSplineDirection = -1;
         } else {
             Robot.isDriveInverted = true;
+            Robot.navxOffset = 0;
+            Robot.invertedSplineDirection = 1;
         }
+        System.err.println("Drive inverted. isDriveInverted is now set to " + Robot.isDriveInverted);
     }
 
     @Override

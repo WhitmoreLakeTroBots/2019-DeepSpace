@@ -1,11 +1,12 @@
 package org.usfirst.frc3668.DeepSpace;
 
+import org.usfirst.frc3668.DeepSpace.commands.cmdGroupAutoTemplate;
 import org.usfirst.frc3668.DeepSpace.subsystems.subCargo;
 import org.usfirst.frc3668.DeepSpace.subsystems.subChassis;
 import org.usfirst.frc3668.DeepSpace.subsystems.subHatch;
 import org.usfirst.frc3668.DeepSpace.subsystems.subLift;
+import org.usfirst.frc3668.DeepSpace.subsystems.subSwing;
 import org.usfirst.frc3668.DeepSpace.subsystems.subTail;
-import org.usfirst.frc3668.DeepSpace.commands.cmdGroupAutoTemplate;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -40,7 +41,11 @@ public class Robot extends TimedRobot {
     public static subHatch subHatch;
     public static RobotMap RobotMap;
     public static subTail subTail;
+    public static subSwing subSwing;
+
     public static boolean isDriveInverted = true;
+    public static double navxOffset = 0.0;
+    public static int invertedSplineDirection = 1;
 
     public static NetworkTableInstance inst = null;
     public static NetworkTable table = null;
@@ -82,6 +87,7 @@ public class Robot extends TimedRobot {
         subCargo = new subCargo();
         subHatch = new subHatch();
         subTail = new subTail();
+        subSwing = new subSwing();
 
         inst = NetworkTableInstance.getDefault();
         table = inst.getTable("limelight-test");
@@ -171,11 +177,12 @@ public class Robot extends TimedRobot {
             parameters[0] = parameters[0] + Settings.startRight;
             break;
         case test:
-            parameters[0] = parameters[0] + Settings.test1;
-            parameters[2] = parameters[2] + Settings.test1;
-            actions[0] = Settings.actions.placeHatch;
-            actions[1] = Settings.actions.invertDrive;
-            //actions[2] = Settings.actions.spline;
+            parameters[0] = parameters[0] + Settings.test2;
+            parameters[1] = parameters[1] + Settings.test2;
+            parameters[2] = parameters[2] + Settings.test2;
+            actions[0] = Settings.actions.invertDrive;
+            actions[1] = Settings.actions.spline;
+            actions[2] = Settings.actions.invertDrive;
             break;
         }
 

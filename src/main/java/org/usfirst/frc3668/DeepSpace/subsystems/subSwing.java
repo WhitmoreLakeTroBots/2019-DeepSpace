@@ -33,32 +33,14 @@ public subSwing() {
         RobotMap.swingRotation.set(ControlMode.PercentOutput, throttle);
     }
 
-
-    
-
     public void resetSwingtDriveEncoder(){
         RobotMap.swingRotation.setSelectedSensorPosition(0, 0, 0);
     }
 
-    public double getSwingDriveDist(){
-        return 0;
+    public double getSwingTics(){
+        return RobotMap.swingRotation.getSelectedSensorPosition();
     }
-
-   
-    
-
-    public double getRearSwingAngle(){
-        return 0;
-    }
-
-    public double getRobotPitch(){
-        return 0;
-    }
-
-    public double calcFrontLiftSpeed (){
-        double angle = getRearSwingAngle();
-        double numarator = Math.sqrt(Math.pow(Settings.liftRearStiltLength, 2) - Math.pow((Settings.liftRearStiltLength * Math.cos(angle)), 2));
-        double denominator = Settings.liftRearStiltLength * Math.cos(angle);
-        return Settings.liftRearStiltSpeed * Math.cos(Math.atan(numarator/denominator));
+    public double getSwingAngle(){
+        return getSwingTics() * Settings.swingDegreesPerTic;
     }
 }
