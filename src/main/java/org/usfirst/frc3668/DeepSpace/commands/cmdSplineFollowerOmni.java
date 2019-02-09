@@ -10,7 +10,7 @@ import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
 
-public class cmdSplineFollower extends Command {
+public class cmdSplineFollowerOmni extends Command {
     double splineLength;
     double turnScalar;
     EncoderFollower follower;
@@ -20,7 +20,7 @@ public class cmdSplineFollower extends Command {
     int pointCount = 0;
     double trajLen;
 
-    public cmdSplineFollower(String fileName) {
+    public cmdSplineFollowerOmni(String fileName) {
         spline = new File(fileName);
         trajectory = Pathfinder.readFromCSV(spline);
         trajLen = trajectory.length();
@@ -34,15 +34,9 @@ public class cmdSplineFollower extends Command {
         follower = new EncoderFollower(trajectory);
         follower.configureEncoder(Robot.subChassis.getEncoderAvgTic(), Settings.chassisEncoderTicsPerRevolution,
                 Settings.chassisWheelDiameter);
-        if(Robot.isDriveInverted){
-            follower.configurePIDVA(Settings.splineOmniKp, Settings.splineOmniKi, Settings.splineOmniKd, 1 / Settings.maxVelocity,
-                Settings.splineOmniKf);
-            turnScalar = Settings.splineOmniTurnScalar;
-        } else {
-            follower.configurePIDVA(Settings.splineTracKp, Settings.splineTracKi, Settings.splineTracKd, 1 / Settings.maxVelocity,
-                Settings.splineTracKf);
-            turnScalar = Settings.splineTracTurnScalar;
-        }
+        follower.configurePIDVA(Settings.splineOmniKp, Settings.splineOmniKi, Settings.splineOmniKd,
+                1 / Settings.maxVelocity, Settings.splineOmniKf);
+        turnScalar = Settings.splineOmniTurnScalar;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -59,8 +53,8 @@ public class cmdSplineFollower extends Command {
         System.err.println(String.format(
                 "Right Encoder: %1$d\tLeft Encoder: %2$d\tAvg Encoder: %3$d\tNavx: %4$.3f\tdHeading: %5$.3f\tOutput: %6$.3f\tR throttle: %7$.3f\tL Throttle: %8$.3f\tPerComp: %9$.3f",
                 Robot.subChassis.getRightEncoderTics(), Robot.subChassis.getLeftEncoderTics(),
-                Robot.subChassis.getEncoderAvgTic(), heading, desiredHeading, output,
-                rightThrottle, leftThrottle, percentComplete()));
+                Robot.subChassis.getEncoderAvgTic(), heading, desiredHeading, output, rightThrottle, leftThrottle,
+                percentComplete()));
         Robot.subChassis.DriveMan(leftThrottle, rightThrottle);
     }
 

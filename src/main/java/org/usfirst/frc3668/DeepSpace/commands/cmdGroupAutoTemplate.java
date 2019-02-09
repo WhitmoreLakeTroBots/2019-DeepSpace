@@ -18,8 +18,8 @@ public class cmdGroupAutoTemplate extends CommandGroup {
                  addSequential(new cmdGroupPlaceCargo(parameters[i]));
              } else if (action[i] == Settings.actions.invertDrive){
                      addSequential(new cmdInvertDriveAuto());
-             } else if (action[i] == Settings.actions.spline){
-                     addSequential(new cmdSplineFollower(parameters[i]));
+             } else if (action[i] == Settings.actions.splineOmni){
+                     addSequential(new cmdSplineFollowerOmni(parameters[i]));
              }
         }
     }
