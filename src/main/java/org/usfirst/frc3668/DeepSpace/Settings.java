@@ -2,6 +2,7 @@ package org.usfirst.frc3668.DeepSpace;
 
 public class Settings {
     public static final double joyDriveDeadband = 0.05;
+    public static final double chassisWheelbaseWidth = 0.7;
     public static final double chassisRightSideScalar = 1;
     public static final double chassisLeftSideScalar = 1;
     public static final boolean chassisSquareJoyInput = true;
@@ -152,16 +153,16 @@ public class Settings {
     public static final double llDistanceOffset = 0.00;
 
     //Spline Settings
-    public static final double splineOmniKp = 0.03;
-    public static final double splineOmniKi = 0.003;
-    public static final double splineOmniKd = 0.005;
-    public static final double splineOmniKf = 0.05;
-    public static final double splineOmniTurnScalar = 0.01;
+    public static final double splineOmniKp = 0.0075;
+    public static final double splineOmniKi = 0.0055;
+    public static final double splineOmniKd = 0.00425;
+    public static final double splineOmniKf = 0.00;
+    public static final double splineOmniTurnScalar = 0.0125;
     public static final double splineTracKp = 0.015;
     public static final double splineTracKi = 0.005;
     public static final double splineTracKd = 0.005;
     public static final double splineTracKf = 0.00;
-    public static final double splineTracTurnScalar = 0.02;
+    public static final double splineTracTurnScalar = 0.025;
     public static final double maxVelocity = 4.667;
     public static final double maxAccel = 2;
     public static final double maxJerk = 5;

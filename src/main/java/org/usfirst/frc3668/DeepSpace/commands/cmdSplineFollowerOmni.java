@@ -5,16 +5,22 @@ import java.io.File;
 import org.usfirst.frc3668.DeepSpace.Robot;
 import org.usfirst.frc3668.DeepSpace.Settings;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
+import jaci.pathfinder.modifiers.TankModifier;
 
 public class cmdSplineFollowerOmni extends Command {
     double splineLength;
     double turnScalar;
-    EncoderFollower follower;
+    EncoderFollower leftFollower;
+    EncoderFollower rightFollower;
     Trajectory trajectory;
+    Trajectory left;
+    Trajectory right;
+    TankModifier mod;
     File spline;
 
     int pointCount = 0;
@@ -25,17 +31,28 @@ public class cmdSplineFollowerOmni extends Command {
         trajectory = Pathfinder.readFromCSV(spline);
         trajLen = trajectory.length();
         requires(Robot.subChassis);
+        mod = new TankModifier(trajectory);
+        mod.modify(Settings.chassisWheelbaseWidth);
+        left = mod.getLeftTrajectory();
+        right = mod.getRightTrajectory();
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
         Robot.subChassis.resetBothEncoders();
-        follower = new EncoderFollower(trajectory);
-        follower.configureEncoder(Robot.subChassis.getEncoderAvgTic(), Settings.chassisEncoderTicsPerRevolution,
+        leftFollower = new EncoderFollower(left);
+        leftFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.chassisEncoderTicsPerRevolution,
                 Settings.chassisWheelDiameter);
-        follower.configurePIDVA(Settings.splineOmniKp, Settings.splineOmniKi, Settings.splineOmniKd,
+        leftFollower.configurePIDVA(Settings.splineOmniKp, Settings.splineOmniKi, Settings.splineOmniKd,
                 1 / Settings.maxVelocity, Settings.splineOmniKf);
+
+        rightFollower = new EncoderFollower(right);
+        rightFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.chassisEncoderTicsPerRevolution,
+                Settings.chassisWheelDiameter);
+        rightFollower.configurePIDVA(Settings.splineOmniKp, Settings.splineOmniKi, Settings.splineOmniKd,
+                1 / Settings.maxVelocity, Settings.splineOmniKf);
+        
         turnScalar = Settings.splineOmniTurnScalar;
     }
 
@@ -43,18 +60,24 @@ public class cmdSplineFollowerOmni extends Command {
     @Override
     protected void execute() {
         pointCount++;
-        double output = follower.calculate(Robot.subChassis.getRightEncoderTics());
         double heading = -Robot.subChassis.getNormaliziedNavxAngle();
-        double desiredHeading = Robot.subChassis.gyroNormalize(Pathfinder.r2d(follower.getHeading()));
-        double angleDifference = Pathfinder.boundHalfDegrees(desiredHeading - heading);
-        double turnVal = Robot.invertedSplineDirection * turnScalar * angleDifference;
-        double rightThrottle = output + turnVal;
-        double leftThrottle = output - turnVal;
+        double leftOutput = leftFollower.calculate(Robot.subChassis.getLeftEncoderTics());
+        double leftDesiredHeading = Robot.subChassis.gyroNormalize(Pathfinder.r2d(leftFollower.getHeading()));
+        double leftAngleDifference = Pathfinder.boundHalfDegrees(leftDesiredHeading - heading);
+        double leftTurnVal = Robot.invertedSplineDirection * turnScalar * leftAngleDifference;
+        double leftThrottle = leftOutput - leftTurnVal;
+
+        double rightOutput = rightFollower.calculate(Robot.subChassis.getRightEncoderTics());
+        double rightDesiredHeading = Robot.subChassis.gyroNormalize(Pathfinder.r2d(rightFollower.getHeading()));
+        double rightAngleDifference = Pathfinder.boundHalfDegrees(rightDesiredHeading - heading);
+        double rightTurnVal = Robot.invertedSplineDirection * turnScalar * rightAngleDifference;
+        double rightThrottle = rightOutput + rightTurnVal;
+
         System.err.println(String.format(
-                "Right Encoder: %1$d\tLeft Encoder: %2$d\tAvg Encoder: %3$d\tNavx: %4$.3f\tdHeading: %5$.3f\tOutput: %6$.3f\tR throttle: %7$.3f\tL Throttle: %8$.3f\tPerComp: %9$.3f",
-                Robot.subChassis.getRightEncoderTics(), Robot.subChassis.getLeftEncoderTics(),
-                Robot.subChassis.getEncoderAvgTic(), heading, desiredHeading, output, rightThrottle, leftThrottle,
-                percentComplete()));
+                "PC: %1$d\tRight Encoder: %2$d\tLeft Encoder: %3$d\tNavx: %4$.3f\tR dHeading: %5$.3f\tR Output: %6$.3f\tR throttle: %7$.3f\tL Output: %8$.3f\tL Throttle: %9$.3f\tPerComp: %10$.3f",
+                pointCount, Robot.subChassis.getRightEncoderTics(), Robot.subChassis.getLeftEncoderTics(), heading,
+                rightDesiredHeading, rightOutput, rightThrottle, leftOutput, leftThrottle, percentComplete()));
+        
         Robot.subChassis.DriveMan(leftThrottle, rightThrottle);
     }
 

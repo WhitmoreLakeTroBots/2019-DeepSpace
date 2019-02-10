@@ -11,15 +11,17 @@ public class cmdGroupAutoTemplate extends CommandGroup {
         System.err.println("Actions: " + action[0] + ", " + action[1] + ", " + action[2]);
         for(int i = 0; i <= action.length - 1; i++){
              if(action[i] == Settings.actions.moveArm){
-                 addSequential(new cmdSwing(parameters[i]));
+                addSequential(new cmdSwing(parameters[i]));
              } else if (action[i] == Settings.actions.placeHatch){
-                 addSequential(new cmdGroupPlaceHatch(parameters[i]));
+                addSequential(new cmdGroupPlaceHatch(parameters[i]));
              } else if (action[i] == Settings.actions.placeCargo){
-                 addSequential(new cmdGroupPlaceCargo(parameters[i]));
+                addSequential(new cmdGroupPlaceCargo(parameters[i]));
              } else if (action[i] == Settings.actions.invertDrive){
-                     addSequential(new cmdInvertDriveAuto());
+                addSequential(new cmdInvertDriveAuto());
              } else if (action[i] == Settings.actions.splineOmni){
-                     addSequential(new cmdSplineFollowerOmni(parameters[i]));
+                addSequential(new cmdSplineFollowerOmni(parameters[i]));
+             } else if (action[i] == Settings.actions.splineTrac){
+                addSequential(new cmdSplineFollowerTrac(parameters[i]));
              }
         }
     }

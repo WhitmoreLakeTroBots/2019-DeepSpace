@@ -3,9 +3,10 @@ package org.wlrobotics.splinegenerator;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
+import jaci.pathfinder.modifiers.TankModifier;
 
 class Spline_test2 extends BaseAutonGenerator {
-
+  TankModifier mod;
   Spline_test2 (Trajectory.Config conf) {
     this.config = conf;
     baseFileName = this.getClass().getSimpleName();
@@ -25,7 +26,7 @@ class Spline_test2 extends BaseAutonGenerator {
     }
 
     void generate () {
-        segments.add (gen_test2_01());
+        segments.add(gen_test2_01());
         write();
       }
     }

@@ -182,7 +182,7 @@ public class Robot extends TimedRobot {
             parameters[1] = parameters[1] + Settings.test2;
             parameters[2] = parameters[2] + Settings.test2;
             actions[0] = Settings.actions.invertDrive;
-            actions[1] = Settings.actions.splineOmni;
+            actions[1] = Settings.actions.splineTrac;
             actions[2] = Settings.actions.invertDrive;
             break;
         }

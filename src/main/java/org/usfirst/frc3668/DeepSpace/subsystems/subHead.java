@@ -19,7 +19,7 @@ public class subHead extends Subsystem {
     @Override
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new cmdRotateHeadSlave());
+        //setDefaultCommand(new cmdRotateHeadSlave());
     }
 
     @Override

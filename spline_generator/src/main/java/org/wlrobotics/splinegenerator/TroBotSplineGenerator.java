@@ -1,6 +1,7 @@
 package org.wlrobotics.splinegenerator;
 
 import jaci.pathfinder.Trajectory;
+import jaci.pathfinder.modifiers.TankModifier;
 
 import org.wlrobotics.splinegenerator.*;
 
@@ -85,10 +86,11 @@ public class TroBotSplineGenerator extends Object {
 		test = null;
 
 		config.max_velocity = 3;
+		config.max_acceleration = 2.5;
+		config.max_jerk = 8;
 		Spline_test2 test2 = new Spline_test2(config);
 		test2.generate();
 		test2 = null;
-		config.max_velocity = maxVel;
 
 		System.out.println("TroBot Splines Generation: Complete");
 	}

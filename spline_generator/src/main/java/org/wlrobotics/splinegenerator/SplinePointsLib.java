@@ -4,6 +4,9 @@ import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Waypoint;
 
 class SplinePointsLib {
+    //Robot Settings
+    public static final double wheelbase_width = 0.7;
+
     //Start Locations
     public static final Waypoint startCenter = new Waypoint (1.50, 4.00, Pathfinder.d2r(0));
     public static final Waypoint startLeft = new Waypoint (1.50, 5.00, Pathfinder.d2r(0));
