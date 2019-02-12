@@ -21,6 +21,7 @@ public class cmdTeleopDrive extends Command {
     @Override
     protected void execute() {
         Robot.subChassis.Drive(Robot.oi.joyDrive);
+        //System.err.println("Hatch tics " + Robot.subHead.getHatchEncoder());
         //System.err.println(String.format("Heading: %1$.3f\tPi Angle: %2$.3f", Robot.subChassis.getNormaliziedNavxAngle(), Robot.llx.getDouble(Settings.llDefaultAngle)));
     }
 

@@ -47,6 +47,8 @@ public class Settings {
     public static final double tailRaiseThrottle = 1.0;
     public static final double tailMaxTipSpeed = 0.51816;
     public static final double tailLength = 0.508;
+    public static final int tailEncoderDIOPortA = 0;
+    public static final int tailEncoderDIOPortB = 1;
 
     //Swing settings
     public static final int swingRotationCanID = 6;
@@ -85,12 +87,15 @@ public class Settings {
 
     //Hatch Manipulator
     public static final int hatchManipulatorCanID = 11;
-    public static final double hatchThrottle = 0.5;
+    public static final double hatchThrottle = 0.9;
     public static final int hatchSlowThreshold = 100;
     public static final double hatchSlowScalar = 0.75;
-    public static final int hatchWindow = 1;
-    public static final int hatchClosedTics = 0;
-    public static final int hatchOpenTics = 1000;
+    public static final int hatchWindow = 5;
+    public static final int hatchClosedTics = 525;
+    public static final int hatchOpenTics = 0;
+    public static final int hatchDIOPortA = 2;
+    public static final int hatchDIOPortB = 3;
+   
 
     //Cargo Maniplulator
     public static final int cargoManipulatorCanID = 12;
@@ -116,6 +121,8 @@ public class Settings {
     public static final int joyArtSwingHighOmni = 10;
     public static final int joyArtOffset90 = 5;
     public static final int joyArtOffsetNeg90 = 3;
+    public static final int hatchManipulatorButton = 4;
+    public static final int hatchManipulatorButtonTwo = 6;
 
     //Auto Settings
     public static final double autoTurnSpeed = 0.15; //0.12 for tile;
@@ -166,6 +173,9 @@ public class Settings {
     public static final double maxVelocity = 4.667;
     public static final double maxAccel = 2;
     public static final double maxJerk = 5;
+
+    //temp placement
+
 
     //Auto Enums
     public static enum chassisTurnDirection {

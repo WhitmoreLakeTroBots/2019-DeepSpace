@@ -33,10 +33,11 @@ public class cmdGraspHatch extends Command {
     protected void execute() {
         double currentTics = Robot.subHead.getHatchEncoder();
 		double throttle = 0;
-		double deltaTics = targetTics - currentTics;
+        double deltaTics = targetTics - currentTics;
+        //System.err.println("Hatch Ticks :" +currentTics);
 		deltaSignum = Math.signum(deltaTics);
 		if (deltaSignum > 0) {
-			throttle = Settings.hatchThrottle;
+            throttle = Settings.hatchThrottle;
 		} else {
 			throttle = -Settings.hatchThrottle;
         }

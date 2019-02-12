@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.Encoder;
 
 import edu.wpi.first.wpilibj.SPI;
 
@@ -22,6 +23,9 @@ public class RobotMap {
 	public static TalonSRX cargoManipulator;
 	public static TalonSRX liftDrive;
 	public static AHRS navx;
+	public static Encoder tailEncoder;
+	public static Encoder hatchManipulatorEncoder;
+	public static Encoder headRotationEncoder;
 
 	public static void init() {
 		rightDrive1 = new TalonSRX(Settings.chassisRightDrive1CanID);
@@ -63,7 +67,7 @@ public class RobotMap {
 		tail.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		tail.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 
-		tail.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Settings.talonTimeOut);
+		tailEncoder = new Encoder(Settings.tailEncoderDIOPortA, Settings.tailEncoderDIOPortB);
 
 		swingRotation = new TalonSRX(Settings.swingRotationCanID);
 		swingRotation.setNeutralMode(NeutralMode.Brake);
@@ -90,10 +94,11 @@ public class RobotMap {
 		intake.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 
 		hatchManipulator = new TalonSRX(Settings.hatchManipulatorCanID);
+		hatchManipulator.setInverted(true);
 		hatchManipulator.setNeutralMode(NeutralMode.Brake);
 		hatchManipulator.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		hatchManipulator.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
-		hatchManipulator.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Settings.talonTimeOut);
+		hatchManipulatorEncoder = new Encoder(Settings.hatchDIOPortA, Settings.hatchDIOPortB);
 
 		cargoManipulator = new TalonSRX(Settings.cargoManipulatorCanID);
 		cargoManipulator.setNeutralMode(NeutralMode.Brake);

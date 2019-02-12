@@ -68,6 +68,8 @@ public class OI {
     public Button swingHighOmni = new JoystickButton(joyArt, Settings.joyArtSwingHighOmni);
     public Button cargoOffset90 = new JoystickButton(joyArt, Settings.joyArtOffset90);
     public Button cargoOffsetNeg90 = new JoystickButton(joyArt, Settings.joyArtOffsetNeg90);
+    public Button hatchManipulaButton = new JoystickButton(joyArt, Settings.hatchManipulatorButton);
+    public Button hatchManipulationButtonTwo = new JoystickButton(joyArt, Settings.hatchManipulatorButtonTwo);
 
     public OI() {
         dock.whenPressed(new cmdGroupDock());
@@ -92,6 +94,8 @@ public class OI {
 
         cargoOffset90.whenPressed(new cmdSetCargoOffset(Settings.cargoOffset90));
         cargoOffsetNeg90.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetNeg90));
+        hatchManipulaButton.whenPressed(new cmdGraspHatch(Settings.hatchThrottle, Settings.hatchOpenTics));
+        hatchManipulationButtonTwo.whenPressed(new cmdGraspHatch(Settings.hatchThrottle, Settings.hatchClosedTics));
     }
 }
 
