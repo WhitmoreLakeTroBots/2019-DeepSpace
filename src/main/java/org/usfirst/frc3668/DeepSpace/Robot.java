@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
     public static NetworkTableEntry on = null;
     public static NetworkTableEntry Off = null;
 
-    public static NetworkTable piTab = null;
+    public static NetworkTable table2 = null;
     public static NetworkTableEntry pix = null;
     public static NetworkTableEntry piy = null;
     public static NetworkTableEntry pia = null;
@@ -91,7 +91,7 @@ public class Robot extends TimedRobot {
         subIntake = new subIntake();
 
         inst = NetworkTableInstance.getDefault();
-        table = inst.getTable("limelight-test");
+        table = inst.getTable("limelight-front");
         llx = table.getEntry("tx");
         lly = table.getEntry("ty");
         lla = table.getEntry("ta");
@@ -99,13 +99,13 @@ public class Robot extends TimedRobot {
         lls = table.getEntry("ts");
         lll = table.getEntry("tl");
     
-        piTab = inst.getTable("limelight-pi");
-        pix = piTab.getEntry("tx");
-        piy = piTab.getEntry("ty");
-        pia = piTab.getEntry("ta");
-        piv = piTab.getEntry("tv");
-        pis = piTab.getEntry("ts");
-        pil = piTab.getEntry("tl");
+        table2 = inst.getTable("limelight-rear");
+        pix = table2.getEntry("tx");
+        piy = table2.getEntry("ty");
+        pia = table2.getEntry("ta");
+        piv = table2.getEntry("tv");
+        pis = table2.getEntry("ts");
+        pil = table2.getEntry("tl");
 
         oi = new OI();
 
