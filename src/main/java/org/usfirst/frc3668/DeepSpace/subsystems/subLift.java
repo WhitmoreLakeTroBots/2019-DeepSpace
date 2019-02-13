@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class subLift extends Subsystem {
 
     public subLift() {
+        resetLiftDriveEncoder();
+        resetLiftEncoder();
     }
 
 
@@ -35,8 +37,16 @@ public class subLift extends Subsystem {
         return RobotMap.frontLift.getSelectedSensorPosition();
     }
 
+    public double getLiftEncoderMeters(){
+        return getLiftEncoderTics() * Settings.liftMetersPerTic;
+    }
+
     public void setLiftMotor(double throttle){
-        RobotMap.frontLift.set(ControlMode.PercentOutput, throttle);
+        if(getLiftEncoderMeters() < Settings.liftHieghttoLevel3){
+            RobotMap.frontLift.set(ControlMode.PercentOutput, throttle);
+        } else {
+            RobotMap.frontLift.set(ControlMode.PercentOutput, 0);
+        }
     }
 
     public void setLiftDriveMotor (double throttle){

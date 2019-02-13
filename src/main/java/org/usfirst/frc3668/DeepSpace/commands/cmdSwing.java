@@ -10,6 +10,8 @@ public class cmdSwing extends Command {
     double deltaSignum;
     double initAngle;
     boolean isFinished = false;
+    double lowerBound;
+    double upperBound;
 
     public cmdSwing(String requestedAngle) {
         angle = Double.valueOf(requestedAngle);
@@ -18,11 +20,14 @@ public class cmdSwing extends Command {
     
     public cmdSwing(double requestedAngle){
         angle = requestedAngle;
+        requires(Robot.subSwing);
     }
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
         Robot.headAngleOffset = 0.0;
+        lowerBound = angle - Settings.swingWindow;
+        upperBound = angle + Settings.swingWindow;
         initAngle = Robot.subSwing.getSwingAngle();
         deltaSignum = Math.signum(angle - initAngle);
     }
@@ -47,8 +52,9 @@ public class cmdSwing extends Command {
 		}
 		
 		Robot.subSwing.setSwingMotor(throttle);
-		if (currentAngle > angle - Settings.swingWindow && currentAngle < angle + Settings.swingWindow) {
-			isFinished = true;
+		if (currentAngle > lowerBound && currentAngle < upperBound) {
+            isFinished = true;
+            System.err.println("cmdSwing is finished");
 		}
     }
     
@@ -61,12 +67,13 @@ public class cmdSwing extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.subSwing.setSwingMotor(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-
+        Robot.subSwing.setSwingMotor(0);
     }
 }

@@ -60,10 +60,10 @@ public class RobotMap {
 		headRotation.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		headRotation.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 
-		headRotation.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Settings.talonTimeOut);
+		headRotationEncoder = new Encoder(Settings.headRotationEncoderDIOA, Settings.headRotationEncoderDIOB);
 
 		tail = new TalonSRX(Settings.tailCanID);
-		tail.setNeutralMode(NeutralMode.Brake);
+		tail.setNeutralMode(NeutralMode.Coast);
 		tail.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		tail.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 

@@ -30,7 +30,7 @@ public class cmdRotateHeadSlave extends Command {
 		double throttle = 0;
 		double deltaAngle = angle - currentAngle;
 		deltaSignum = Math.signum(deltaAngle);
-		if (deltaSignum > 0) {
+		if (deltaSignum < 0) {
 			throttle = Settings.headThrottleUP;
 		} else {
 			throttle = Settings.headThrottleDOWN;
@@ -45,7 +45,7 @@ public class cmdRotateHeadSlave extends Command {
         if (currentAngle > angle - Settings.headWindow && currentAngle < angle + Settings.headWindow) {
 			throttle = 0;
 		}
-		Robot.subSwing.setSwingMotor(throttle);
+		Robot.subHead.setRotationMotor(throttle);
     }
     
     // Make this return true when this Command no longer needs to run execute()

@@ -58,6 +58,8 @@ public class OI {
     public Button intakeOut = new JoystickButton(joyDrive, Settings.joyDriveIntakeOut);
     public Button cargoIn = new JoystickButton(joyDrive, Settings.joyDriveCargoIn);
     public Button cargoOut = new JoystickButton(joyDrive, Settings.joyDriveCargoOut);
+    
+    public Button TEMP = new JoystickButton(joyDrive, 7);
 
     public Joystick joyArt = new Joystick(Settings.joyArtPort);
     public Button swingHome = new JoystickButton(joyArt, Settings.joyArtSwingHome);
@@ -66,10 +68,10 @@ public class OI {
     public Button swingMedTrac = new JoystickButton(joyArt, Settings.joyArtSwingMedTrac);
     public Button swingMedOmni = new JoystickButton(joyArt, Settings.joyArtSwingMedOmni);
     public Button swingHighOmni = new JoystickButton(joyArt, Settings.joyArtSwingHighOmni);
+    public Button cargoOffset0 = new JoystickButton(joyArt, Settings.joyArtOffset0);
     public Button cargoOffset90 = new JoystickButton(joyArt, Settings.joyArtOffset90);
     public Button cargoOffsetNeg90 = new JoystickButton(joyArt, Settings.joyArtOffsetNeg90);
     public Button hatchManipulaButton = new JoystickButton(joyArt, Settings.hatchManipulatorButton);
-    public Button hatchManipulationButtonTwo = new JoystickButton(joyArt, Settings.hatchManipulatorButtonTwo);
 
     public OI() {
         dock.whenPressed(new cmdGroupDock());
@@ -94,8 +96,10 @@ public class OI {
 
         cargoOffset90.whenPressed(new cmdSetCargoOffset(Settings.cargoOffset90));
         cargoOffsetNeg90.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetNeg90));
-        hatchManipulaButton.whenPressed(new cmdGraspHatch(Settings.hatchThrottle, Settings.hatchOpenTics));
-        hatchManipulationButtonTwo.whenPressed(new cmdGraspHatch(Settings.hatchThrottle, Settings.hatchClosedTics));
+        cargoOffset0.whenPressed(new cmdSetCargoOffset(Settings.cargoOffset0));
+        hatchManipulaButton.whenPressed(new cmdSetCargoOffset(Settings.hatchThrottle));
+
+        TEMP.whenPressed(new cmdMoveFrontLift(0, 0.1));
     }
 }
 

@@ -25,6 +25,9 @@ public class Settings {
     //Lift settings
     public static final int frontLiftCanID = 7;
     public static final double liftMaxSpeed = 0.335;
+    public static final int liftTicsPerRevolution = 1440;
+    public static final double liftMetersPerTic = 0.000051485; //1 / 19422.8295 Experimental value
+    public static final double liftHieghttoLevel3 = 0.4826;
     public static final double frontLiftManThrottle = 0.5;
     public static final int frontLiftManWindow = 15;
     public static final int frontLiftSlowThreshold = 200;
@@ -43,8 +46,8 @@ public class Settings {
     //Tail Settings
     public static final int tailCanID = 5;
     public static final int tailTicks = 1316;
-    public static final double tailTicksPerDeg = 6.8541666;
-    public static final double tailRaiseThrottle = 1.0;
+    public static final double tailDegPerTic = 0.16413;//360/((5/3)*188*7)
+    public static final double tailRaiseThrottle = 0.3;
     public static final double tailMaxTipSpeed = 0.51816;
     public static final double tailLength = 0.508;
     public static final int tailEncoderDIOPortA = 0;
@@ -53,9 +56,9 @@ public class Settings {
     //Swing settings
     public static final int swingRotationCanID = 6;
     public static final double swingDegreesPerTic = 0.00497332; //360 / (17.672 gear ratio * 4096 tics per revoltion)
-    public static final double swingThrottleUP = 0.5;
+    public static final double swingThrottleUP = -0.4;
     public static final double swingThrottleDOWN = -swingThrottleUP;
-    public static final double swingWindow = 1.5;
+    public static final double swingWindow = 5;
     public static final double swingSlowThreshold = 15;
     public static final double swingSlowScalar = 0.5;
 
@@ -75,12 +78,15 @@ public class Settings {
     //Head Settings
     public static final int headRotationCanID = 10;
     public static final double headRotationDegreesPerTic = 0.25777; //360 degrees / (497 tics per rev motor * 2.81 gear ratio)
+    public static final int headRotationEncoderDIOA = 4;
+    public static final int headRotationEncoderDIOB = 5;
     public static final double headThrottleUP = 0.5;
     public static final double headThrottleDOWN = -headThrottleUP;
     public static final double headSlowThreshold = 15;
     public static final double headSlowScalar = 0.4;
     public static final double headWindow = 1.5;
 
+    public static final double cargoOffset0 = 0;
     public static final double cargoOffset90 = 90;
     public static final double cargoOffsetNeg90 = -90;
     
@@ -120,9 +126,9 @@ public class Settings {
     public static final int joyArtSwingMedOmni = 8;
     public static final int joyArtSwingHighOmni = 10;
     public static final int joyArtOffset90 = 5;
+    public static final int joyArtOffset0 = 6;
     public static final int joyArtOffsetNeg90 = 3;
     public static final int hatchManipulatorButton = 4;
-    public static final int hatchManipulatorButtonTwo = 6;
 
     //Auto Settings
     public static final double autoTurnSpeed = 0.15; //0.12 for tile;

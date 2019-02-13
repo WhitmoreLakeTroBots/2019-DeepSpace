@@ -19,11 +19,19 @@ public class cmdGraspHatch extends Command {
 		requires(Robot.subHead);
     }
 
+    public cmdGraspHatch(double throttle){
+        this.throttle = throttle;
+    }
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
         bDone = false;
-		initTics = Robot.subHead.getHatchEncoder();
+        initTics = Robot.subHead.getHatchEncoder();
+        if(initTics < Settings.hatchClosedTics / 2){
+            targetTics = Settings.hatchOpenTics;
+        } else {
+            targetTics = Settings.hatchClosedTics;
+        }
 		deltaSignum = Math.signum(targetTics - initTics);
         
     }
@@ -34,7 +42,6 @@ public class cmdGraspHatch extends Command {
         double currentTics = Robot.subHead.getHatchEncoder();
 		double throttle = 0;
         double deltaTics = targetTics - currentTics;
-        //System.err.println("Hatch Ticks :" +currentTics);
 		deltaSignum = Math.signum(deltaTics);
 		if (deltaSignum > 0) {
             throttle = Settings.hatchThrottle;

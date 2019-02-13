@@ -20,7 +20,7 @@ public class subHead extends Subsystem {
     @Override
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        // setDefaultCommand(new cmdRotateHeadSlave());
+        setDefaultCommand(new cmdRotateHeadSlave());
     }
 
     @Override
@@ -34,7 +34,7 @@ public class subHead extends Subsystem {
     }
 
     public double getRotationEncoder() {
-        return RobotMap.headRotation.getSelectedSensorPosition();
+        return RobotMap.headRotationEncoder.get();
     }
 
     public double getHeadRotationAngle() {

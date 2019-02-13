@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class cmdGroupLevel3 extends CommandGroup {
     public cmdGroupLevel3 (){
         addSequential(new cmdRaise());
-        addSequential(new cmdLiftDrive(Settings.liftDriveLevel3Tics, Settings.liftDriveThrottle));
-        addSequential(new cmdMoveFrontLift(0, Settings.frontLiftManThrottle));
-        addSequential(new cmdProfileDrive(Settings.level3ProfileVelocity, Settings.level3ProfileDist));
+        // addSequential(new cmdLiftDrive(Settings.liftDriveLevel3Tics, Settings.liftDriveThrottle));
+        // addSequential(new cmdMoveFrontLift(0, Settings.frontLiftManThrottle));
+        // addSequential(new cmdProfileDrive(Settings.level3ProfileVelocity, Settings.level3ProfileDist));
     }
 }

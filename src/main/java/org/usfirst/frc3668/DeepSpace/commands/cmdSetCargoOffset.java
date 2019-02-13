@@ -18,6 +18,7 @@ public class cmdSetCargoOffset extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        System.err.println("Head offset set to " + offset);
         Robot.headAngleOffset = offset;
     }
     

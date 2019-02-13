@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class subSwing extends Subsystem {
 
-public subSwing() {
-    
+    public subSwing() {
+    resetSwingEncoder();
     }
 
 
@@ -33,7 +33,7 @@ public subSwing() {
         RobotMap.swingRotation.set(ControlMode.PercentOutput, throttle);
     }
 
-    public void resetSwingtDriveEncoder(){
+    public void resetSwingEncoder(){
         RobotMap.swingRotation.setSelectedSensorPosition(0, 0, 0);
     }
 

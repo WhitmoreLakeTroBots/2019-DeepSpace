@@ -19,16 +19,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class subTail extends Subsystem {
   public subTail() {
-  
+    resetTailEncoder();
   }
   
   public double getTailAngle(){
-    return getTailEncoderTics() / Settings.tailTicksPerDeg;
+    return getTailEncoderTics() * Settings.tailDegPerTic;
     
   }
 
+  public void resetTailEncoder(){
+    RobotMap.tailEncoder.reset();
+  }
   public int getTailEncoderTics() {
-    return RobotMap.tail.getSelectedSensorPosition(0);
+    return -RobotMap.tailEncoder.get();
   }
 
   public void setTail(double throttle) {
