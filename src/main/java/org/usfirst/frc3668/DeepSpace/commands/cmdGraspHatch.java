@@ -6,6 +6,13 @@ import org.usfirst.frc3668.DeepSpace.Settings;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdGraspHatch extends Command {
+ 
+    public static final int hatchSlowThreshold = 100;
+    public static final double hatchSlowScalar = 0.75;
+    public static final int hatchWindow = 5;
+    public static final int hatchClosedTics = 525;
+    public static final int hatchOpenTics = 0;
+ 
     boolean bDone = false;
     double throttle;
     double targetTics;
@@ -27,10 +34,10 @@ public class cmdGraspHatch extends Command {
     protected void initialize() {
         bDone = false;
         initTics = Robot.subHead.getHatchEncoder();
-        if(initTics < Settings.hatchClosedTics / 2){
-            targetTics = Settings.hatchOpenTics;
+        if(initTics < hatchClosedTics / 2){
+            targetTics = hatchOpenTics;
         } else {
-            targetTics = Settings.hatchClosedTics;
+            targetTics = hatchClosedTics;
         }
 		deltaSignum = Math.signum(targetTics - initTics);
         
@@ -49,15 +56,15 @@ public class cmdGraspHatch extends Command {
 			throttle = -Settings.hatchThrottle;
         }
         
-		if (Math.abs(deltaTics) <= Settings.hatchSlowThreshold) {
-			throttle = throttle *  Settings.hatchSlowScalar;
+		if (Math.abs(deltaTics) <= hatchSlowThreshold) {
+			throttle = throttle *  hatchSlowScalar;
 		}
-		else if (Math.abs(initTics - currentTics)<= Settings.hatchSlowThreshold){
-			throttle = throttle * Settings.hatchSlowScalar;
+		else if (Math.abs(initTics - currentTics)<= hatchSlowThreshold){
+			throttle = throttle * hatchSlowScalar;
 		}
 		
 		Robot.subHead.setHatchMotor(throttle);
-		if (currentTics > targetTics - Settings.hatchWindow && currentTics < targetTics + Settings.hatchWindow) {
+		if (currentTics > targetTics - hatchWindow && currentTics < targetTics + hatchWindow) {
 			bDone = true;
 		}
     }

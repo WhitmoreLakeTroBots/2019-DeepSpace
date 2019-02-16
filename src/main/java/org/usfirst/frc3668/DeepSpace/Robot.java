@@ -207,6 +207,7 @@ public class Robot extends TimedRobot {
             } else if (firstLoc == Settings.locations.CSCR) {
                 parameters[1] = parameters[1] + Settings.loadStationRight;
             }
+            actions[1] = Settings.actions.placeHatch;
             break;
         case cargo:
             if (firstLoc == Settings.locations.CSCL) {
@@ -216,6 +217,7 @@ public class Robot extends TimedRobot {
                 parameters[1] = parameters[1] + Settings.depotCargoRight;
                 parameters[2] = parameters[2] + Settings.depotCargoRight;
             }
+            actions[1] = Settings.actions.placeCargo;
             break;
         case teleop:
             break;
@@ -227,6 +229,17 @@ public class Robot extends TimedRobot {
                 break;
             case CSCR:
                 parameters[2] = parameters[2] + Settings.cargoCenterRight;
+            case teleop:
+                break;
+        }
+
+        switch (startGameType){
+            case hatch:
+                actions[0] = Settings.actions.placeHatch;
+                break;
+            case cargo:
+                actions[0] = Settings.actions.placeCargo;
+                break;
             case teleop:
                 break;
         }

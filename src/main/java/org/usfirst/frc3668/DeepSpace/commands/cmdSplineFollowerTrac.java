@@ -12,6 +12,13 @@ import jaci.pathfinder.followers.EncoderFollower;
 import jaci.pathfinder.modifiers.TankModifier;
 
 public class cmdSplineFollowerTrac extends Command {
+
+    public final double splineTracKp = 0.015;
+    public final double splineTracKi = 0.005;
+    public final double splineTracKd = 0.005;
+    public final double splineTracKf = 0.00;
+    public final double splineTracTurnScalar = 0.025;
+
     double splineLength;
     double turnScalar;
     EncoderFollower leftFollower;
@@ -42,18 +49,18 @@ public class cmdSplineFollowerTrac extends Command {
         System.err.println("Starting spline. trajLen: " + trajLen);
         Robot.subChassis.resetBothEncoders();
         leftFollower = new EncoderFollower(left);
-        leftFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.chassisEncoderTicsPerRevolution,
+        leftFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.magneticEncoderTicsPerRevolution,
                 Settings.chassisWheelDiameter);
-        leftFollower.configurePIDVA(Settings.splineTracKp, Settings.splineTracKi, Settings.splineTracKd,
-                1 / Settings.maxVelocity, Settings.splineTracKf);
+        leftFollower.configurePIDVA(splineTracKp, splineTracKi, splineTracKd,
+                1 / Settings.maxVelocity, splineTracKf);
 
         rightFollower = new EncoderFollower(right);
-        rightFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.chassisEncoderTicsPerRevolution,
+        rightFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.magneticEncoderTicsPerRevolution,
                 Settings.chassisWheelDiameter);
-        rightFollower.configurePIDVA(Settings.splineTracKp, Settings.splineTracKi, Settings.splineTracKd,
-                1 / Settings.maxVelocity, Settings.splineTracKf);
+        rightFollower.configurePIDVA(splineTracKp, splineTracKi, splineTracKd,
+                1 / Settings.maxVelocity, splineTracKf);
 
-        turnScalar = Settings.splineTracTurnScalar;
+        turnScalar = splineTracTurnScalar;
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -1,11 +1,15 @@
 package org.usfirst.frc3668.DeepSpace.commands;
 
 import org.usfirst.frc3668.DeepSpace.Robot;
-import org.usfirst.frc3668.DeepSpace.Settings;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdMoveFrontLift extends Command {
+
+    public final int frontLiftManWindow = 15;
+    public final int frontLiftSlowThreshold = 200;
+    public final double frontLiftManSlowScalar = 0.5;
+
     boolean bDone = false;
     double initTics;
     double targetTics;
@@ -15,6 +19,7 @@ public class cmdMoveFrontLift extends Command {
     public cmdMoveFrontLift(double targetTics, double throttle) {
         this.targetTics = targetTics;
         this.throttle = throttle;
+        requires(Robot.subLift);
     }
 
     // Called just before this Command runs the first time
@@ -22,6 +27,7 @@ public class cmdMoveFrontLift extends Command {
     protected void initialize() {
         initTics = Robot.subLift.getLiftEncoderTics();
         deltaSignum = Math.signum(targetTics - initTics);
+        System.err.println("Delta Signum: " + deltaSignum);
         bDone = false;
     }
 
@@ -30,16 +36,19 @@ public class cmdMoveFrontLift extends Command {
     protected void execute() {
         double currentTics = Robot.subLift.getLiftEncoderTics();
         double deltaTics = targetTics - currentTics;
+        deltaSignum = Math.signum(deltaTics);
+        double finalThrottle = throttle;
 
-        if (Math.abs(deltaTics) <= Settings.frontLiftSlowThreshold) {
-			throttle = throttle *  Settings.frontLiftManSlowScalar;
+        if (Math.abs(deltaTics) <= frontLiftSlowThreshold) {
+			finalThrottle = throttle * frontLiftManSlowScalar;
 		}
-		else if (Math.abs(initTics - currentTics)<= Settings.frontLiftSlowThreshold){
-			throttle = throttle * Settings.frontLiftManSlowScalar;
-		}
-		
-		Robot.subLift.setLiftMotor(deltaSignum * throttle);
-		if (currentTics > targetTics - Settings.frontLiftManWindow && currentTics < targetTics + Settings.frontLiftManWindow) {
+		else if (Math.abs(initTics - currentTics)<= frontLiftSlowThreshold){
+			finalThrottle = throttle * frontLiftManSlowScalar;
+        }
+        finalThrottle = deltaSignum * finalThrottle;
+		System.err.println("CurrentTics: " + currentTics + " deltaTics: " + deltaTics);
+		Robot.subLift.setLiftMotor(finalThrottle);
+		if (currentTics > targetTics - frontLiftManWindow && currentTics < targetTics + frontLiftManWindow) {
 			bDone = true;
 		}
     }

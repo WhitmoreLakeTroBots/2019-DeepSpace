@@ -9,6 +9,14 @@ import org.usfirst.frc3668.DeepSpace.motionProfile.MotionProfiler;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdProfileDrive extends Command {
+
+	public final double profileDriveStraightGyroKp = -0.005;
+    public final double profileMovementThreshold = 0.02;
+    public final double profileInitVelocity = 0.0;
+    public final double profileEndTimeScalar = 1.3;
+    public final double profileDriveAccelration = 1.50; // meters/sec/sec 
+
+
 	private boolean _vision = false;
 	private double _distance;
 	private double _cruiseSpeed;
@@ -66,11 +74,11 @@ public class cmdProfileDrive extends Command {
 			_requestedHeading = Robot.subChassis.getNormaliziedNavxAngle();
 		}
 		
-		mp = new MotionProfiler(_absDistance, Settings.profileInitVelocity, _cruiseSpeed,
-				Settings.profileDriveAccelration);
+		mp = new MotionProfiler(_absDistance, profileInitVelocity, _cruiseSpeed,
+				profileDriveAccelration);
 		Robot.subChassis.resetBothEncoders();
 		_abortTime = _absDistance / _cruiseSpeed;
-		_endTime = mp._stopTime * Settings.profileEndTimeScalar;
+		_endTime = mp._stopTime * profileEndTimeScalar;
 		System.err.println(String.format(
 				"Projected Accelration Time: %1$.3f\tProjected Cruise Time: %2$.3f\tProjected Deccelration Time: %3$.3f \t Projected Length of Drive: %4$.3f \t Given Distance: %5$.3f \t Abort: %6$.3f \t Requested Heading: %7$.3f",
 				mp._accelTime, mp._cruiseTime, mp._deccelTime, mp._stopTime, _distance, _abortTime, _requestedHeading));
@@ -114,8 +122,8 @@ public class cmdProfileDrive extends Command {
 		// _isFinished = true;
 		// Robot.subChassis._isSafeToMove = false;
 		// }
-		if (encoderVal < _absDistance + Settings.profileMovementThreshold
-				&& encoderVal > _absDistance - Settings.profileMovementThreshold) {
+		if (encoderVal < _absDistance + profileMovementThreshold
+				&& encoderVal > _absDistance - profileMovementThreshold) {
 			System.err.println("At Distance");
 			_isFinished = true;
 		}
@@ -127,7 +135,7 @@ public class cmdProfileDrive extends Command {
 
 	protected double calcTurnRate(double currentHeading) {
 		double turnRate = RobotMath.calcTurnRate(currentHeading, _requestedHeading,
-				Settings.profileDriveStraightGyroKp);
+				profileDriveStraightGyroKp);
 		// if(currentHeading > _requestedHeading) {
 		// turnRate = turnRate * -1;
 		// }
