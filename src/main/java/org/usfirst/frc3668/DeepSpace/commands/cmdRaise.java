@@ -7,9 +7,12 @@ import org.usfirst.frc3668.DeepSpace.Settings;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdRaise extends Command {
+    public final double liftElevationTargetAngle = 0;
+    public final double endThershold = -93;
+
     boolean bDone = false;
     PID pid;
-    double endThershold = -93;
+    
 
     public cmdRaise() {
         requires(Robot.subLift);
@@ -29,7 +32,7 @@ public class cmdRaise extends Command {
     protected void execute() {
         double tailThrottle = Settings.tailRaiseThrottle;
         double frontLiftSpeed = Robot.subTail.calcFrontLiftSpeed(tailThrottle);
-        double pidVal = pid.calcError(Settings.liftElevationTargetAngle, Robot.subLift.getRobotPitch());
+        double pidVal = pid.calcError(liftElevationTargetAngle, Robot.subLift.getRobotPitch());
         frontLiftSpeed = frontLiftSpeed + pidVal;
         //Robot.subLift.setLiftMotor(-frontLiftSpeed / Settings.liftMaxSpeed);
         Robot.subLift.setLiftMotor(Math.abs(frontLiftSpeed));

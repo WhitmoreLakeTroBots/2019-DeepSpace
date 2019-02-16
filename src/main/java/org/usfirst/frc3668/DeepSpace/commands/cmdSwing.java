@@ -1,11 +1,17 @@
 package org.usfirst.frc3668.DeepSpace.commands;
 
 import org.usfirst.frc3668.DeepSpace.Robot;
-import org.usfirst.frc3668.DeepSpace.Settings;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdSwing extends Command {
+
+    public final double swingThrottleUP = -0.4;
+    public final double swingThrottleDOWN = -swingThrottleUP;
+    public final double swingWindow = 5;
+    public final double swingSlowThreshold = 15;
+    public final double swingSlowScalar = 0.5;
+
     double angle;
     double deltaSignum;
     double initAngle;
@@ -26,8 +32,8 @@ public class cmdSwing extends Command {
     @Override
     protected void initialize() {
         Robot.headAngleOffset = 0.0;
-        lowerBound = angle - Settings.swingWindow;
-        upperBound = angle + Settings.swingWindow;
+        lowerBound = angle - swingWindow;
+        upperBound = angle + swingWindow;
         initAngle = Robot.subSwing.getSwingAngle();
         deltaSignum = Math.signum(angle - initAngle);
     }
@@ -40,15 +46,15 @@ public class cmdSwing extends Command {
 		double deltaAngle = angle - currentAngle;
 		deltaSignum = Math.signum(deltaAngle);
 		if (deltaSignum > 0) {
-			throttle = Settings.swingThrottleUP;
+			throttle = swingThrottleUP;
 		} else {
-			throttle = Settings.swingThrottleDOWN;
+			throttle = swingThrottleDOWN;
 		}
-		if (Math.abs(deltaAngle) <= Settings.swingSlowThreshold) {
-			throttle = throttle *  Settings.swingSlowScalar;
+		if (Math.abs(deltaAngle) <= swingSlowThreshold) {
+			throttle = throttle *  swingSlowScalar;
 		}
-		else if (Math.abs(initAngle - currentAngle) <= Settings.swingSlowThreshold){
-			throttle = throttle * Settings.swingSlowScalar;
+		else if (Math.abs(initAngle - currentAngle) <= swingSlowThreshold){
+			throttle = throttle * swingSlowScalar;
 		}
 		
 		Robot.subSwing.setSwingMotor(throttle);

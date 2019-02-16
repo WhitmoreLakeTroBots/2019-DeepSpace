@@ -12,22 +12,30 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class subChassis extends Subsystem {
+
+	public final double joyDriveDeadband = 0.05;
+	public final double chassisRightSideScalar = 1;
+	public final double chassisLeftSideScalar = 1;
+	public final boolean chassisSquareJoyInput = true;
+    public final double chassisEncoderDeadValueThreshold = 0.5;
+    public final double chassisEncoderDistancePerPulse = (Settings.chassisWheelDiameter * Math.PI) / Settings.magneticEncoderTicsPerRevolution;
+
     public void Drive(Joystick stick) {
         double joyX = stick.getX();
         double joyY = stick.getY();
 
-		if (Math.abs(joyX) < Settings.joyDriveDeadband) {
+		if (Math.abs(joyX) < joyDriveDeadband) {
 			joyX = 0;
-		} else if (Math.abs(joyY) < Settings.joyDriveDeadband) {
+		} else if (Math.abs(joyY) < joyDriveDeadband) {
 			joyY = 0;
 		}
 
 		double rightMotorThrottle;
 		double leftMotorThrottle;
 		if (Robot.isDriveInverted) {
-			rightMotorThrottle = (joyX + joyY) * Settings.chassisRightSideScalar;
-			leftMotorThrottle = (joyX - joyY) * Settings.chassisLeftSideScalar;
-			if (Settings.chassisSquareJoyInput) {
+			rightMotorThrottle = (joyX + joyY) * chassisRightSideScalar;
+			leftMotorThrottle = (joyX - joyY) *  chassisLeftSideScalar;
+			if (chassisSquareJoyInput) {
 				double rightSignum = Math.signum(rightMotorThrottle);
 				double leftSignum = Math.signum(leftMotorThrottle);
 				rightMotorThrottle = Math.pow(rightMotorThrottle, 2) * rightSignum;
@@ -38,9 +46,9 @@ public class subChassis extends Subsystem {
 			setRightMotors(rightMotorThrottle);
 
 		} else {
-			rightMotorThrottle = (joyX - joyY) * Settings.chassisRightSideScalar;
-			leftMotorThrottle = (joyX + joyY) * Settings.chassisLeftSideScalar;
-			if (Settings.chassisSquareJoyInput) {
+			rightMotorThrottle = (joyX - joyY) * chassisRightSideScalar;
+			leftMotorThrottle = (joyX + joyY) * chassisLeftSideScalar;
+			if (chassisSquareJoyInput) {
 				double rightSignum = Math.signum(rightMotorThrottle);
 				double leftSignum = Math.signum(leftMotorThrottle);
 				rightMotorThrottle = Math.pow(rightMotorThrottle, 2) * rightSignum;
@@ -76,13 +84,13 @@ public class subChassis extends Subsystem {
 		double rightMotorThrottle;
 		double leftMotorThrottle;
 		if (!Robot.isDriveInverted) {
-			rightMotorThrottle = (rotate + move) * Settings.chassisRightSideScalar;
-			leftMotorThrottle = (rotate - move) * Settings.chassisLeftSideScalar;
+			rightMotorThrottle = (rotate + move) * chassisRightSideScalar;
+			leftMotorThrottle = (rotate - move) * chassisLeftSideScalar;
 			setLeftMotors(leftMotorThrottle);	
 			setRightMotors(rightMotorThrottle);
 		} else {
-			rightMotorThrottle = (-rotate - move) * Settings.chassisRightSideScalar;
-			leftMotorThrottle = (-rotate + move) * Settings.chassisLeftSideScalar;
+			rightMotorThrottle = (-rotate - move) * chassisRightSideScalar;
+			leftMotorThrottle = (-rotate + move) * chassisLeftSideScalar;
 			setLeftMotors(leftMotorThrottle);
 			setRightMotors(rightMotorThrottle);
 		}
@@ -109,9 +117,9 @@ public class subChassis extends Subsystem {
 		double retVal = 0;
 		double leftDistance = getLeftEncoderDist();
 		double rightDistance = getRightEncoderDist();
-		if (Math.abs(leftDistance) < Settings.chassisEncoderDeadValueThreshold) {
+		if (Math.abs(leftDistance) < chassisEncoderDeadValueThreshold) {
 			retVal = rightDistance;
-		} else if (Math.abs(rightDistance) < Settings.chassisEncoderDeadValueThreshold) {
+		} else if (Math.abs(rightDistance) < chassisEncoderDeadValueThreshold) {
 			retVal = leftDistance;
 		} else {
 			retVal = (leftDistance + rightDistance) / 2;
@@ -121,17 +129,17 @@ public class subChassis extends Subsystem {
 
 	public double getRightEncoderDist() {
 		if(Robot.isDriveInverted){
-			return RobotMap.rightDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+			return RobotMap.rightDrive1.getSelectedSensorPosition(0) * chassisEncoderDistancePerPulse;
 		} else {
-			return -RobotMap.rightDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+			return -RobotMap.rightDrive1.getSelectedSensorPosition(0) * chassisEncoderDistancePerPulse;
 		}
 	}
 
 	public double getLeftEncoderDist() {
 		if(Robot.isDriveInverted){
-			return -RobotMap.leftDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+			return -RobotMap.leftDrive1.getSelectedSensorPosition(0) * chassisEncoderDistancePerPulse;
 		} else {
-			return RobotMap.leftDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+			return RobotMap.leftDrive1.getSelectedSensorPosition(0) * chassisEncoderDistancePerPulse;
 		}
 	}
 
