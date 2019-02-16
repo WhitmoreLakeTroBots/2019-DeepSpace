@@ -99,7 +99,7 @@ public class OI {
         cargoOffset0.whenPressed(new cmdSetCargoOffset(Settings.cargoOffset0));
         hatchManipulaButton.whenPressed(new cmdSetCargoOffset(Settings.hatchThrottle));
 
-        TEMP.whenPressed(new cmdMoveFrontLift(0, 0.1));
+        TEMP.whenPressed(new cmdMoveFrontLift(0, 0.75));
     }
 }
 

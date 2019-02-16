@@ -23,15 +23,16 @@ public class Settings {
     public static final double chassisGyroTol = 1.0;
 
     //Lift settings
-    public static final int frontLiftCanID = 7;
+    public static final int frontLiftCanID = 36;
     public static final double liftMaxSpeed = 0.335;
+    public static final double liftCalibrateThrottle = -0.1;
     public static final int liftTicsPerRevolution = 1440;
     public static final double liftMetersPerTic = 0.000051485; //1 / 19422.8295 Experimental value
-    public static final double liftHieghttoLevel3 = 0.4826;
+    public static final double liftHieghttoLevel3 = 0.5126;
     public static final double frontLiftManThrottle = 0.5;
     public static final int frontLiftManWindow = 15;
     public static final int frontLiftSlowThreshold = 200;
-    public static final double frontLiftManSlowScalar = 0.4;
+    public static final double frontLiftManSlowScalar = 0.5;
     public static final double liftElevationTargetAngle = 0;
     public static final double liftKp = 0.0;
     public static final double liftKi = 0.0;
@@ -47,7 +48,8 @@ public class Settings {
     public static final int tailCanID = 5;
     public static final int tailTicks = 1316;
     public static final double tailDegPerTic = 0.16413;//360/((5/3)*188*7)
-    public static final double tailRaiseThrottle = 0.3;
+    public static final double tailRaiseThrottle = 1.0;
+    public static final double tailCalibrateThrottle = -0.1;
     public static final double tailMaxTipSpeed = 0.51816;
     public static final double tailLength = 0.508;
     public static final int tailEncoderDIOPortA = 0;

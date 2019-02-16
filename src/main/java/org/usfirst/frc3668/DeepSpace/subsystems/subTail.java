@@ -43,8 +43,9 @@ public class subTail extends Subsystem {
     double angle = getTailAngle();
     double numarator = Math.sqrt(Math.pow(Settings.tailLength, 2) - Math.pow((Settings.tailLength * Math.cos(angle)), 2));
     double denominator = Settings.tailLength * Math.cos(angle);
-    return tailThrottle * Settings.tailMaxTipSpeed * Math.cos(Math.atan(numarator/denominator));
-}
+    //return tailThrottle * Settings.tailMaxTipSpeed * Math.cos(Math.atan(numarator/denominator));
+    return 0.75;
+  }
 
   @Override
   public void initDefaultCommand() {

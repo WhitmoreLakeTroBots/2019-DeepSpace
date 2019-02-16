@@ -43,6 +43,10 @@ public class subLift extends Subsystem {
 
     public void setLiftMotor(double throttle){
         if(getLiftEncoderMeters() < Settings.liftHieghttoLevel3){
+            System.err.print("Moving lift because meters < limit   ");
+            RobotMap.frontLift.set(ControlMode.PercentOutput, throttle);
+        } else if(throttle < 0) {
+            System.err.print("Moving lift because throttle < 0   ");
             RobotMap.frontLift.set(ControlMode.PercentOutput, throttle);
         } else {
             RobotMap.frontLift.set(ControlMode.PercentOutput, 0);
