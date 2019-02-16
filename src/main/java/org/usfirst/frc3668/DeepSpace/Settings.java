@@ -1,22 +1,13 @@
 package org.usfirst.frc3668.DeepSpace;
 
 public class Settings {
-    public static final double joyDriveDeadband = 0.05;
+    
     public static final double chassisWheelbaseWidth = 0.7;
-    public static final double chassisRightSideScalar = 1;
-    public static final double chassisLeftSideScalar = 1;
-    public static final boolean chassisSquareJoyInput = true;
-    public static final int chassisEncoderTicsPerRevolution = 4096;
+    public static final int magneticEncoderTicsPerRevolution = 4096;
     public static final int talonTimeOut = 10;
     public static final double chassisWheelDiameter = 0.203; //meters; 8 inches
-    public static final double chassisEncoderDistancePerPulse = (chassisWheelDiameter * Math.PI) / chassisEncoderTicsPerRevolution;
-    public static final int chassisRightDrive1CanID = 1;
-	public static final int chassisRightDrive2CanID = 2;
-	public static final int chassisLeftDrive1CanID = 3;
-    public static final int chassisLeftDrive2CanID = 4;
     public static final int chassisDriveMaxCurrentLimit = 55;
     public static final int chassisDriveMaxCurrentTimeout = 500;
-    public static final double chassisEncoderDeadValueThreshold = 0.5;
     public static final double chassisTurnKp = 0.005;
     public static final double chassisTurnKi = 0.0001;
     public static final double chassisTurnkd = 0.001;
@@ -27,45 +18,22 @@ public class Settings {
     public static final double liftMaxSpeed = 0.335;
     public static final double liftCalibrateThrottle = -0.1;
     public static final int liftTicsPerRevolution = 1440;
-    public static final double liftMetersPerTic = 0.000051485; //1 / 19422.8295 Experimental value
-    public static final double liftHieghttoLevel3 = 0.5126;
+    
     public static final double frontLiftManThrottle = 0.5;
-    public static final int frontLiftManWindow = 15;
-    public static final int frontLiftSlowThreshold = 200;
-    public static final double frontLiftManSlowScalar = 0.5;
-    public static final double liftElevationTargetAngle = 0;
     public static final double liftKp = 0.0;
     public static final double liftKi = 0.0;
     public static final double liftKd = 0.0;
 
     //liftDrive Settings
-    public static final int liftDriveCanID = 13;
     public static final int liftDriveTicsPerRevolution = 189;
-    public static final int liftDriveLevel3Tics = 1000;
-    public static final double level2ProfileDist = 0.508;
-    public static final double level2SecondProfileDist = 1.016;
     public static final double liftDriveThrottle = 0.75;
 
     //Tail Settings
-    public static final int tailCanID = 5;
     public static final int tailTicks = 1316;
-    public static final double tailDegPerTic = 0.16413;//360/((5/3)*188*7)
     public static final double tailRaiseThrottle = 1.0;
     public static final double tailCalibrateThrottle = -0.1;
-    public static final double tailMaxTipSpeed = 0.51816;
-    public static final double tailLength = 0.508;
-    public static final int tailEncoderDIOPortA = 0;
-    public static final int tailEncoderDIOPortB = 1;
-
+    
     //Swing settings
-    public static final int swingRotationCanID = 6;
-    public static final double swingDegreesPerTic = 0.00497332; //360 / (17.672 gear ratio * 4096 tics per revoltion)
-    public static final double swingThrottleUP = -0.4;
-    public static final double swingThrottleDOWN = -swingThrottleUP;
-    public static final double swingWindow = 5;
-    public static final double swingSlowThreshold = 15;
-    public static final double swingSlowScalar = 0.5;
-
     public static final double swingHome = 0;
     public static final double swingLowTrac = 15;
     public static final double swingLowOmni = -15;
@@ -74,16 +42,10 @@ public class Settings {
     public static final double swingHighOmni = 120; 
 
     //Intake settings
-    public static final int intakeRotationCanID = 8;
-    public static final int intakeCanID = 9;
     public static final double intakeInThrottle = 1.0;
     public static final double intakeOutThrottle = -1.0;
 
     //Head Settings
-    public static final int headRotationCanID = 10;
-    public static final double headRotationDegreesPerTic = 0.25777; //360 degrees / (497 tics per rev motor * 2.81 gear ratio)
-    public static final int headRotationEncoderDIOA = 4;
-    public static final int headRotationEncoderDIOB = 5;
     public static final double headThrottleUP = 0.5;
     public static final double headThrottleDOWN = -headThrottleUP;
     public static final double headSlowThreshold = 15;
@@ -96,19 +58,10 @@ public class Settings {
     
 
     //Hatch Manipulator
-    public static final int hatchManipulatorCanID = 11;
     public static final double hatchThrottle = 0.9;
-    public static final int hatchSlowThreshold = 100;
-    public static final double hatchSlowScalar = 0.75;
-    public static final int hatchWindow = 5;
-    public static final int hatchClosedTics = 525;
-    public static final int hatchOpenTics = 0;
-    public static final int hatchDIOPortA = 2;
-    public static final int hatchDIOPortB = 3;
    
-
     //Cargo Maniplulator
-    public static final int cargoManipulatorCanID = 12;
+    
     public static final double cargoInThrottle = 1.0;
     public static final double cargoOutThrottle = -1.0;
     
@@ -138,12 +91,6 @@ public class Settings {
     public static final double autoTurnSpeed = 0.15; //0.12 for tile;
     public static final double autoProfileDriveSpeed = 3.683; //In meters from 145 inches
 
-    //Level 3 Settings
-    public static final double level3ProfileVelocity = 0.4;
-    public static final double level3ProfileDist = 0.3;
-
-    //Level 2 Settings
-    public static final int level2FrontLiftTics = 1000;
 
     //Profile Settings
     public static final String profileTestLogName = "logs\\motionProfileTestResults";
@@ -152,12 +99,7 @@ public class Settings {
     public static final double profileDriveKp = 0.1;
 	public static final double profileDriveKi = 0.003;
     public static final double profileDriveKd = 0.0004;
-    public static final double profileDriveStraightGyroKp = -0.005;
-    public static final double profileMovementThreshold = 0.02;
-    public static final double profileInitVelocity = 0.0;
-    public static final double profileEndTimeScalar = 1.3;
-    public static final double profileDriveAccelration = 1.50; // meters/sec/sec 
-
+    
     //Test Settings
     public static final double delayMiliseconds = 24;
     
@@ -168,18 +110,14 @@ public class Settings {
     public static final double llDefaultAngle = 99.00;
     public static final double llAecseptableAngle = 27;
     public static final double llDistanceOffset = 0.00;
+    public static final double lmDefaultAngle = 99.00;
+    public static final double lmAecseptableAngle = 27;
+    public static final double lmDistantceOffset = 0.00;
+    public static final double lmH2T = -0.3786;
+    public static final double lmAngleOffset =1.1605;
+    public static final double lmHorzAngleScalar = 0.765808619;
 
     //Spline Settings
-    public static final double splineOmniKp = 0.0075;
-    public static final double splineOmniKi = 0.0055;
-    public static final double splineOmniKd = 0.00425;
-    public static final double splineOmniKf = 0.00;
-    public static final double splineOmniTurnScalar = 0.0125;
-    public static final double splineTracKp = 0.015;
-    public static final double splineTracKi = 0.005;
-    public static final double splineTracKd = 0.005;
-    public static final double splineTracKf = 0.00;
-    public static final double splineTracTurnScalar = 0.025;
     public static final double maxVelocity = 4.667;
     public static final double maxAccel = 2;
     public static final double maxJerk = 5;

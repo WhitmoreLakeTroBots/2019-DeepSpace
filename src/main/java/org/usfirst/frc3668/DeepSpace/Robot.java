@@ -63,12 +63,12 @@ public class Robot extends TimedRobot {
     public static NetworkTableEntry Off = null;
 
     public static NetworkTable table2 = null;
-    public static NetworkTableEntry pix = null;
-    public static NetworkTableEntry piy = null;
-    public static NetworkTableEntry pia = null;
-    public static NetworkTableEntry piv = null;
-    public static NetworkTableEntry pis = null;
-    public static NetworkTableEntry pil = null;
+    public static NetworkTableEntry lmx = null;
+    public static NetworkTableEntry lmy = null;
+    public static NetworkTableEntry lma = null;
+    public static NetworkTableEntry lmv = null;
+    public static NetworkTableEntry lms = null;
+    public static NetworkTableEntry lml = null;
 
     public static double x = 0;
     public static double y = 0;
@@ -100,12 +100,12 @@ public class Robot extends TimedRobot {
         lll = table.getEntry("tl");
     
         table2 = inst.getTable("limelight-rear");
-        pix = table2.getEntry("tx");
-        piy = table2.getEntry("ty");
-        pia = table2.getEntry("ta");
-        piv = table2.getEntry("tv");
-        pis = table2.getEntry("ts");
-        pil = table2.getEntry("tl");
+        lmx = table2.getEntry("tx");
+        lmy = table2.getEntry("ty");
+        lma = table2.getEntry("ta");
+        lmv = table2.getEntry("tv");
+        lms = table2.getEntry("ts");
+        lml = table2.getEntry("tl");
 
         oi = new OI();
 
@@ -281,8 +281,9 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("llx", x);
         SmartDashboard.putNumber("lly", y);
         SmartDashboard.putNumber("lld", RobotMath.calcLimeDist(y));
-        SmartDashboard.putNumber("pix", pix.getDouble(Settings.llDefaultAngle));
-        SmartDashboard.putNumber("piy", piy.getDouble(Settings.llDefaultAngle));
+        SmartDashboard.putNumber("lmx", lmx.getDouble(Settings.llDefaultAngle));
+        SmartDashboard.putNumber("lmy", lmy.getDouble(Settings.llDefaultAngle));
+        SmartDashboard.putNumber("lld", RobotMath.calcLime2Dist(y));
        // xEntry.setDouble(x);
        // yEntry.setDouble(y); 
     }

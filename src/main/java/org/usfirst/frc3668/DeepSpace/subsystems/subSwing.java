@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class subSwing extends Subsystem {
 
+    public final double swingDegreesPerTic = 0.00497332; //360 / (17.672 gear ratio * 4096 tics per revoltion)
+
     public subSwing() {
     resetSwingEncoder();
     }
@@ -41,6 +43,6 @@ public class subSwing extends Subsystem {
         return RobotMap.swingRotation.getSelectedSensorPosition();
     }
     public double getSwingAngle(){
-        return getSwingTics() * Settings.swingDegreesPerTic;
+        return getSwingTics() * swingDegreesPerTic;
     }
 }

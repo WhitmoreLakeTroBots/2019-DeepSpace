@@ -13,6 +13,13 @@ import jaci.pathfinder.followers.EncoderFollower;
 import jaci.pathfinder.modifiers.TankModifier;
 
 public class cmdSplineFollowerOmni extends Command {
+
+    public final double splineOmniKp = 0.0075;
+    public final double splineOmniKi = 0.0055;
+    public final double splineOmniKd = 0.00425;
+    public final double splineOmniKf = 0.00;
+    public final double splineOmniTurnScalar = 0.0125;
+
     double splineLength;
     double turnScalar;
     EncoderFollower leftFollower;
@@ -42,18 +49,18 @@ public class cmdSplineFollowerOmni extends Command {
     protected void initialize() {
         Robot.subChassis.resetBothEncoders();
         leftFollower = new EncoderFollower(left);
-        leftFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.chassisEncoderTicsPerRevolution,
+        leftFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.magneticEncoderTicsPerRevolution,
                 Settings.chassisWheelDiameter);
-        leftFollower.configurePIDVA(Settings.splineOmniKp, Settings.splineOmniKi, Settings.splineOmniKd,
-                1 / Settings.maxVelocity, Settings.splineOmniKf);
+        leftFollower.configurePIDVA(splineOmniKp, splineOmniKi,  splineOmniKd,
+                1 / Settings.maxVelocity, splineOmniKf);
 
         rightFollower = new EncoderFollower(right);
-        rightFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.chassisEncoderTicsPerRevolution,
+        rightFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.magneticEncoderTicsPerRevolution,
                 Settings.chassisWheelDiameter);
-        rightFollower.configurePIDVA(Settings.splineOmniKp, Settings.splineOmniKi, Settings.splineOmniKd,
-                1 / Settings.maxVelocity, Settings.splineOmniKf);
+        rightFollower.configurePIDVA(splineOmniKp, splineOmniKi, splineOmniKd,
+                1 / Settings.maxVelocity, splineOmniKf);
         
-        turnScalar = Settings.splineOmniTurnScalar;
+        turnScalar = splineOmniTurnScalar;
     }
 
     // Called repeatedly when this Command is scheduled to run

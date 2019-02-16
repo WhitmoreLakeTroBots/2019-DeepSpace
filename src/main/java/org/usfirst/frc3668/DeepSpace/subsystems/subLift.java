@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class subLift extends Subsystem {
 
+    public final double liftMetersPerTic = 0.000051485; //1 / 19422.8295 Experimental value
+    public final double liftHieghttoLevel3 = 0.5126;
+
     public subLift() {
         resetLiftDriveEncoder();
         resetLiftEncoder();
@@ -38,11 +41,11 @@ public class subLift extends Subsystem {
     }
 
     public double getLiftEncoderMeters(){
-        return getLiftEncoderTics() * Settings.liftMetersPerTic;
+        return getLiftEncoderTics() * liftMetersPerTic;
     }
 
     public void setLiftMotor(double throttle){
-        if(getLiftEncoderMeters() < Settings.liftHieghttoLevel3){
+        if(getLiftEncoderMeters() < liftHieghttoLevel3){
             System.err.print("Moving lift because meters < limit   ");
             RobotMap.frontLift.set(ControlMode.PercentOutput, throttle);
         } else if(throttle < 0) {

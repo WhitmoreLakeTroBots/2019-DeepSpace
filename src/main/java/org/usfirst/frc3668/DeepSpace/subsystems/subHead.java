@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class subHead extends Subsystem {
 
+    public final double headRotationDegreesPerTic = 0.25777; //360 degrees / (497 tics per rev motor * 2.81 gear ratio)
+    
     public subHead() {
         resetHatchEncoder();
         resetCargoEncoder();
@@ -38,7 +40,7 @@ public class subHead extends Subsystem {
     }
 
     public double getHeadRotationAngle() {
-        return getRotationEncoder() * Settings.headRotationDegreesPerTic;
+        return getRotationEncoder() * headRotationDegreesPerTic;
     }
 
     public void setRotationMotor(double throttle) {

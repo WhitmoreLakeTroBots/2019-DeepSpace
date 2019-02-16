@@ -9,6 +9,27 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
 
 public class RobotMap {
+	public static final int rightDrive1CanID = 1;
+	public static final int rightDrive2CanID = 2;
+	public static final int leftDrive1CanID = 3;
+	public static final int leftDrive2CanID = 4;
+	public static final int tailCanID = 5;
+	public static final int swingRotationCanID = 6;
+
+	public static final int intakeRotationCanID = 8;
+	public static final int intakeCanID = 9;
+	public static final int headRotationCanID = 10;
+	public static final int hatchManipulatorCanID = 11;
+	public static final int cargoManipulatorCanID = 12;
+	public static final int liftDriveCanID = 13;
+	
+	public static final int tailEncoderDIOPortA = 0;
+	public static final int tailEncoderDIOPortB = 1;
+	public static final int hatchDIOPortA = 2;
+    public static final int hatchDIOPortB = 3;
+	public static final int headRotationEncoderDIOA = 4;
+    public static final int headRotationEncoderDIOB = 5;
+
 	public static TalonSRX rightDrive1;
 	public static TalonSRX rightDrive2;
 	public static TalonSRX leftDrive1;
@@ -28,48 +49,48 @@ public class RobotMap {
 	public static Encoder headRotationEncoder;
 
 	public static void init() {
-		rightDrive1 = new TalonSRX(Settings.chassisRightDrive1CanID);
+		rightDrive1 = new TalonSRX(rightDrive1CanID);
 		rightDrive1.setNeutralMode(NeutralMode.Brake);
 		rightDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Settings.talonTimeOut);
 		rightDrive1.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		rightDrive1.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
-		rightDrive2 = new TalonSRX(Settings.chassisRightDrive2CanID);
+		rightDrive2 = new TalonSRX(rightDrive2CanID);
 		rightDrive2.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		rightDrive2.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 		rightDrive2.setNeutralMode(NeutralMode.Brake);
 
-		leftDrive1 = new TalonSRX(Settings.chassisLeftDrive1CanID);
+		leftDrive1 = new TalonSRX(leftDrive1CanID);
 		leftDrive1.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		leftDrive1.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 		leftDrive1.setNeutralMode(NeutralMode.Brake);
 		leftDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Settings.talonTimeOut);
-		leftDrive2 = new TalonSRX(Settings.chassisLeftDrive2CanID);
+		leftDrive2 = new TalonSRX(leftDrive2CanID);
 		leftDrive2.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		leftDrive2.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 		leftDrive2.setNeutralMode(NeutralMode.Brake);
 
-		liftDrive = new TalonSRX(Settings.liftDriveCanID);
+		liftDrive = new TalonSRX(liftDriveCanID);
 		liftDrive.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		liftDrive.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 		liftDrive.setNeutralMode(NeutralMode.Brake);
 
 		liftDrive.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Settings.talonTimeOut);
 
-		headRotation = new TalonSRX(Settings.headRotationCanID);
+		headRotation = new TalonSRX(headRotationCanID);
 		headRotation.setNeutralMode(NeutralMode.Brake);
 		headRotation.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		headRotation.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 
-		headRotationEncoder = new Encoder(Settings.headRotationEncoderDIOA, Settings.headRotationEncoderDIOB);
+		headRotationEncoder = new Encoder(headRotationEncoderDIOA, headRotationEncoderDIOB);
 
-		tail = new TalonSRX(Settings.tailCanID);
+		tail = new TalonSRX(tailCanID);
 		tail.setNeutralMode(NeutralMode.Coast);
 		tail.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		tail.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 
-		tailEncoder = new Encoder(Settings.tailEncoderDIOPortA, Settings.tailEncoderDIOPortB);
+		tailEncoder = new Encoder(tailEncoderDIOPortA, tailEncoderDIOPortB);
 
-		swingRotation = new TalonSRX(Settings.swingRotationCanID);
+		swingRotation = new TalonSRX(swingRotationCanID);
 		swingRotation.setNeutralMode(NeutralMode.Brake);
 		swingRotation.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		swingRotation.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
@@ -83,24 +104,24 @@ public class RobotMap {
 
 		frontLift.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Settings.talonTimeOut);
 
-		intakeRotation = new TalonSRX(Settings.intakeRotationCanID);
+		intakeRotation = new TalonSRX(intakeRotationCanID);
 		intakeRotation.setNeutralMode(NeutralMode.Brake);
 		intakeRotation.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		intakeRotation.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 
-		intake = new TalonSRX(Settings.intakeCanID);
+		intake = new TalonSRX(intakeCanID);
 		intake.setNeutralMode(NeutralMode.Brake);
 		intake.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		intake.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 
-		hatchManipulator = new TalonSRX(Settings.hatchManipulatorCanID);
+		hatchManipulator = new TalonSRX(hatchManipulatorCanID);
 		hatchManipulator.setInverted(true);
 		hatchManipulator.setNeutralMode(NeutralMode.Brake);
 		hatchManipulator.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		hatchManipulator.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
-		hatchManipulatorEncoder = new Encoder(Settings.hatchDIOPortA, Settings.hatchDIOPortB);
+		hatchManipulatorEncoder = new Encoder(hatchDIOPortA, hatchDIOPortB);
 
-		cargoManipulator = new TalonSRX(Settings.cargoManipulatorCanID);
+		cargoManipulator = new TalonSRX(cargoManipulatorCanID);
 		cargoManipulator.setNeutralMode(NeutralMode.Brake);
 		cargoManipulator.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		cargoManipulator.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);

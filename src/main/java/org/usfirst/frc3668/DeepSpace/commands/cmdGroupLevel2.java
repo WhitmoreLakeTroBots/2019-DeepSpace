@@ -5,10 +5,16 @@ import org.usfirst.frc3668.DeepSpace.Settings;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class cmdGroupLevel2 extends CommandGroup {
-    public cmdGroupLevel2 (){
-        addSequential(new cmdMoveFrontLift(Settings.level2FrontLiftTics, Settings.frontLiftManThrottle));
-        addSequential(new cmdProfileDrive(Settings.autoProfileDriveSpeed, Settings.level2ProfileDist));
+
+    public final int level2FrontLiftTics = 1000;
+    public static final double level2ProfileDist = 0.508;
+    public static final double level2SecondProfileDist = 1.016;
+
+    public cmdGroupLevel2 (){        
+        addSequential(new cmdMoveFrontLift(level2FrontLiftTics, Settings.frontLiftManThrottle));
+		addSequential(new cmdProfileDrive(Settings.autoProfileDriveSpeed, level2ProfileDist));
         addSequential(new cmdMoveFrontLift(0, Settings.frontLiftManThrottle));
-        addSequential(new cmdProfileDrive(Settings.autoProfileDriveSpeed, Settings.level2SecondProfileDist));
+        addSequential(new cmdProfileDrive(Settings.autoProfileDriveSpeed, level2SecondProfileDist));
+        //Add more code here
     }
 }

@@ -1,11 +1,15 @@
 package org.usfirst.frc3668.DeepSpace.commands;
 
 import org.usfirst.frc3668.DeepSpace.Robot;
-import org.usfirst.frc3668.DeepSpace.Settings;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdMoveFrontLift extends Command {
+
+    public final int frontLiftManWindow = 15;
+    public final int frontLiftSlowThreshold = 200;
+    public final double frontLiftManSlowScalar = 0.5;
+
     boolean bDone = false;
     double initTics;
     double targetTics;
@@ -35,16 +39,16 @@ public class cmdMoveFrontLift extends Command {
         deltaSignum = Math.signum(deltaTics);
         double finalThrottle = throttle;
 
-        if (Math.abs(deltaTics) <= Settings.frontLiftSlowThreshold) {
-			finalThrottle = throttle * Settings.frontLiftManSlowScalar;
+        if (Math.abs(deltaTics) <= frontLiftSlowThreshold) {
+			finalThrottle = throttle * frontLiftManSlowScalar;
 		}
-		else if (Math.abs(initTics - currentTics)<= Settings.frontLiftSlowThreshold){
-			finalThrottle = throttle * Settings.frontLiftManSlowScalar;
+		else if (Math.abs(initTics - currentTics)<= frontLiftSlowThreshold){
+			finalThrottle = throttle * frontLiftManSlowScalar;
         }
         finalThrottle = deltaSignum * finalThrottle;
 		System.err.println("CurrentTics: " + currentTics + " deltaTics: " + deltaTics);
 		Robot.subLift.setLiftMotor(finalThrottle);
-		if (currentTics > targetTics - Settings.frontLiftManWindow && currentTics < targetTics + Settings.frontLiftManWindow) {
+		if (currentTics > targetTics - frontLiftManWindow && currentTics < targetTics + frontLiftManWindow) {
 			bDone = true;
 		}
     }
