@@ -164,6 +164,12 @@ public class Settings {
     public static final double llDefaultAngle = 99.00;
     public static final double llAecseptableAngle = 27;
     public static final double llDistanceOffset = 0.00;
+    public static final double lmDefaultAngle = 99.00;
+    public static final double lmAecseptableAngle = 27;
+    public static final double lmDistantceOffset = 0.00;
+    public static final double lmH2T = -0.3786;
+    public static final double lmAngleOffset =1.1605;
+    public static final double lmHorzAngleScalar = 0.765808619;
 
     //Spline Settings
     public static final double splineOmniKp = 0.0075;
