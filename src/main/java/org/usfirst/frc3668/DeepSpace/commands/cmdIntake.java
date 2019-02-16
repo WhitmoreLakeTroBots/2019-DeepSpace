@@ -18,6 +18,7 @@ public class cmdIntake extends Command {
     public cmdIntake(double throttle, long mSec){
         this.throttle = throttle;
         this.mSec = mSec;
+        requires(Robot.subIntake);
     }
     // Called just before this Command runs the first time
     @Override
@@ -32,7 +33,6 @@ public class cmdIntake extends Command {
     @Override
     protected void execute() {
         Robot.subIntake.setIntake(throttle);
-
         if(mSec > 0 && System.currentTimeMillis() > endTime){
             bDone = true;
         }

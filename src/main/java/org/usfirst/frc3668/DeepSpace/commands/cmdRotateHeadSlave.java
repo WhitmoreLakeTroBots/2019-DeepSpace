@@ -29,7 +29,8 @@ public class cmdRotateHeadSlave extends Command {
         double currentAngle = Robot.subHead.getHeadRotationAngle();
 		double throttle = 0;
 		double deltaAngle = angle - currentAngle;
-		deltaSignum = Math.signum(deltaAngle);
+        deltaSignum = Math.signum(deltaAngle);
+
 		if (deltaSignum < 0) {
 			throttle = Settings.headThrottleUP;
 		} else {
@@ -44,7 +45,8 @@ public class cmdRotateHeadSlave extends Command {
         
         if (currentAngle > angle - Settings.headWindow && currentAngle < angle + Settings.headWindow) {
 			throttle = 0;
-		}
+        }
+        //System.err.println(String.format("Target Angle: %1$.3f Current Angle: %2$.3f Current Throttle: %3$.3f", angle, currentAngle, throttle));
 		Robot.subHead.setRotationMotor(throttle);
     }
     

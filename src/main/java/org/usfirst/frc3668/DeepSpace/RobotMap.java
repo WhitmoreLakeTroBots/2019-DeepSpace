@@ -15,9 +15,9 @@ public class RobotMap {
 	public static final int leftDrive2CanID = 4;
 	public static final int tailCanID = 5;
 	public static final int swingRotationCanID = 6;
-
-	public static final int intakeRotationCanID = 8;
-	public static final int intakeCanID = 9;
+	public static final int frontLiftCanID = 7;
+	public static final int intakeRotationCanID = 9;
+	public static final int intakeCanID = 8;
 	public static final int headRotationCanID = 10;
 	public static final int hatchManipulatorCanID = 11;
 	public static final int cargoManipulatorCanID = 12;
@@ -97,7 +97,7 @@ public class RobotMap {
 
 		swingRotation.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Settings.talonTimeOut);
 		
-		frontLift = new TalonSRX(Settings.frontLiftCanID);
+		frontLift = new TalonSRX(frontLiftCanID);
 		frontLift.setNeutralMode(NeutralMode.Brake);
 		frontLift.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		frontLift.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);

@@ -18,11 +18,13 @@ public class cmdRotateHead extends Command {
     
     public cmdRotateHead(double requestedAngle){
         angle = requestedAngle + Robot.subSwing.getSwingAngle();
+        requires(Robot.subHead);
     }
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        initAngle = Robot.subSwing.getSwingAngle();
+        Robot.headAngleOffset = Robot.subSwing.getSwingAngle() + angle;
+        initAngle = Robot.subHead.getHeadRotationAngle();
         deltaSignum = Math.signum(angle - initAngle);
     }
     
@@ -31,9 +33,10 @@ public class cmdRotateHead extends Command {
     protected void execute() {
         double currentAngle = Robot.subHead.getHeadRotationAngle();
 		double throttle = 0;
-		double deltaAngle = angle - currentAngle;
+        double deltaAngle = angle - currentAngle;
+
 		deltaSignum = Math.signum(deltaAngle);
-		if (deltaSignum > 0) {
+		if (deltaSignum < 0) {
 			throttle = Settings.headThrottleUP;
 		} else {
 			throttle = Settings.headThrottleDOWN;
@@ -45,7 +48,7 @@ public class cmdRotateHead extends Command {
 			throttle = throttle * Settings.headSlowScalar;
 		}
 		
-		Robot.subSwing.setSwingMotor(throttle);
+		Robot.subHead.setRotationMotor(throttle);
 		if (currentAngle > angle - Settings.headWindow && currentAngle < angle + Settings.headWindow) {
 			isFinished = true;
 		}
@@ -60,12 +63,14 @@ public class cmdRotateHead extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.subHead.setRotationMotor(0);
+        isFinished = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-
+        end();
     }
 }

@@ -8,7 +8,7 @@ public class cmdSwing extends Command {
 
     public final double swingThrottleUP = -0.4;
     public final double swingThrottleDOWN = -swingThrottleUP;
-    public final double swingWindow = 5;
+    public final double swingWindow = 2.5;
     public final double swingSlowThreshold = 15;
     public final double swingSlowScalar = 0.5;
 
@@ -74,6 +74,7 @@ public class cmdSwing extends Command {
     @Override
     protected void end() {
         Robot.subSwing.setSwingMotor(0);
+        isFinished = false;
     }
 
     // Called when another command which requires one or more of the same

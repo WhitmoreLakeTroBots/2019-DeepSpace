@@ -34,12 +34,13 @@ public class cmdGraspHatch extends Command {
     protected void initialize() {
         bDone = false;
         initTics = Robot.subHead.getHatchEncoder();
-        if(initTics < hatchClosedTics / 2){
+        if(initTics > hatchClosedTics / 2){
             targetTics = hatchOpenTics;
         } else {
             targetTics = hatchClosedTics;
         }
-		deltaSignum = Math.signum(targetTics - initTics);
+        deltaSignum = Math.signum(targetTics - initTics);
+        System.err.println("starting to move hatch thing " + targetTics);
         
     }
 
@@ -65,6 +66,7 @@ public class cmdGraspHatch extends Command {
 		
 		Robot.subHead.setHatchMotor(throttle);
 		if (currentTics > targetTics - hatchWindow && currentTics < targetTics + hatchWindow) {
+            System.err.println("ending hatch movement");
 			bDone = true;
 		}
     }
@@ -79,6 +81,7 @@ public class cmdGraspHatch extends Command {
     @Override
     protected void end() {
         Robot.subHead.setHatchMotor(0);
+        bDone = false;
     }
 
     // Called when another command which requires one or more of the same

@@ -49,29 +49,53 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-    public Joystick joyDrive = new Joystick(Settings.joyDrivePort);
-    public Button dock = new JoystickButton(joyDrive, Settings.joyDriveDock);
-    public Button invertDrive = new JoystickButton(joyDrive, Settings.joyDriveInvertDrive);
-    public Button level3 = new JoystickButton(joyDrive, Settings.joyDriveLevel3);
-    public Button level2 = new JoystickButton(joyDrive, Settings.joyDriveLevel2);
-    public Button intakeIn = new JoystickButton(joyDrive, Settings.joyDriveIntakeIn);
-    public Button intakeOut = new JoystickButton(joyDrive, Settings.joyDriveIntakeOut);
-    public Button cargoIn = new JoystickButton(joyDrive, Settings.joyDriveCargoIn);
-    public Button cargoOut = new JoystickButton(joyDrive, Settings.joyDriveCargoOut);
-    
-    public Button TEMP = new JoystickButton(joyDrive, 7);
 
-    public Joystick joyArt = new Joystick(Settings.joyArtPort);
-    public Button swingHome = new JoystickButton(joyArt, Settings.joyArtSwingHome);
-    public Button swingLowTrac = new JoystickButton(joyArt, Settings.joyArtSwingLowTrac);
-    public Button swingLowOmni = new JoystickButton(joyArt, Settings.joyArtSwingLowOnmi);
-    public Button swingMedTrac = new JoystickButton(joyArt, Settings.joyArtSwingMedTrac);
-    public Button swingMedOmni = new JoystickButton(joyArt, Settings.joyArtSwingMedOmni);
-    public Button swingHighOmni = new JoystickButton(joyArt, Settings.joyArtSwingHighOmni);
-    public Button cargoOffset0 = new JoystickButton(joyArt, Settings.joyArtOffset0);
-    public Button cargoOffset90 = new JoystickButton(joyArt, Settings.joyArtOffset90);
-    public Button cargoOffsetNeg90 = new JoystickButton(joyArt, Settings.joyArtOffsetNeg90);
-    public Button hatchManipulaButton = new JoystickButton(joyArt, Settings.hatchManipulatorButton);
+    //Interface Settings
+    public final int joyDrivePort = 0;
+    public final int joyDriveDock = 1;
+    public final int joyDriveInvertDrive = 2;
+    public final int joyDriveLevel3 = 12;
+    public final int joyDriveLevel2 = 11;
+    public final int joyDriveIntakeIn = 3;
+    public final int joyDriveIntakeOut = 5;
+    public final int joyDriveCargoIn = 4;
+    public final int joyDriveCargoOut = 6;
+    public final int joyArtPort = 1;
+    public final int joyArtSwingHome = 9;
+    public final int joyArtSwingLowTrac = 7;
+    public final int joyArtSwingLowOnmi = 11;
+    public final int joyArtSwingMedTrac = 8; 
+    public final int joyArtSwingMedOmni = 12;
+    public final int joyArtSwingHighOmni = 10;
+    public final int joyArtOffset90 = 5;
+    public final int joyArtOffset0 = 6;
+    public final int joyArtOffsetNeg90 = 3;
+    public final int joyArtHatch = 4;
+
+    public Joystick joyDrive = new Joystick(joyDrivePort);
+    public Button dock = new JoystickButton(joyDrive, joyDriveDock);
+    public Button invertDrive = new JoystickButton(joyDrive, joyDriveInvertDrive);
+    public Button level3 = new JoystickButton(joyDrive, joyDriveLevel3);
+    public Button level2 = new JoystickButton(joyDrive, joyDriveLevel2);
+    public Button intakeIn = new JoystickButton(joyDrive, joyDriveIntakeIn);
+    public Button intakeOut = new JoystickButton(joyDrive, joyDriveIntakeOut);
+    public Button cargoIn = new JoystickButton(joyDrive, joyDriveCargoIn);
+    public Button cargoOut = new JoystickButton(joyDrive, joyDriveCargoOut);
+
+    public Joystick joyArt = new Joystick(joyArtPort);
+    public Button swingHome = new JoystickButton(joyArt,joyArtSwingHome);
+    public Button swingLowTrac = new JoystickButton(joyArt,joyArtSwingLowTrac);
+    public Button swingLowOmni = new JoystickButton(joyArt,joyArtSwingLowOnmi);
+    public Button swingMedTrac = new JoystickButton(joyArt,joyArtSwingMedTrac);
+    public Button swingMedOmni = new JoystickButton(joyArt,joyArtSwingMedOmni);
+    public Button swingHighOmni = new JoystickButton(joyArt,joyArtSwingHighOmni);
+    public Button cargoOffset0 = new JoystickButton(joyArt,joyArtOffset0);
+    public Button cargoOffset90 = new JoystickButton(joyArt,joyArtOffset90);
+    public Button cargoOffsetNeg90 = new JoystickButton(joyArt,joyArtOffsetNeg90);
+    public Button hatch = new JoystickButton(joyArt, joyArtHatch);
+
+    public Button TEMP = new JoystickButton(joyArt, 1);
+    public Button TEMP2 = new JoystickButton(joyArt, 2);
 
     public OI() {
         dock.whenPressed(new cmdGroupDock());
@@ -97,9 +121,10 @@ public class OI {
         cargoOffset90.whenPressed(new cmdSetCargoOffset(Settings.cargoOffset90));
         cargoOffsetNeg90.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetNeg90));
         cargoOffset0.whenPressed(new cmdSetCargoOffset(Settings.cargoOffset0));
-        hatchManipulaButton.whenPressed(new cmdSetCargoOffset(Settings.hatchThrottle));
+        hatch.whenPressed(new cmdGraspHatch(Settings.hatchThrottle));
 
-        TEMP.whenPressed(new cmdMoveFrontLift(0, 0.75));
+        TEMP.whenPressed(new cmdGroupSwingHead(45, 63));
+        TEMP2.whenPressed(new cmdGroupHeadSwing(0, 0));
     }
 }
 

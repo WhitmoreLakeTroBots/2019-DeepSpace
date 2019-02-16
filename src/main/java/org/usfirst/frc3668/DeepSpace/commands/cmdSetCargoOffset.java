@@ -6,7 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdSetCargoOffset extends Command {
     double offset;
-    
+    boolean isFinished = false;
+
     public cmdSetCargoOffset(double offset){
         this.offset = offset;
     }
@@ -20,22 +21,25 @@ public class cmdSetCargoOffset extends Command {
     protected void execute() {
         System.err.println("Head offset set to " + offset);
         Robot.headAngleOffset = offset;
+        isFinished = true;
     }
     
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return true;
+        return isFinished;
     }
     
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        isFinished = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        end();
     }
 }

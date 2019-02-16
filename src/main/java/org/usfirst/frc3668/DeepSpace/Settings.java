@@ -14,7 +14,6 @@ public class Settings {
     public static final double chassisGyroTol = 1.0;
 
     //Lift settings
-    public static final int frontLiftCanID = 36;
     public static final double liftMaxSpeed = 0.335;
     public static final double liftCalibrateThrottle = -0.1;
     public static final int liftTicsPerRevolution = 1440;
@@ -46,8 +45,8 @@ public class Settings {
     public static final double intakeOutThrottle = -1.0;
 
     //Head Settings
-    public static final double headThrottleUP = 0.5;
-    public static final double headThrottleDOWN = -headThrottleUP;
+    public static final double headThrottleUP = -0.6;
+    public static final double headThrottleDOWN = 0.4;
     public static final double headSlowThreshold = 15;
     public static final double headSlowScalar = 0.4;
     public static final double headWindow = 1.5;
@@ -55,6 +54,7 @@ public class Settings {
     public static final double cargoOffset0 = 0;
     public static final double cargoOffset90 = 90;
     public static final double cargoOffsetNeg90 = -90;
+    public static final double cargoOffsetPickCargo = 45;
     
 
     //Hatch Manipulator
@@ -64,28 +64,6 @@ public class Settings {
     
     public static final double cargoInThrottle = 1.0;
     public static final double cargoOutThrottle = -1.0;
-    
-    //Interface Settings
-    public static final int joyDrivePort = 0;
-    public static final int joyDriveDock = 1;
-    public static final int joyDriveInvertDrive = 2;
-    public static final int joyDriveLevel3 = 12;
-    public static final int joyDriveLevel2 = 11;
-    public static final int joyDriveIntakeIn = 3;
-    public static final int joyDriveIntakeOut = 5;
-    public static final int joyDriveCargoIn = 4;
-    public static final int joyDriveCargoOut = 6;
-    public static final int joyArtPort = 1;
-    public static final int joyArtSwingHome = 9;
-    public static final int joyArtSwingLowTrac = 7;
-    public static final int joyArtSwingLowOnmi = 11;
-    public static final int joyArtSwingMedTrac = 12; 
-    public static final int joyArtSwingMedOmni = 8;
-    public static final int joyArtSwingHighOmni = 10;
-    public static final int joyArtOffset90 = 5;
-    public static final int joyArtOffset0 = 6;
-    public static final int joyArtOffsetNeg90 = 3;
-    public static final int hatchManipulatorButton = 4;
 
     //Auto Settings
     public static final double autoTurnSpeed = 0.15; //0.12 for tile;
