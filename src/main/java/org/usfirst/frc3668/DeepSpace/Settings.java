@@ -42,6 +42,8 @@ public class Settings {
     public static final int liftDriveCanID = 13;
     public static final int liftDriveTicsPerRevolution = 189;
     public static final int liftDriveLevel3Tics = 1000;
+    public static final double level2ProfileDist = 0.508;
+    public static final double level2SecondProfileDist = 1.016;
     public static final double liftDriveThrottle = 0.75;
 
     //Tail Settings
