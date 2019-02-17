@@ -34,10 +34,11 @@ public class Settings {
     
     //Swing settings
     public static final double swingHome = 0;
-    public static final double swingLowTrac = 15;
-    public static final double swingLowOmni = -15;
-    public static final double swingMedTrac = 45;
-    public static final double swingMedOmni = -45;
+    public static final double swingCargo = 22;
+    public static final double swingLowTrac = 45;
+    public static final double swingLowOmni = -45;
+    public static final double swingMedTrac = 60;
+    public static final double swingMedOmni = -60;
     public static final double swingHighOmni = 120; 
 
     //Intake settings
@@ -48,13 +49,13 @@ public class Settings {
     public static final double headThrottleUP = -0.6;
     public static final double headThrottleDOWN = 0.4;
     public static final double headSlowThreshold = 15;
-    public static final double headSlowScalar = 0.4;
+    public static final double headSlowScalar = 0.6;
     public static final double headWindow = 1.5;
 
-    public static final double cargoOffset0 = 0;
-    public static final double cargoOffset90 = 90;
-    public static final double cargoOffsetNeg90 = -90;
-    public static final double cargoOffsetPickCargo = 45;
+    public static final double cargoOffsetHome = 0;
+    public static final double cargoOffsetTracParrallel = 63; //account for sag in the mech
+    public static final double cargoOffsetOmniParrallel = -63; //account for sag in the mech
+    public static final double cargoOffsetPickCargo = 55;
     
 
     //Hatch Manipulator

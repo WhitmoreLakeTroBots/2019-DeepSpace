@@ -62,6 +62,7 @@ public class OI {
     public final int joyDriveCargoOut = 6;
     public final int joyArtPort = 1;
     public final int joyArtSwingHome = 9;
+    public final int joyArtSwingCargo = 2;
     public final int joyArtSwingLowTrac = 7;
     public final int joyArtSwingLowOnmi = 11;
     public final int joyArtSwingMedTrac = 8; 
@@ -82,20 +83,20 @@ public class OI {
     public Button cargoIn = new JoystickButton(joyDrive, joyDriveCargoIn);
     public Button cargoOut = new JoystickButton(joyDrive, joyDriveCargoOut);
 
+    public Button driveTEMP = new JoystickButton(joyDrive, 7);
+
     public Joystick joyArt = new Joystick(joyArtPort);
     public Button swingHome = new JoystickButton(joyArt,joyArtSwingHome);
+    public Button swingPickCargo = new JoystickButton(joyArt, joyArtSwingCargo);
     public Button swingLowTrac = new JoystickButton(joyArt,joyArtSwingLowTrac);
     public Button swingLowOmni = new JoystickButton(joyArt,joyArtSwingLowOnmi);
     public Button swingMedTrac = new JoystickButton(joyArt,joyArtSwingMedTrac);
     public Button swingMedOmni = new JoystickButton(joyArt,joyArtSwingMedOmni);
     public Button swingHighOmni = new JoystickButton(joyArt,joyArtSwingHighOmni);
-    public Button cargoOffset0 = new JoystickButton(joyArt,joyArtOffset0);
-    public Button cargoOffset90 = new JoystickButton(joyArt,joyArtOffset90);
-    public Button cargoOffsetNeg90 = new JoystickButton(joyArt,joyArtOffsetNeg90);
+    public Button cargoOffsetHome = new JoystickButton(joyArt,joyArtOffset0);
+    public Button cargoOffsetTracParrallel = new JoystickButton(joyArt,joyArtOffset90);
+    public Button cargoOffsetOmniParrallel = new JoystickButton(joyArt,joyArtOffsetNeg90);
     public Button hatch = new JoystickButton(joyArt, joyArtHatch);
-
-    public Button TEMP = new JoystickButton(joyArt, 1);
-    public Button TEMP2 = new JoystickButton(joyArt, 2);
 
     public OI() {
         dock.whenPressed(new cmdGroupDock());
@@ -111,20 +112,21 @@ public class OI {
         cargoIn.whileHeld(new cmdHeadCargo(Settings.cargoInThrottle));
         cargoOut.whileHeld(new cmdHeadCargo(Settings.cargoOutThrottle));
 
-        swingHome.whenPressed(new cmdSwing(Settings.swingHome));
-        swingLowTrac.whenPressed(new cmdSwing(Settings.swingLowTrac));
-        swingLowOmni.whenPressed(new cmdSwing(Settings.swingLowOmni));
-        swingMedTrac.whenPressed(new cmdSwing(Settings.swingMedTrac));
-        swingMedOmni.whenPressed(new cmdSwing(Settings.swingMedOmni));
-        swingHighOmni.whenPressed(new cmdSwing(Settings.swingHighOmni));
+        swingHome.whenPressed(new cmdGroupHeadSwing(Settings.swingHome, Settings.cargoOffsetHome));
+        swingPickCargo.whenPressed(new cmdGroupSwingHead(Settings.swingCargo, Settings.cargoOffsetPickCargo));
+        swingLowTrac.whenPressed(new cmdGroupSwingHead(Settings.swingLowTrac, Settings.cargoOffsetTracParrallel));
+        swingLowOmni.whenPressed(new cmdGroupSwingHead(Settings.swingLowOmni, Settings.cargoOffsetOmniParrallel));
+        swingMedTrac.whenPressed(new cmdGroupSwingHead(Settings.swingMedTrac, Settings.cargoOffsetTracParrallel));
+        swingMedOmni.whenPressed(new cmdGroupSwingHead(Settings.swingMedOmni, Settings.cargoOffsetOmniParrallel));
+        swingHighOmni.whenPressed(new cmdGroupSwingHead(Settings.swingHighOmni, Settings.cargoOffsetOmniParrallel));
 
-        cargoOffset90.whenPressed(new cmdSetCargoOffset(Settings.cargoOffset90));
-        cargoOffsetNeg90.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetNeg90));
-        cargoOffset0.whenPressed(new cmdSetCargoOffset(Settings.cargoOffset0));
+        cargoOffsetTracParrallel.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetTracParrallel));
+        cargoOffsetOmniParrallel.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetOmniParrallel));
+        cargoOffsetHome.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetHome));
+
         hatch.whenPressed(new cmdGraspHatch(Settings.hatchThrottle));
 
-        TEMP.whenPressed(new cmdGroupSwingHead(45, 63));
-        TEMP2.whenPressed(new cmdGroupHeadSwing(0, 0));
+        driveTEMP.whenPressed(new cmdMoveFrontLift(0, 0.3));
     }
 }
 
