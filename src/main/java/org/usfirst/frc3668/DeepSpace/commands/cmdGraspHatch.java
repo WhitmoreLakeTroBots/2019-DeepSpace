@@ -62,7 +62,8 @@ public class cmdGraspHatch extends Command {
 		}
 		else if (Math.abs(initTics - currentTics)<= hatchSlowThreshold){
 			throttle = throttle * hatchSlowScalar;
-		}
+        }
+        System.err.println("Current Encoder Tics: " + currentTics);
 		
 		Robot.subHead.setHatchMotor(throttle);
 		if (currentTics > targetTics - hatchWindow && currentTics < targetTics + hatchWindow) {

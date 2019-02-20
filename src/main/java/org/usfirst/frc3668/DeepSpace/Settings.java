@@ -34,12 +34,20 @@ public class Settings {
     
     //Swing settings
     public static final double swingHome = 0;
-    public static final double swingCargo = 22;
-    public static final double swingLowTrac = 45;
-    public static final double swingLowOmni = -45;
-    public static final double swingMedTrac = 60;
-    public static final double swingMedOmni = -60;
+    public static final double swingCargoIntake = 22;
+    public static final double swingLowTracHatch = 45;
+    public static final double swingLowOmniHatch = -45;
+    public static final double swingLowTracCargo = 70;
+    public static final double swingLowOmniCargo = -110;
     public static final double swingHighOmni = 120; 
+
+    //Cargo Offsets
+    public static final double cargoOffsetHome = 0;
+    public static final double cargoOffsetTracParrallel = 63; //account for sag in the mech
+    public static final double cargoOffsetOmniParrallel = -63; //account for sag in the mech
+    public static final double cargoOffsetPickCargo = 55;
+    public static final double cargoOffsetPlaceCargoOmni = -170;
+    public static final double cargoOffsetPlaceCargoTrac = 0;
 
     //Intake settings
     public static final double intakeInThrottle = 1.0;
@@ -51,11 +59,6 @@ public class Settings {
     public static final double headSlowThreshold = 15;
     public static final double headSlowScalar = 0.6;
     public static final double headWindow = 1.5;
-
-    public static final double cargoOffsetHome = 0;
-    public static final double cargoOffsetTracParrallel = 63; //account for sag in the mech
-    public static final double cargoOffsetOmniParrallel = -63; //account for sag in the mech
-    public static final double cargoOffsetPickCargo = 55;
     
 
     //Hatch Manipulator
@@ -89,6 +92,7 @@ public class Settings {
     public static final double llDefaultAngle = 99.00;
     public static final double llAecseptableAngle = 27;
     public static final double llDistanceOffset = 0.00;
+
     public static final double lmDefaultAngle = 99.00;
     public static final double lmAecseptableAngle = 27;
     public static final double lmDistantceOffset = 0.00;

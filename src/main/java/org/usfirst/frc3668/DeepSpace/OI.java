@@ -63,13 +63,13 @@ public class OI {
     public final int joyArtPort = 1;
     public final int joyArtSwingHome = 9;
     public final int joyArtSwingCargo = 2;
-    public final int joyArtSwingLowTrac = 7;
-    public final int joyArtSwingLowOnmi = 11;
-    public final int joyArtSwingMedTrac = 8; 
-    public final int joyArtSwingMedOmni = 12;
+    public final int joyArtSwingLowTracHatch = 7; 
+    public final int joyArtSwingLowOnmiHatch = 11;
+    public final int joyArtSwingLowTracCargo = 8; 
+    public final int joyArtSwingLowOmniCargo = 12;
     public final int joyArtSwingHighOmni = 10;
     public final int joyArtOffset90 = 5;
-    public final int joyArtOffset0 = 6;
+    public final int joyArtOffsetHome = 6;
     public final int joyArtOffsetNeg90 = 3;
     public final int joyArtHatch = 4;
 
@@ -88,12 +88,12 @@ public class OI {
     public Joystick joyArt = new Joystick(joyArtPort);
     public Button swingHome = new JoystickButton(joyArt,joyArtSwingHome);
     public Button swingPickCargo = new JoystickButton(joyArt, joyArtSwingCargo);
-    public Button swingLowTrac = new JoystickButton(joyArt,joyArtSwingLowTrac);
-    public Button swingLowOmni = new JoystickButton(joyArt,joyArtSwingLowOnmi);
-    public Button swingMedTrac = new JoystickButton(joyArt,joyArtSwingMedTrac);
-    public Button swingMedOmni = new JoystickButton(joyArt,joyArtSwingMedOmni);
+    public Button swingLowTracHatch = new JoystickButton(joyArt,joyArtSwingLowTracHatch);
+    public Button swingLowOmniHatch = new JoystickButton(joyArt,joyArtSwingLowOnmiHatch);
+    public Button swingLowTracCargo = new JoystickButton(joyArt,joyArtSwingLowTracCargo);
+    public Button swingLowOmniCargo = new JoystickButton(joyArt,joyArtSwingLowOmniCargo);
     public Button swingHighOmni = new JoystickButton(joyArt,joyArtSwingHighOmni);
-    public Button cargoOffsetHome = new JoystickButton(joyArt,joyArtOffset0);
+    public Button cargoOffsetHome = new JoystickButton(joyArt,joyArtOffsetHome);
     public Button cargoOffsetTracParrallel = new JoystickButton(joyArt,joyArtOffset90);
     public Button cargoOffsetOmniParrallel = new JoystickButton(joyArt,joyArtOffsetNeg90);
     public Button hatch = new JoystickButton(joyArt, joyArtHatch);
@@ -113,20 +113,19 @@ public class OI {
         cargoOut.whileHeld(new cmdHeadCargo(Settings.cargoOutThrottle));
 
         swingHome.whenPressed(new cmdGroupHeadSwing(Settings.swingHome, Settings.cargoOffsetHome));
-        swingPickCargo.whenPressed(new cmdGroupSwingHead(Settings.swingCargo, Settings.cargoOffsetPickCargo));
-        swingLowTrac.whenPressed(new cmdGroupSwingHead(Settings.swingLowTrac, Settings.cargoOffsetTracParrallel));
-        swingLowOmni.whenPressed(new cmdGroupSwingHead(Settings.swingLowOmni, Settings.cargoOffsetOmniParrallel));
-        swingMedTrac.whenPressed(new cmdGroupSwingHead(Settings.swingMedTrac, Settings.cargoOffsetTracParrallel));
-        swingMedOmni.whenPressed(new cmdGroupSwingHead(Settings.swingMedOmni, Settings.cargoOffsetOmniParrallel));
-        swingHighOmni.whenPressed(new cmdGroupSwingHead(Settings.swingHighOmni, Settings.cargoOffsetOmniParrallel));
+        swingPickCargo.whenPressed(new cmdGroupSwingHead(Settings.swingCargoIntake, Settings.cargoOffsetPickCargo));
+        swingLowTracHatch.whenPressed(new cmdGroupSwingHead(Settings.swingLowTracHatch, Settings.cargoOffsetTracParrallel));
+        swingLowOmniHatch.whenPressed(new cmdGroupSwingHead(Settings.swingLowOmniHatch, Settings.cargoOffsetOmniParrallel));
+        swingLowTracCargo.whenPressed(new cmdGroupSwingHead(Settings.swingLowTracCargo, Settings.cargoOffsetPlaceCargoTrac));
+        swingLowOmniCargo.whenPressed(new cmdGroupSwingHead(Settings.swingLowOmniCargo, Settings.cargoOffsetPlaceCargoOmni));
 
         cargoOffsetTracParrallel.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetTracParrallel));
         cargoOffsetOmniParrallel.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetOmniParrallel));
         cargoOffsetHome.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetHome));
 
         hatch.whenPressed(new cmdGraspHatch(Settings.hatchThrottle));
-
-        driveTEMP.whenPressed(new cmdMoveFrontLift(0, 0.3));
+        
+        //driveTEMP.whenPressed(new cmdGroupSwingHead(-110, -170));
     }
 }
 

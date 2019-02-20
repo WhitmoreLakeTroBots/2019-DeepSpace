@@ -119,6 +119,7 @@ public class RobotMap {
 		hatchManipulator.setNeutralMode(NeutralMode.Brake);
 		hatchManipulator.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		hatchManipulator.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
+		
 		hatchManipulatorEncoder = new Encoder(hatchDIOPortA, hatchDIOPortB);
 
 		cargoManipulator = new TalonSRX(cargoManipulatorCanID);
