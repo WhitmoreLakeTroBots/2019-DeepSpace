@@ -86,9 +86,9 @@ public class Settings {
     public static final double delayMiliseconds = 24;
     
     //Limelight Settings
-    public static final double limelightH2T = -0.3806;
-    public static final double limelightAngleOffset = 1.1605;
-    public static final double limelightHorzAngleScalar = 0.7655808619;
+    public static final double llH2T = -0.3806;
+    public static final double llAngleOffset = 1.1605;
+    public static final double llHorzAngleScalar = 0.7655808619;
     public static final double llDefaultAngle = 99.00;
     public static final double llAecseptableAngle = 27;
     public static final double llDistanceOffset = 0.00;

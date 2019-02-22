@@ -17,13 +17,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the TimedRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the build.properties file in the
- * project.
- */
 public class Robot extends TimedRobot {
 
     static Command autonomousCommand;
@@ -49,26 +42,26 @@ public class Robot extends TimedRobot {
     public static double headAngleOffset = 0;
 
     public static NetworkTableInstance inst = null;
-    public static NetworkTable table = null;
-    public static NetworkTableEntry llx = null;
-    public static NetworkTableEntry lly = null;
-    public static NetworkTableEntry lla = null;
-    public static NetworkTableEntry llv = null;
-    public static NetworkTableEntry lls = null;
-    public static NetworkTableEntry lll = null;
+    public static NetworkTable OmniTable = null;
+    public static NetworkTableEntry lox = null;
+    public static NetworkTableEntry loy = null;
+    public static NetworkTableEntry loa = null;
+    public static NetworkTableEntry lov = null;
+    public static NetworkTableEntry los = null;
+    public static NetworkTableEntry lol = null;
     public static NetworkTableEntry xEntry;
     public static NetworkTableEntry yEntry;
     public static NetworkTableEntry blink = null;
     public static NetworkTableEntry on = null;
     public static NetworkTableEntry Off = null;
 
-    public static NetworkTable table2 = null;
-    public static NetworkTableEntry lmx = null;
-    public static NetworkTableEntry lmy = null;
-    public static NetworkTableEntry lma = null;
-    public static NetworkTableEntry lmv = null;
-    public static NetworkTableEntry lms = null;
-    public static NetworkTableEntry lml = null;
+    public static NetworkTable TracTable = null;
+    public static NetworkTableEntry ltx = null;
+    public static NetworkTableEntry lty = null;
+    public static NetworkTableEntry lta = null;
+    public static NetworkTableEntry ltv = null;
+    public static NetworkTableEntry lts = null;
+    public static NetworkTableEntry ltl = null;
 
     public static double x = 0;
     public static double y = 0;
@@ -91,21 +84,21 @@ public class Robot extends TimedRobot {
         subIntake = new subIntake();
 
         inst = NetworkTableInstance.getDefault();
-        table = inst.getTable("limelight-front");
-        llx = table.getEntry("tx");
-        lly = table.getEntry("ty");
-        lla = table.getEntry("ta");
-        llv = table.getEntry("tv");
-        lls = table.getEntry("ts");
-        lll = table.getEntry("tl");
+        OmniTable = inst.getTable("limelight-omni");
+        lox = OmniTable.getEntry("tx");
+        loy = OmniTable.getEntry("ty");
+        loa = OmniTable.getEntry("ta");
+        lov = OmniTable.getEntry("tv");
+        los = OmniTable.getEntry("ts");
+        lol = OmniTable.getEntry("tl");
     
-        table2 = inst.getTable("limelight-rear");
-        lmx = table2.getEntry("tx");
-        lmy = table2.getEntry("ty");
-        lma = table2.getEntry("ta");
-        lmv = table2.getEntry("tv");
-        lms = table2.getEntry("ts");
-        lml = table2.getEntry("tl");
+        TracTable = inst.getTable("limelight-trac");
+        ltx = TracTable.getEntry("tx");
+        lty = TracTable.getEntry("ty");
+        lta = TracTable.getEntry("ta");
+        ltv = TracTable.getEntry("tv");
+        lts = TracTable.getEntry("ts");
+        ltl = TracTable.getEntry("tl");
 
         oi = new OI();
 
@@ -276,13 +269,13 @@ public class Robot extends TimedRobot {
      */
  
     public void update_smartDashboard() {
-        x = llx.getDouble(Settings.llDefaultAngle);
-        y = lly.getDouble(Settings.llDefaultAngle);
-        SmartDashboard.putNumber("llx", x);
-        SmartDashboard.putNumber("lly", y);
+        x = lox.getDouble(Settings.llDefaultAngle);
+        y = loy.getDouble(Settings.llDefaultAngle);
+        SmartDashboard.putNumber("lox", x);
+        SmartDashboard.putNumber("loy", y);
         SmartDashboard.putNumber("lld", RobotMath.calcLimeDist(y));
-        SmartDashboard.putNumber("lmx", lmx.getDouble(Settings.llDefaultAngle));
-        SmartDashboard.putNumber("lmy", lmy.getDouble(Settings.llDefaultAngle));
+        SmartDashboard.putNumber("ltx", ltx.getDouble(Settings.llDefaultAngle));
+        SmartDashboard.putNumber("lty", lty.getDouble(Settings.llDefaultAngle));
         SmartDashboard.putNumber("lld", RobotMath.calcLime2Dist(y));
        // xEntry.setDouble(x);
        // yEntry.setDouble(y); 

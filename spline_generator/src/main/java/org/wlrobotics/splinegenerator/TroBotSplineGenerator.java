@@ -92,6 +92,10 @@ public class TroBotSplineGenerator extends Object {
 		test2.generate();
 		test2 = null;
 
+		Spline_BendTest bend = new Spline_BendTest(config);
+		bend.generate();
+		bend = null;
+		
 		System.out.println("TroBot Splines Generation: Complete");
 	}
 }
