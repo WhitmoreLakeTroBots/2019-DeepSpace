@@ -34,10 +34,10 @@ public class cmdTurnGyro extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		double limeAngle = Robot.lox.getDouble(Settings.llDefaultAngle);
+		double limeAngle = Robot.lox.getDouble(Settings.loDefaultAngle);
 		if(_vision){
-			if(limeAngle != Settings.llDefaultAngle){
-			limeAngle = limeAngle * Settings.llHorzAngleScalar;
+			if(limeAngle != Settings.loDefaultAngle){
+			limeAngle = limeAngle * Settings.loHorzAngleScalar;
 			_desiredHeading = Robot.subChassis.getNormaliziedNavxAngle() + limeAngle;
 			System.err.println("Lime Angle: " + limeAngle);
 			} else {

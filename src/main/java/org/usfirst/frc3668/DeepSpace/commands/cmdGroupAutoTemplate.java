@@ -19,7 +19,7 @@ public class cmdGroupAutoTemplate extends CommandGroup {
              } else if (action[i] == Settings.actions.invertDrive){
                 addSequential(new cmdInvertDriveAuto());
              } else if (action[i] == Settings.actions.splineOmni){
-                addSequential(new cmdSplineFollowerOmni(parameters[i]));
+                addSequential(new cmdSplineBenderOmni(parameters[i]));
              } else if (action[i] == Settings.actions.splineTrac){
                 addSequential(new cmdSplineFollowerTrac(parameters[i]));
              }

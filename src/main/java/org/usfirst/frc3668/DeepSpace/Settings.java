@@ -86,19 +86,19 @@ public class Settings {
     public static final double delayMiliseconds = 24;
     
     //Limelight Settings
-    public static final double llH2T = -0.3806;
-    public static final double llAngleOffset = 1.1605;
-    public static final double llHorzAngleScalar = 0.7655808619;
-    public static final double llDefaultAngle = 99.00;
-    public static final double llAecseptableAngle = 27;
-    public static final double llDistanceOffset = 0.00;
+    public static final double loH2T = 0.3806;
+    public static final double loAngleOffset = 1.1605;
+    public static final double loHorzAngleScalar = 0.7655808619;
+    public static final double loDefaultAngle = 99.00;
+    public static final double loAecseptableAngle = 27;
+    public static final double loDistanceOffset = 24;
 
-    public static final double lmDefaultAngle = 99.00;
-    public static final double lmAecseptableAngle = 27;
-    public static final double lmDistantceOffset = 0.00;
-    public static final double lmH2T = -0.3786;
-    public static final double lmAngleOffset =1.1605;
-    public static final double lmHorzAngleScalar = 0.765808619;
+    public static final double ltDefaultAngle = 99.00;
+    public static final double ltAecseptableAngle = 27;
+    public static final double ltDistantceOffset = 25;
+    public static final double ltH2T = 0.3786;
+    public static final double ltAngleOffset =1.1605;
+    public static final double ltHorzAngleScalar = 1;
 
     //Spline Settings
     public static final double maxVelocity = 4.667;
@@ -155,4 +155,5 @@ public class Settings {
 
     public static final String test1 = "_test";
     public static final String test2 = "_test2";
+    public static final String bend1 = "_BendTest";
 }

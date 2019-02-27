@@ -34,4 +34,5 @@ plot 'Spline_LSR_CSCL.cvs' using 2:3 w lp lt rgb 'orange'
 plot 'Spline_LSR_CSCR.cvs' using 2:3 w lp lt rgb 'orange'
 plot 'Spline_test.cvs' using 2:3 w lp lt rgb 'black'
 plot 'Spline_test2.cvs' using 2:3 w lp lt rgb 'black'
+plot 'Spline_BendTest.cvs' using 2:3 w lp lt rgb 'black'
 replot

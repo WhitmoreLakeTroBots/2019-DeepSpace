@@ -63,8 +63,10 @@ public class Robot extends TimedRobot {
     public static NetworkTableEntry lts = null;
     public static NetworkTableEntry ltl = null;
 
-    public static double x = 0;
-    public static double y = 0;
+    public static double ox = 0;
+    public static double oy = 0;
+    public static double tx = 0;
+    public static double ty = 0;
     
     /**
      * This function is run when the robot is first started up and should be used
@@ -171,11 +173,11 @@ public class Robot extends TimedRobot {
             parameters[0] = parameters[0] + Settings.startRight;
             break;
         case test:
-            parameters[0] = parameters[0] + Settings.test2;
-            parameters[1] = parameters[1] + Settings.test2;
-            parameters[2] = parameters[2] + Settings.test2;
+            parameters[0] = parameters[0] + Settings.bend1;
+            parameters[1] = parameters[1] + Settings.bend1;
+            parameters[2] = parameters[2] + Settings.bend1;
             actions[0] = Settings.actions.invertDrive;
-            actions[1] = Settings.actions.splineTrac;
+            actions[1] = Settings.actions.splineOmni;
             actions[2] = Settings.actions.invertDrive;
             break;
         }
@@ -269,14 +271,16 @@ public class Robot extends TimedRobot {
      */
  
     public void update_smartDashboard() {
-        x = lox.getDouble(Settings.llDefaultAngle);
-        y = loy.getDouble(Settings.llDefaultAngle);
-        SmartDashboard.putNumber("lox", x);
-        SmartDashboard.putNumber("loy", y);
-        SmartDashboard.putNumber("lld", RobotMath.calcLimeDist(y));
-        SmartDashboard.putNumber("ltx", ltx.getDouble(Settings.llDefaultAngle));
-        SmartDashboard.putNumber("lty", lty.getDouble(Settings.llDefaultAngle));
-        SmartDashboard.putNumber("lld", RobotMath.calcLime2Dist(y));
+        ox = lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar;
+        oy = loy.getDouble(Settings.loDefaultAngle);
+        tx = ltx.getDouble(Settings.ltDefaultAngle) * Settings.ltHorzAngleScalar;
+        ty = lty.getDouble(Settings.ltDefaultAngle);
+        SmartDashboard.putNumber("lox", ox);
+        SmartDashboard.putNumber("loy", oy);
+        SmartDashboard.putNumber("lod", RobotMath.calcLimeDist(oy));
+        SmartDashboard.putNumber("ltx", tx);
+        SmartDashboard.putNumber("lty", ty);
+        SmartDashboard.putNumber("ltd", RobotMath.calcLime2Dist(ty));
        // xEntry.setDouble(x);
        // yEntry.setDouble(y); 
     }
