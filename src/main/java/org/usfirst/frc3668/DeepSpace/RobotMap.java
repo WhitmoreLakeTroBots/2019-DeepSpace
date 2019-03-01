@@ -7,6 +7,18 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Encoder;
 
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Spark;
+import com.revrobotics.CANEncoder;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANPIDController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
+
+
+
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class RobotMap {
 	public static final int rightDrive1CanID = 1;
@@ -47,6 +59,8 @@ public class RobotMap {
 	public static Encoder tailEncoder;
 	public static Encoder hatchManipulatorEncoder;
 	public static Encoder headRotationEncoder;
+	
+	public static CANSparkMax tailSpark;
 
 	public static void init() {
 		rightDrive1 = new TalonSRX(rightDrive1CanID);
@@ -82,13 +96,16 @@ public class RobotMap {
 		headRotation.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 
 		headRotationEncoder = new Encoder(headRotationEncoderDIOA, headRotationEncoderDIOB);
-
-		tail = new TalonSRX(tailCanID);
-		tail.setNeutralMode(NeutralMode.Coast);
-		tail.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
-		tail.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
+		
+		// tail = new TalonSRX(tailCanID);
+		// tail.setNeutralMode(NeutralMode.Coast);
+		// tail.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
+		// tail.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 
 		tailEncoder = new Encoder(tailEncoderDIOPortA, tailEncoderDIOPortB);
+		
+		tailSpark = new CANSparkMax(tailCanID, MotorType.kBrushless);
+		tailSpark.setIdleMode(IdleMode.kBrake);
 
 		swingRotation = new TalonSRX(swingRotationCanID);
 		swingRotation.setNeutralMode(NeutralMode.Brake);

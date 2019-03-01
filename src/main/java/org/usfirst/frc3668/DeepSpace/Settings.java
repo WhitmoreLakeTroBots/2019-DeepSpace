@@ -59,6 +59,10 @@ public class Settings {
 
     //Hatch Manipulator
     public static final double hatchThrottle = 0.9;
+
+    //Spark MAX settings
+    public static final int maxOutput = 1;
+    public static final int minOutput = 0;
    
     //Cargo Maniplulator
     
