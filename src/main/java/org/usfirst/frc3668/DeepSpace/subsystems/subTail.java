@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class subTail extends Subsystem {
 
-  public final double tailDegPerTic = 0.16413;//360/((5/3)*188*7)
+  public final double tailDegPerRev = 6;//(1/100) * (5/3) * 360
   public final double tailMaxTipSpeed = 0.51816;
   public final double tailLength = 0.508;
 
@@ -17,19 +17,22 @@ public class subTail extends Subsystem {
   }
   
   public double getTailAngle(){
-    return getTailEncoderTics() * tailDegPerTic;
+    return getTailEncoderRevs() * tailDegPerRev;
     
   }
 
   public void resetTailEncoder(){
-    RobotMap.tailEncoder.reset();
+    //RobotMap.tailEncoder.reset();
+    RobotMap.tailSpark.setEncPosition(0);
   }
-  public int getTailEncoderTics() {
-    return -RobotMap.tailEncoder.get();
+  public double getTailEncoderRevs() {
+    //return -RobotMap.tailEncoder.get();
+    return -RobotMap.tailSpark.getEncoder().getPosition();
   }
 
   public void setTail(double throttle) {
-    RobotMap.tail.set(ControlMode.PercentOutput, throttle);
+    //RobotMap.tail.set(ControlMode.PercentOutput, throttle);
+    RobotMap.tailSpark.set(throttle);
 
   }
 

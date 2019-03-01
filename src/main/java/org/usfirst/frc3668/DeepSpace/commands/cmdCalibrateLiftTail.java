@@ -15,7 +15,7 @@ public class cmdCalibrateLiftTail extends Command {
     double liftThrottle;
     int tailNeededLoops = 5;
     int liftNeededLoops = 5;
-    int lastTailTics;
+    double lastTailTics;
     int lastLiftTics;
 
     public cmdCalibrateLiftTail(double tailThrottle, double liftThrottle) {
@@ -32,7 +32,7 @@ public class cmdCalibrateLiftTail extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        int tailTics = Robot.subTail.getTailEncoderTics();
+        double tailRev = Robot.subTail.getTailEncoderRevs();
         int liftTics = (int) Robot.subLift.getLiftEncoderTics();
 
         if (tailTolCount < tailNeededLoops) {
@@ -42,7 +42,7 @@ public class cmdCalibrateLiftTail extends Command {
             Robot.subLift.setLiftMotor(liftThrottle);
         }
 
-        if (inTolerance(tailTics, lastTailTics, tailTol)){
+        if (inTolerance(tailRev, lastTailTics, tailTol)){
             tailTolCount++;
         } else {
             tailTolCount = 0;
@@ -54,7 +54,7 @@ public class cmdCalibrateLiftTail extends Command {
             liftTolCount = 0;
         }
 
-        lastTailTics = tailTics;
+        lastTailTics = tailRev;
         lastLiftTics = liftTics;
 
         if (tailTolCount > tailNeededLoops && liftTolCount < liftNeededLoops) {

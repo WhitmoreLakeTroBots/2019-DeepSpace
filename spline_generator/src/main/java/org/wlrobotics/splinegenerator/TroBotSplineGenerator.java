@@ -82,14 +82,14 @@ public class TroBotSplineGenerator extends Object {
 		LSR_CSCR = null;
 
 		Spline_test test = new Spline_test(config);
-		test.generate();
+		//test.generate();
 		test = null;
 
 		config.max_velocity = 3;
 		config.max_acceleration = 2.5;
 		config.max_jerk = 8;
 		Spline_test2 test2 = new Spline_test2(config);
-		test2.generate();
+		//test2.generate();
 		test2 = null;
 
 		Spline_BendTest bend = new Spline_BendTest(config);
