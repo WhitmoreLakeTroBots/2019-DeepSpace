@@ -91,7 +91,7 @@ public class Settings {
     
     //Limelight Settings
     public static final double loH2T = 0.3806;
-    public static final double loAngleOffset = 1.1605;
+    public static final double loAngleOffset = -20.4562;
     public static final double loHorzAngleScalar = 0.7655808619;
     public static final double loDefaultAngle = 99.00;
     public static final double loAecseptableAngle = 27;
@@ -101,8 +101,8 @@ public class Settings {
     public static final double ltAecseptableAngle = 27;
     public static final double ltDistantceOffset = 25;
     public static final double ltH2T = 0.3786;
-    public static final double ltAngleOffset =1.1605;
-    public static final double ltHorzAngleScalar = 1;
+    public static final double ltAngleOffset = -28.5987;
+    public static final double ltHorzAngleScalar =  0.7655808619;
 
     //Spline Settings
     public static final double maxVelocity = 4.667;
