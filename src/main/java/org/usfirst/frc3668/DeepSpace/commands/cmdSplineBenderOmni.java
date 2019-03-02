@@ -85,8 +85,8 @@ public class cmdSplineBenderOmni extends Command {
 
     protected double leftAngleDifference() {
         double angleDiff = 0;
-        if (Robot.lov.getBoolean(false)) {
-            angleDiff = Robot.lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar;
+        if (Robot.lov.getDouble(0) == 1) {
+            angleDiff = -Robot.lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar;
         } else {
             angleDiff = Pathfinder
                     .boundHalfDegrees(Robot.subChassis.gyroNormalize(Pathfinder.r2d(leftFollower.getHeading()))
@@ -97,8 +97,8 @@ public class cmdSplineBenderOmni extends Command {
 
     protected double rightAngleDifference() {
         double angleDiff = 0;
-        if (Robot.lov.getBoolean(false)) {
-            angleDiff = Robot.lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar;
+        if (Robot.lov.getDouble(0) == 1) {
+            angleDiff = -Robot.lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar;
         } else {
             angleDiff = Pathfinder
                     .boundHalfDegrees(Robot.subChassis.gyroNormalize(Pathfinder.r2d(rightFollower.getHeading()))

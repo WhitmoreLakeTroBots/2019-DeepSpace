@@ -15,7 +15,7 @@ class Spline_BendTest extends BaseAutonGenerator {
   private Trajectory gen_test_01() {
 		Waypoint[] points = new Waypoint[] {
         new Waypoint(0.00, 0.00, Pathfinder.d2r(0)),
-        new Waypoint(1.50, 0.00, Pathfinder.d2r(0))
+        new Waypoint(3.20, 0.00, Pathfinder.d2r(0))
 		};
 		return (Pathfinder.generate(points, config));
     }
