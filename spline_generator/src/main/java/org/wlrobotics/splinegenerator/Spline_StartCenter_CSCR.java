@@ -9,7 +9,7 @@ class Spline_StartCenter_CSCR extends BaseAutonGenerator {
   Spline_StartCenter_CSCR (Trajectory.Config conf) {
     this.config = conf;
     baseFileName = this.getClass().getSimpleName();
-    gnuPlotString = "plot '%s' using 2:3 w lp lt rgb 'orange'";
+    gnuPlotString = "plot '%s' using 2:3 w lp lt rgb 'purple'";
   }
 
   private Trajectory gen_StartCenter_CSCR() {

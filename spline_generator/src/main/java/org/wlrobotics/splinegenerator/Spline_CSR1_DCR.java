@@ -4,27 +4,27 @@ import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
 
-class Spline_DCR_CSR3 extends BaseAutonGenerator {
+class Spline_CSR1_DCR extends BaseAutonGenerator {
 
-  Spline_DCR_CSR3 (Trajectory.Config conf) {
+  Spline_CSR1_DCR (Trajectory.Config conf) {
     this.config = conf;
     baseFileName = this.getClass().getSimpleName();
     gnuPlotString = "plot '%s' using 2:3 w lp lt rgb 'orange'";
   }
 
-  protected Trajectory gen_DCR_CSR3(){
+  protected Trajectory gen_DCR_CSR2(){
     Waypoint[] points = new Waypoint[] {
-        SplinePointsLib.DCR,
+        SplinePointsLib.CSR1,
+        SplinePointsLib.CSR1_Appraoch,
+        new Waypoint(6.00, 2.30, Pathfinder.d2r(20)),
         SplinePointsLib.DCR_Approach,
-        new Waypoint(6.50, 2.00, Pathfinder.d2r(0)),
-        SplinePointsLib.CSR3_Appraoch,
-        SplinePointsLib.CSR3
+        SplinePointsLib.DCR,
       };
       return (Pathfinder.generate(points, config));
   }
 
   void generate () {
-    segments.add (gen_DCR_CSR3());
+    segments.add (gen_DCR_CSR2());
     write();
   }
 }

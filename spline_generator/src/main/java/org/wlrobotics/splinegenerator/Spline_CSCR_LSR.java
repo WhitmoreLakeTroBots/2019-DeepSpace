@@ -9,7 +9,7 @@ class Spline_CSCR_LSR extends BaseAutonGenerator {
   Spline_CSCR_LSR (Trajectory.Config conf) {
     this.config = conf;
     baseFileName = this.getClass().getSimpleName();
-    gnuPlotString = "plot '%s' using 2:3 w lp lt rgb 'orange'";
+    gnuPlotString = "plot '%s' using 2:3 w lp lt rgb 'gold'";
   }
 
   protected Trajectory gen_CSCR_LSR(){
