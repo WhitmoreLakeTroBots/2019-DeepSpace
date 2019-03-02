@@ -23,7 +23,7 @@ public class cmdRotateHead extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.headAngleOffset = Robot.subSwing.getSwingAngle() + angle;
+        Robot.headHoldAngle = Robot.subSwing.getSwingAngle() + angle;
         initAngle = Robot.subHead.getHeadRotationAngle();
         deltaSignum = Math.signum(angle - initAngle);
     }

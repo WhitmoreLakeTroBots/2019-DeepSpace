@@ -16,10 +16,6 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 
-
-
-import edu.wpi.first.wpilibj.command.Subsystem;
-
 public class RobotMap {
 	public static final int rightDrive1CanID = 1;
 	public static final int rightDrive2CanID = 2;
@@ -105,7 +101,7 @@ public class RobotMap {
 		tailEncoder = new Encoder(tailEncoderDIOPortA, tailEncoderDIOPortB);
 		
 		tailSpark = new CANSparkMax(tailCanID, MotorType.kBrushless);
-		tailSpark.setIdleMode(IdleMode.kBrake);
+		tailSpark.setIdleMode(IdleMode.kCoast);
 
 		swingRotation = new TalonSRX(swingRotationCanID);
 		swingRotation.setNeutralMode(NeutralMode.Brake);

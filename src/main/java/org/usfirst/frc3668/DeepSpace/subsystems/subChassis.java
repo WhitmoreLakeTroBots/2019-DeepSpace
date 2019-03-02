@@ -102,7 +102,8 @@ public class subChassis extends Subsystem {
 		} else {
 			return -RobotMap.rightDrive1.getSelectedSensorPosition(0);
 		}
-    }
+	}
+
     public int getLeftEncoderTics(){
 		if(Robot.isDriveInverted){
 			return -RobotMap.leftDrive1.getSelectedSensorPosition(0);

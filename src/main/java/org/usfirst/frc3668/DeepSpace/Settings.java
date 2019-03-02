@@ -29,7 +29,7 @@ public class Settings {
 
     //Tail Settings
     public static final int tailTicks = 1316;
-    public static final double tailRaiseThrottle = 1.0;
+    public static final double tailRaiseThrottle = 0.1;
     public static final double tailCalibrateThrottle = -0.1;
     
     //Swing settings
@@ -91,7 +91,7 @@ public class Settings {
     
     //Limelight Settings
     public static final double loH2T = 0.3806;
-    public static final double loAngleOffset = 1.1605;
+    public static final double loAngleOffset = -18.7748;
     public static final double loHorzAngleScalar = 0.7655808619;
     public static final double loDefaultAngle = 99.00;
     public static final double loAecseptableAngle = 27;
@@ -101,8 +101,8 @@ public class Settings {
     public static final double ltAecseptableAngle = 27;
     public static final double ltDistantceOffset = 25;
     public static final double ltH2T = 0.3786;
-    public static final double ltAngleOffset =1.1605;
-    public static final double ltHorzAngleScalar = 1;
+    public static final double ltAngleOffset = -30.7245;
+    public static final double ltHorzAngleScalar =  0.7655808619;
 
     //Spline Settings
     public static final double maxVelocity = 4.667;

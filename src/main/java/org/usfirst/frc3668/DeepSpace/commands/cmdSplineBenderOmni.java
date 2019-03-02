@@ -16,8 +16,8 @@ public class cmdSplineBenderOmni extends Command {
     public final double splineOmniKp = 0.0075;
     public final double splineOmniKi = 0.0055;
     public final double splineOmniKd = 0.00425;
-    public final double splineOmniKf = 0.00;
-    public final double splineOmniTurnScalar = 0.0125;
+    public final double splineOmniKf = 0.10;
+    public final double splineOmniTurnScalar = 0.013;
 
     double splineLength;
     double turnScalar;
@@ -74,8 +74,8 @@ public class cmdSplineBenderOmni extends Command {
         double rightThrottle = rightOutput + rightTurnVal;
 
         System.err.println(String.format(
-                "PC: %1$d\tRight Encoder: %2$d\tLeft Encoder: %3$d\tAngle Diff: %4$.3f\tNavX: %5$.3f\tR Output: %6$.3f\tR throttle: %7$.3f\tLL Angle: %8$.3f\tL Throttle: %9$.3f\tPerComp: %10$.3f",
-                pointCount, Robot.subChassis.getRightEncoderTics(), Robot.subChassis.getLeftEncoderTics(),
+                "PC: %1$d\tRight Encoder: %2$.3f\tLeft Encoder: %3$.3f\tAngle Diff: %4$.3f\tNavX: %5$.3f\tR Output: %6$.3f\tR throttle: %7$.3f\tLL Angle: %8$.3f\tL Throttle: %9$.3f\tPerComp: %10$.3f",
+                pointCount, Robot.subChassis.getRightEncoderDist(), Robot.subChassis.getLeftEncoderDist(),
                 leftAngleDifference(),
                 Robot.subChassis.getNormaliziedNavxAngle(), rightOutput, rightThrottle,
                 (Robot.lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar), leftThrottle, percentComplete()));
@@ -85,8 +85,8 @@ public class cmdSplineBenderOmni extends Command {
 
     protected double leftAngleDifference() {
         double angleDiff = 0;
-        if (Robot.lov.getBoolean(false)) {
-            angleDiff = Robot.lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar;
+        if (Robot.lov.getDouble(0) == 1) {
+            angleDiff = -Robot.lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar;
         } else {
             angleDiff = Pathfinder
                     .boundHalfDegrees(Robot.subChassis.gyroNormalize(Pathfinder.r2d(leftFollower.getHeading()))
@@ -97,8 +97,8 @@ public class cmdSplineBenderOmni extends Command {
 
     protected double rightAngleDifference() {
         double angleDiff = 0;
-        if (Robot.lov.getBoolean(false)) {
-            angleDiff = Robot.lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar;
+        if (Robot.lov.getDouble(0) == 1) {
+            angleDiff = - Robot.lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar;
         } else {
             angleDiff = Pathfinder
                     .boundHalfDegrees(Robot.subChassis.gyroNormalize(Pathfinder.r2d(rightFollower.getHeading()))

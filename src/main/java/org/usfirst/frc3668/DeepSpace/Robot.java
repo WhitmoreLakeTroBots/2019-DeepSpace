@@ -39,7 +39,8 @@ public class Robot extends TimedRobot {
     public static boolean isDriveInverted = true;
     public static double navxOffset = 0.0;
     public static int invertedSplineDirection = 1;
-    public static double headAngleOffset = 0;
+    public static double headHoldAngle = 0;
+    public static double swingHoldAngle = 0;
 
     public static NetworkTableInstance inst = null;
     public static NetworkTable OmniTable = null;

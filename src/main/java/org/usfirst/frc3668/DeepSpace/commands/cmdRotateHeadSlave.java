@@ -25,7 +25,7 @@ public class cmdRotateHeadSlave extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        angle = Robot.subSwing.getSwingAngle() + Robot.headAngleOffset;
+        angle = Robot.subSwing.getSwingAngle() + Robot.headHoldAngle;
         double currentAngle = Robot.subHead.getHeadRotationAngle();
 		double throttle = 0;
 		double deltaAngle = angle - currentAngle;
