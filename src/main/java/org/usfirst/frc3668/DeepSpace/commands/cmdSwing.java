@@ -31,7 +31,8 @@ public class cmdSwing extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.headAngleOffset = 0.0;
+        Robot.swingHoldAngle = angle;
+        Robot.headHoldAngle = 0.0;
         lowerBound = angle - swingWindow;
         upperBound = angle + swingWindow;
         initAngle = Robot.subSwing.getSwingAngle();

@@ -35,7 +35,7 @@ public class cmdRaise extends Command {
         double pidVal = pid.calcError(liftElevationTargetAngle, Robot.subLift.getRobotPitch());
         frontLiftSpeed = frontLiftSpeed + pidVal;
         //Robot.subLift.setLiftMotor(-frontLiftSpeed / Settings.liftMaxSpeed);
-        Robot.subLift.setLiftMotor(Math.abs(frontLiftSpeed));
+        //Robot.subLift.setLiftMotor(Math.abs(frontLiftSpeed));
         Robot.subTail.setTail(tailThrottle);
         System.err.println("Front Lift Encoder: " + Robot.subLift.getLiftEncoderTics() + " Lift Encoder Meters: " + Robot.subLift.getLiftEncoderMeters() + " Tail Angle: " + Robot.subTail.getTailAngle());
         if(Robot.subTail.getTailAngle() < endThershold){
