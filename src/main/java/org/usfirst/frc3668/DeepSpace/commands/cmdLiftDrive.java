@@ -38,7 +38,6 @@ public class cmdLiftDrive extends Command {
     @Override
     protected void execute() {
         double currentTics = Robot.subLift.getLiftDriveTics();
-		double throttle = 0;
         double deltatargetTics = targetTics - currentTics;
         double finalThrottle;
 

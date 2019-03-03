@@ -50,11 +50,8 @@ public class Robot extends TimedRobot {
     public static NetworkTableEntry lov = null;
     public static NetworkTableEntry los = null;
     public static NetworkTableEntry lol = null;
-    public static NetworkTableEntry xEntry;
-    public static NetworkTableEntry yEntry;
-    public static NetworkTableEntry blink = null;
-    public static NetworkTableEntry on = null;
-    public static NetworkTableEntry Off = null;
+    public static NetworkTableEntry locm = null;
+    public static NetworkTableEntry lolm = null;
 
     public static NetworkTable TracTable = null;
     public static NetworkTableEntry ltx = null;
@@ -63,11 +60,14 @@ public class Robot extends TimedRobot {
     public static NetworkTableEntry ltv = null;
     public static NetworkTableEntry lts = null;
     public static NetworkTableEntry ltl = null;
+    public static NetworkTableEntry ltcm = null;
+    public static NetworkTableEntry ltlm = null;
 
     public static double ox = 0;
     public static double oy = 0;
     public static double tx = 0;
     public static double ty = 0;
+    public static double llCamMode = 0;
     
     /**
      * This function is run when the robot is first started up and should be used
@@ -94,6 +94,8 @@ public class Robot extends TimedRobot {
         lov = OmniTable.getEntry("tv");
         los = OmniTable.getEntry("ts");
         lol = OmniTable.getEntry("tl");
+        locm = OmniTable.getEntry("camMode");
+        lolm = OmniTable.getEntry("ledMode");
     
         TracTable = inst.getTable("limelight-trac");
         ltx = TracTable.getEntry("tx");
@@ -102,6 +104,8 @@ public class Robot extends TimedRobot {
         ltv = TracTable.getEntry("tv");
         lts = TracTable.getEntry("ts");
         ltl = TracTable.getEntry("tl");
+        ltcm = TracTable.getEntry("camMode");
+        ltlm = TracTable.getEntry("ledMode");
 
         oi = new OI();
 

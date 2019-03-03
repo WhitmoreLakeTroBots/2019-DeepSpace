@@ -11,11 +11,11 @@ public class cmdGroupLevel3 extends CommandGroup {
 
     public final double level3ProfileVelocity = 2.0;
     public final double level3ProfileDist = 0.3;
-    public final int liftDriveLevel3Tics = 1000;
+    public final int liftDriveLevel3Tics = 346;
 
     public cmdGroupLevel3 (){
-        addSequential(new cmdRaise());
-        //addSequential(new cmdLiftDrive(liftDriveLevel3Tics, Settings.liftDriveThrottle));
+        //addSequential(new cmdRaise());
+        addSequential(new cmdLiftDrive(liftDriveLevel3Tics, Settings.liftDriveThrottle));
         //addSequential(new cmdMoveFrontLift(0, Settings.frontLiftManThrottle));
         //addSequential(new cmdProfileDrive(level3ProfileVelocity, level3ProfileDist));
     }
