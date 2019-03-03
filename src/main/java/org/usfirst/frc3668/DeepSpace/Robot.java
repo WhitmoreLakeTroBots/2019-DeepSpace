@@ -178,12 +178,17 @@ public class Robot extends TimedRobot {
             parameters[0] = parameters[0] + Settings.startRight;
             break;
         case test:
-            parameters[0] = parameters[0] + Settings.bend1;
-            parameters[1] = parameters[1] + Settings.bend1;
-            parameters[2] = parameters[2] + Settings.bend1;
-            actions[0] = Settings.actions.invertDrive;
-            actions[1] = Settings.actions.splineOmni;
-            actions[2] = Settings.actions.invertDrive;
+            // parameters[0] = parameters[0] + Settings.bend1;
+            // parameters[1] = parameters[1] + Settings.bend1;
+            // parameters[2] = parameters[2] + Settings.bend1;
+            // actions[0] = Settings.actions.invertDrive;
+            // actions[1] = Settings.actions.splineOmni;
+            // actions[2] = Settings.actions.invertDrive;
+
+            // locm.setNumber(Settings.llDriveCam);
+            // lolm.setNumber(Settings.llDriveCam);
+            // ltcm.setNumber(Settings.llDriveCam);
+            // ltlm.setNumber(Settings.llDriveCam);
             break;
         }
 
