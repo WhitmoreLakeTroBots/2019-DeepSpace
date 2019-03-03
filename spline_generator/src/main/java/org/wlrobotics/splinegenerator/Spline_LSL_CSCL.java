@@ -9,7 +9,7 @@ class Spline_LSL_CSCL extends BaseAutonGenerator {
   Spline_LSL_CSCL (Trajectory.Config conf) {
     this.config = conf;
     baseFileName = this.getClass().getSimpleName();
-    gnuPlotString = "plot '%s' using 2:3 w lp lt rgb 'orange'";
+    gnuPlotString = "plot '%s' using 2:3 w lp lt rgb 'pink'";
   }
 
   protected Trajectory gen_LSL_CSCL(){

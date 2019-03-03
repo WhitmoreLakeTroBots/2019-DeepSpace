@@ -90,6 +90,9 @@ public class Settings {
     public static final double delayMiliseconds = 24;
     
     //Limelight Settings
+    public static final double llProcess = 0;
+    public static final double llDriveCam = 1;
+
     public static final double loH2T = 0.3806;
     public static final double loAngleOffset = -18.7748;
     public static final double loHorzAngleScalar = 0.7655808619;

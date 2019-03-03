@@ -9,7 +9,7 @@ class Spline_DCL_CSL2 extends BaseAutonGenerator {
   Spline_DCL_CSL2 (Trajectory.Config conf) {
     this.config = conf;
     baseFileName = this.getClass().getSimpleName();
-    gnuPlotString = "plot '%s' using 2:3 w lp lt rgb 'orange'";
+    gnuPlotString = "plot '%s' using 2:3 w lp lt rgb 'brown'";
   }
 
   protected Trajectory gen_DCL_CSL2(){
