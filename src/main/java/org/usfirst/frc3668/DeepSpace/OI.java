@@ -125,7 +125,7 @@ public class OI {
 
         hatch.whenPressed(new cmdGraspHatch(Settings.hatchThrottle));
         
-        //driveTEMP.whenPressed(new cmdGroupSwingHead(-110, -170));
+        driveTEMP.whenPressed(new cmdSwitchLLVision());
     }
 }
 
