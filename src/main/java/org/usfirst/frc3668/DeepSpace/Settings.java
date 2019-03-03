@@ -29,13 +29,13 @@ public class Settings {
 
     //Tail Settings
     public static final int tailTicks = 1316;
-    public static final double tailRaiseThrottle = 0.1;
+    public static final double tailRaiseThrottle = 0.35;
     public static final double tailCalibrateThrottle = -0.1;
     
     //Swing settings
     public static final double swingHome = 0;
     public static final double swingCargoIntake = 22;
-    public static final double swingLowTracHatch = 45;
+    public static final double swingLowTracHatch = 50;
     public static final double swingLowOmniHatch = -45;
     public static final double swingLowTracCargo = 70;
     public static final double swingLowOmniCargo = -110;
@@ -62,7 +62,7 @@ public class Settings {
     
 
     //Hatch Manipulator
-    public static final double hatchThrottle = 0.9;
+    public static final double hatchThrottle = -0.9;
 
     //Spark MAX settings
     public static final int maxOutput = 1;

@@ -124,7 +124,7 @@ public class OI {
         cargoOffsetHome.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetHome));
 
         hatch.whenPressed(new cmdGraspHatch(Settings.hatchThrottle));
-        
+        driveTEMP.whenPressed(new cmdMoveFrontLift(0, 0.75));
         //driveTEMP.whenPressed(new cmdGroupSwingHead(-110, -170));
     }
 }

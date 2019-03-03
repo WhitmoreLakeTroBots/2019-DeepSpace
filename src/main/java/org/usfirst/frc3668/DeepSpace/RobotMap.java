@@ -57,6 +57,7 @@ public class RobotMap {
 	public static Encoder headRotationEncoder;
 	
 	public static CANSparkMax tailSpark;
+	public static CANEncoder tailCanEncoder;
 
 	public static void init() {
 		rightDrive1 = new TalonSRX(rightDrive1CanID);
@@ -98,10 +99,11 @@ public class RobotMap {
 		// tail.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		// tail.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 
-		tailEncoder = new Encoder(tailEncoderDIOPortA, tailEncoderDIOPortB);
+		//tailEncoder = new Encoder(tailEncoderDIOPortA, tailEncoderDIOPortB);
 		
 		tailSpark = new CANSparkMax(tailCanID, MotorType.kBrushless);
 		tailSpark.setIdleMode(IdleMode.kCoast);
+		tailCanEncoder = tailSpark.getEncoder();
 
 		swingRotation = new TalonSRX(swingRotationCanID);
 		swingRotation.setNeutralMode(NeutralMode.Brake);
@@ -111,7 +113,7 @@ public class RobotMap {
 		swingRotation.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Settings.talonTimeOut);
 		
 		frontLift = new TalonSRX(frontLiftCanID);
-		frontLift.setNeutralMode(NeutralMode.Brake);
+		frontLift.setNeutralMode(NeutralMode.Coast);
 		frontLift.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		frontLift.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 
