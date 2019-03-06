@@ -8,7 +8,7 @@ public class Settings {
     public static final double chassisWheelDiameter = 0.203; //meters; 8 inches
     public static final int chassisDriveMaxCurrentLimit = 55;
     public static final int chassisDriveMaxCurrentTimeout = 500;
-    public static final double chassisTurnKp = 0.005;
+    public static final double chassisTurnKp = 0.007;
     public static final double chassisTurnKi = 0.0001;
     public static final double chassisTurnkd = 0.001;
     public static final double chassisGyroTol = 1.0;
@@ -18,7 +18,7 @@ public class Settings {
     public static final double liftCalibrateThrottle = -0.1;
     public static final int liftTicsPerRevolution = 1440;
     
-    public static final double frontLiftManThrottle = 0.5;
+    public static final double frontLiftManThrottle = 1.0;
     public static final double liftKp = 0.0;
     public static final double liftKi = 0.0;
     public static final double liftKd = 0.0;
@@ -29,7 +29,7 @@ public class Settings {
 
     //Tail Settings
     public static final int tailTicks = 1316;
-    public static final double tailRaiseThrottle = 0.35;
+    public static final double tailRaiseThrottle = 0.5;
     public static final double tailCalibrateThrottle = -0.1;
     
     //Swing settings
@@ -82,7 +82,7 @@ public class Settings {
     public static final String profileTestLogName = "logs\\motionProfileTestResults";
     public static final String profileLogName = "//media//sda1//motionProfile";
     public static final String profileLogFileExtension = ".txt";
-    public static final double profileDriveKp = 0.1;
+    public static final double profileDriveKp = 0.12;
 	public static final double profileDriveKi = 0.003;
     public static final double profileDriveKd = 0.0004;
     
@@ -98,7 +98,7 @@ public class Settings {
     public static final double loHorzAngleScalar = 0.7655808619;
     public static final double loDefaultAngle = 99.00;
     public static final double loAecseptableAngle = 27;
-    public static final double loDistanceOffset = 24;
+    public static final double loDistanceOffset = 1;
 
     public static final double ltDefaultAngle = 99.00;
     public static final double ltAecseptableAngle = 27;
@@ -106,6 +106,7 @@ public class Settings {
     public static final double ltH2T = 0.3786;
     public static final double ltAngleOffset = -30.7245;
     public static final double ltHorzAngleScalar =  0.7655808619;
+    public static final double ltDistanceOffset = 0.24;
 
     //Spline Settings
     public static final double maxVelocity = 4.667;

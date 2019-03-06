@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
     public static NetworkTableEntry lol = null;
     public static NetworkTableEntry locm = null;
     public static NetworkTableEntry lolm = null;
-
+    public static NetworkTableEntry lop = null;
     public static NetworkTable TracTable = null;
     public static NetworkTableEntry ltx = null;
     public static NetworkTableEntry lty = null;
@@ -62,12 +62,13 @@ public class Robot extends TimedRobot {
     public static NetworkTableEntry ltl = null;
     public static NetworkTableEntry ltcm = null;
     public static NetworkTableEntry ltlm = null;
-
+    public static NetworkTableEntry ltp = null;
     public static double ox = 0;
     public static double oy = 0;
     public static double tx = 0;
     public static double ty = 0;
     public static double llCamMode = 0;
+    
     
     /**
      * This function is run when the robot is first started up and should be used
@@ -96,7 +97,8 @@ public class Robot extends TimedRobot {
         lol = OmniTable.getEntry("tl");
         locm = OmniTable.getEntry("camMode");
         lolm = OmniTable.getEntry("ledMode");
-    
+        lop = OmniTable.getEntry ("pipeline");
+
         TracTable = inst.getTable("limelight-trac");
         ltx = TracTable.getEntry("tx");
         lty = TracTable.getEntry("ty");
@@ -106,7 +108,7 @@ public class Robot extends TimedRobot {
         ltl = TracTable.getEntry("tl");
         ltcm = TracTable.getEntry("camMode");
         ltlm = TracTable.getEntry("ledMode");
-
+        ltp = TracTable.getEntry("pipeline");
         oi = new OI();
 
         startChooser.addOption("Center", Settings.startLocation.center);
@@ -143,7 +145,8 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-
+        lop.setNumber(0);
+        ltp.setNumber(0);
     }
 
     @Override
@@ -287,10 +290,10 @@ public class Robot extends TimedRobot {
         ty = lty.getDouble(Settings.ltDefaultAngle);
         SmartDashboard.putNumber("lox", ox);
         SmartDashboard.putNumber("loy", oy);
-        SmartDashboard.putNumber("lod", RobotMath.calcLimeDist(oy));
+        SmartDashboard.putNumber("lod", RobotMath.calcLimeOmniDist(oy));
         SmartDashboard.putNumber("ltx", tx);
         SmartDashboard.putNumber("lty", ty);
-        SmartDashboard.putNumber("ltd", RobotMath.calcLime2Dist(ty));
+        SmartDashboard.putNumber("ltd", RobotMath.calcLimeTracDist(ty));
        // xEntry.setDouble(x);
        // yEntry.setDouble(y); 
     }

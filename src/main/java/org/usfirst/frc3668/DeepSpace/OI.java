@@ -60,6 +60,7 @@ public class OI {
     public final int joyDriveIntakeOut = 5;
     public final int joyDriveCargoIn = 4;
     public final int joyDriveCargoOut = 6;
+    public final int joyDriveVision = 8;
     public final int joyArtPort = 1;
     public final int joyArtSwingHome = 9;
     public final int joyArtSwingCargo = 2;
@@ -82,6 +83,7 @@ public class OI {
     public Button intakeOut = new JoystickButton(joyDrive, joyDriveIntakeOut);
     public Button cargoIn = new JoystickButton(joyDrive, joyDriveCargoIn);
     public Button cargoOut = new JoystickButton(joyDrive, joyDriveCargoOut);
+    public Button switchVision = new JoystickButton(joyDrive, joyDriveVision);
 
     public Button driveTEMP = new JoystickButton(joyDrive, 7);
 
@@ -124,9 +126,9 @@ public class OI {
         cargoOffsetHome.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetHome));
 
         hatch.whenPressed(new cmdGraspHatch(Settings.hatchThrottle));
-        //driveTEMP.whenPressed(new cmdMoveFrontLift(0, 0.75));
+        driveTEMP.whenPressed(new cmdMoveFrontLift(0, 0.75));
         //driveTEMP.whenPressed(new cmdGroupSwingHead(-110, -170));
-        driveTEMP.whenPressed(new cmdSwitchLLVision());
+        switchVision.whenPressed(new cmdSwitchLLVision());
     }
 }
 

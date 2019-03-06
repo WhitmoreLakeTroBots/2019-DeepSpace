@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class cmdGroupDock extends CommandGroup {
 
     public cmdGroupDock() {
+        addSequential(new cmdSwitchLLVision(1));
         addSequential(new cmdTurnGyro(Settings.autoTurnSpeed, true));
         addSequential(new cmdProfileDrive(Settings.autoProfileDriveSpeed, true));
     }

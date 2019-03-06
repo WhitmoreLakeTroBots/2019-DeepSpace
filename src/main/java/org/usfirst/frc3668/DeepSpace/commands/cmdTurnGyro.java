@@ -53,6 +53,9 @@ public class cmdTurnGyro extends Command {
 		double headingDelta = RobotMath.headingDelta(currHeading, _desiredHeading);
 		double scaledHeading = pid.calcPID(headingDelta);
 		double scaledHeadingSignum = -Math.signum(scaledHeading);
+		if(!Robot.isDriveInverted){
+			scaledHeadingSignum = -1 * scaledHeadingSignum;
+		}
 		double throttle = (_initThrottle + Math.abs(scaledHeading)) * scaledHeadingSignum;
 		
 		Robot.subChassis.Drive(0, throttle);
