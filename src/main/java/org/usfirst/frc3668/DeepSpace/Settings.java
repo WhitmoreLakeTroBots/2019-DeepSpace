@@ -43,10 +43,10 @@ public class Settings {
 
     //Cargo Offsets
     public static final double cargoOffsetHome = 0;
-    public static final double cargoOffsetTracParrallel = 63; //account for sag in the mech
-    public static final double cargoOffsetOmniParrallel = -63; //account for sag in the mech
-    public static final double cargoOffsetPickCargo = 55;
-    public static final double cargoOffsetPlaceCargoOmni = -170;
+    public static final double cargoOffsetTracParrallel = -63; //account for sag in the mech
+    public static final double cargoOffsetOmniParrallel = 63; //account for sag in the mech
+    public static final double cargoOffsetPickCargo = -55;
+    public static final double cargoOffsetPlaceCargoOmni = 170;
     public static final double cargoOffsetPlaceCargoTrac = 0;
 
     //Intake settings
@@ -54,8 +54,8 @@ public class Settings {
     public static final double intakeOutThrottle = -1.0;
 
     //Head Settings
-    public static final double headThrottleUP = -0.6;
-    public static final double headThrottleDOWN = 0.4;
+    public static final double headThrottleUP = 0.5;
+    public static final double headThrottleDOWN = -0.5;
     public static final double headSlowThreshold = 15;
     public static final double headSlowScalar = 0.6;
     public static final double headWindow = 1.5;
@@ -70,8 +70,8 @@ public class Settings {
    
     //Cargo Maniplulator
     
-    public static final double cargoInThrottle = 1.0;
-    public static final double cargoOutThrottle = -1.0;
+    public static final double cargoInThrottle = -1.0;
+    public static final double cargoOutThrottle = 1.0;
 
     //Auto Settings
     public static final double autoTurnSpeed = 0.15; //0.12 for tile;

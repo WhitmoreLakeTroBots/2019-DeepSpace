@@ -26,7 +26,7 @@ public class cmdSwingHoldPID extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        double throttle = holdPID.calcPID(Robot.swingHoldAngle, Robot.subSwing.getSwingAngle());
+        double throttle = -holdPID.calcPID(Robot.swingHoldAngle, Robot.subSwing.getSwingAngle());
         Robot.subSwing.setSwingMotor(throttle);
     }
     

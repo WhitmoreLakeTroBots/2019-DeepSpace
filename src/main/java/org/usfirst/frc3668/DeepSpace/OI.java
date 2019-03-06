@@ -69,9 +69,9 @@ public class OI {
     public final int joyArtSwingLowTracCargo = 8; 
     public final int joyArtSwingLowOmniCargo = 12;
     public final int joyArtSwingHighOmni = 10;
-    public final int joyArtOffset90 = 5;
+    public final int joyArtCargoOut = 5;
     public final int joyArtOffsetHome = 6;
-    public final int joyArtOffsetNeg90 = 3;
+    public final int joyArtCargoIn = 3;
     public final int joyArtHatch = 4;
 
     public Joystick joyDrive = new Joystick(joyDrivePort);
@@ -81,13 +81,13 @@ public class OI {
     public Button level2 = new JoystickButton(joyDrive, joyDriveLevel2);
     public Button intakeIn = new JoystickButton(joyDrive, joyDriveIntakeIn);
     public Button intakeOut = new JoystickButton(joyDrive, joyDriveIntakeOut);
-    public Button cargoIn = new JoystickButton(joyDrive, joyDriveCargoIn);
-    public Button cargoOut = new JoystickButton(joyDrive, joyDriveCargoOut);
     public Button switchVision = new JoystickButton(joyDrive, joyDriveVision);
 
     public Button driveTEMP = new JoystickButton(joyDrive, 7);
 
     public Joystick joyArt = new Joystick(joyArtPort);
+    public Button cargoIn = new JoystickButton(joyArt, joyArtCargoIn);
+    public Button cargoOut = new JoystickButton(joyArt, joyArtCargoOut);
     public Button swingHome = new JoystickButton(joyArt,joyArtSwingHome);
     public Button swingPickCargo = new JoystickButton(joyArt, joyArtSwingCargo);
     public Button swingLowTracHatch = new JoystickButton(joyArt,joyArtSwingLowTracHatch);
@@ -96,8 +96,6 @@ public class OI {
     public Button swingLowOmniCargo = new JoystickButton(joyArt,joyArtSwingLowOmniCargo);
     public Button swingHighOmni = new JoystickButton(joyArt,joyArtSwingHighOmni);
     public Button cargoOffsetHome = new JoystickButton(joyArt,joyArtOffsetHome);
-    public Button cargoOffsetTracParrallel = new JoystickButton(joyArt,joyArtOffset90);
-    public Button cargoOffsetOmniParrallel = new JoystickButton(joyArt,joyArtOffsetNeg90);
     public Button hatch = new JoystickButton(joyArt, joyArtHatch);
 
     public OI() {
@@ -121,8 +119,6 @@ public class OI {
         swingLowTracCargo.whenPressed(new cmdGroupSwingHead(Settings.swingLowTracCargo, Settings.cargoOffsetPlaceCargoTrac));
         swingLowOmniCargo.whenPressed(new cmdGroupSwingHead(Settings.swingLowOmniCargo, Settings.cargoOffsetPlaceCargoOmni));
 
-        cargoOffsetTracParrallel.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetTracParrallel));
-        cargoOffsetOmniParrallel.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetOmniParrallel));
         cargoOffsetHome.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetHome));
 
         hatch.whenPressed(new cmdGraspHatch(Settings.hatchThrottle));

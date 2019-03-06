@@ -10,7 +10,7 @@ public class cmdGraspHatch extends Command {
     public static final int hatchSlowThreshold = 100;
     public static final double hatchSlowScalar = 0.75;
     public static final int hatchWindow = 5;
-    public static final int hatchClosedTics = 525;
+    public static final int hatchClosedTics = 450;
     public static final int hatchOpenTics = 0;
  
     boolean bDone = false;
