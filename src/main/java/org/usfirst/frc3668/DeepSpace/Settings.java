@@ -15,6 +15,7 @@ public class Settings {
 
     //Lift settings
     public static final double liftMaxSpeed = 0.335;
+    public static final double liftThrottle = 1;
     public static final double liftCalibrateThrottle = -0.1;
     public static final int liftTicsPerRevolution = 1440;
     
@@ -35,17 +36,20 @@ public class Settings {
     //Swing settings
     public static final double swingHome = 0;
     public static final double swingCargoIntake = 22;
-    public static final double swingLowTracHatch = 50;
-    public static final double swingLowOmniHatch = -45;
-    public static final double swingLowTracCargo = 70;
+    public static final double swingLowTracHatch = 55;
+    public static final double swingLowOmniHatch = -50;
+    public static final double swingLowTracCargo = 75;
     public static final double swingLowOmniCargo = -110;
     public static final double swingHighOmni = 120; 
 
+    public static final double cargoAdjustOmni = 5;
+    public static final double cargoAdjustTrac = -5;
+
     //Cargo Offsets
     public static final double cargoOffsetHome = 0;
-    public static final double cargoOffsetTracParrallel = -63; //account for sag in the mech
-    public static final double cargoOffsetOmniParrallel = 63; //account for sag in the mech
-    public static final double cargoOffsetPickCargo = -55;
+    public static final double cargoOffsetTracParrallel = -83; //account for sag in the mech
+    public static final double cargoOffsetOmniParrallel = 83; //account for sag in the mech
+    public static final double cargoOffsetPickCargo = -65;
     public static final double cargoOffsetPlaceCargoOmni = 170;
     public static final double cargoOffsetPlaceCargoTrac = 0;
 

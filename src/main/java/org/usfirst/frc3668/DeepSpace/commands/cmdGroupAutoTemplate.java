@@ -9,7 +9,6 @@ public class cmdGroupAutoTemplate extends CommandGroup {
     public cmdGroupAutoTemplate(Settings.actions[] action, String [] parameters){
         System.err.println("Spline Files: " + parameters[0] + ", " + parameters[1] + ", " + parameters[2]);
         System.err.println("Actions: " + action[0] + ", " + action[1] + ", " + action[2]);
-        addSequential(new cmdSwitchLLVision(Settings.llProcess));
         for(int i = 0; i <= action.length - 1; i++){
              if(action[i] == Settings.actions.moveArm){
                 addSequential(new cmdSwing(parameters[i]));
@@ -25,6 +24,6 @@ public class cmdGroupAutoTemplate extends CommandGroup {
                 addSequential(new cmdSplineFollowerTrac(parameters[i]));
              }
         }
-        addSequential(new cmdSwitchLLVision(Settings.llDriveCam));
+        addSequential(new cmdSwitchLLVision(Settings.llProcess));
     }
 }

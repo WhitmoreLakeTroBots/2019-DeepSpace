@@ -22,7 +22,7 @@ public class RobotMap {
 	public static final int leftDrive1CanID = 3;
 	public static final int leftDrive2CanID = 4;
 	public static final int tailCanID = 5;
-	public static final int swingRotationCanID = 6;
+	public static final int swingRotationCanID = 14;//6 for srx
 	public static final int frontLiftCanID = 7;
 	public static final int intakeRotationCanID = 9;
 	public static final int intakeCanID = 8;
@@ -84,7 +84,7 @@ public class RobotMap {
 		liftDrive = new TalonSRX(liftDriveCanID);
 		liftDrive.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		liftDrive.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
-		liftDrive.setNeutralMode(NeutralMode.Brake);
+		liftDrive.setNeutralMode(NeutralMode.Coast);
 
 		liftDrive.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Settings.talonTimeOut);
 
@@ -117,7 +117,7 @@ public class RobotMap {
 		swingSpark.setIdleMode(IdleMode.kBrake);
 
 		frontLift = new TalonSRX(frontLiftCanID);
-		frontLift.setNeutralMode(NeutralMode.Coast);
+		frontLift.setNeutralMode(NeutralMode.Brake);
 		frontLift.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
 		frontLift.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 

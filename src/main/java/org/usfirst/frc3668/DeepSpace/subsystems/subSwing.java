@@ -4,13 +4,14 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.usfirst.frc3668.DeepSpace.RobotMap;
 import org.usfirst.frc3668.DeepSpace.Settings;
+import org.usfirst.frc3668.DeepSpace.commands.cmdJoySwing;
 import org.usfirst.frc3668.DeepSpace.commands.cmdSwingHoldPID;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class subSwing extends Subsystem {
 
-    public final double swingDegreesPerRev = 0.9818181818; //360 * (18.0/66) * (1.0/100) || 360 / (17.672 gear ratio * 4096 tics per revoltion)
+    public final double swingDegreesPerRev = 1.0285714; //360.0 * (12.0/42.0) * (1.0/100.0) || 360 / (17.672 gear ratio * 4096 tics per revoltion)
 
     public subSwing() {
     resetSwingEncoder();
@@ -20,7 +21,7 @@ public class subSwing extends Subsystem {
     @Override
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new cmdSwingHoldPID());
+        setDefaultCommand(new cmdJoySwing());
     }
 
     @Override
@@ -33,7 +34,7 @@ public class subSwing extends Subsystem {
     // here. Call these from Commands.
 
     public void setSwingMotor(double throttle){
-        RobotMap.swingRotation.set(ControlMode.PercentOutput, throttle);
+        RobotMap.swingSpark.set(throttle);
     }
 
     public void resetSwingEncoder(){
@@ -42,7 +43,7 @@ public class subSwing extends Subsystem {
     }
 
     public double getSwingRevs(){
-        return RobotMap.swingSpark.getEncoder().getPosition();
+        return -RobotMap.swingSpark.getEncoder().getPosition();
         //return RobotMap.swingRotation.getSelectedSensorPosition();
     }
     public double getSwingAngle(){

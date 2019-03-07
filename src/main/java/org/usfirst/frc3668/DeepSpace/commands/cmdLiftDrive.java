@@ -53,7 +53,7 @@ public class cmdLiftDrive extends Command {
 		else if (Math.abs(initTics - currentTics) <= lDriveSlowThreshold){
 			finalThrottle = throttle * lDriveSlowScalar;
 		}
-		
+		System.err.println("tics: " + currentTics);
 		Robot.subLift.setLiftDriveMotor(finalThrottle);
 		if (currentTics > lowerBound && currentTics < upperBound) {
             isFinished = true;

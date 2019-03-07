@@ -33,7 +33,7 @@ public class cmdSwitchLLVision extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-
+        //System.err.println("Switching ll");
         if (System.currentTimeMillis() >= endTime) {
             bDone = true;
         }

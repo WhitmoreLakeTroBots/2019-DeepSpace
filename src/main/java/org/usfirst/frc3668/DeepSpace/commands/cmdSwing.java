@@ -6,11 +6,13 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdSwing extends Command {
 
-    public final double swingThrottleUP = -0.4;
+    public final double swingThrottleUP = -0.5;
     public final double swingThrottleDOWN = -swingThrottleUP;
     public final double swingWindow = 2.5;
     public final double swingSlowThreshold = 15;
     public final double swingSlowScalar = 0.5;
+
+    boolean incerment = false;
 
     double angle;
     double deltaSignum;
@@ -28,6 +30,7 @@ public class cmdSwing extends Command {
         angle = requestedAngle;
         requires(Robot.subSwing);
     }
+
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
@@ -37,6 +40,7 @@ public class cmdSwing extends Command {
         upperBound = angle + swingWindow;
         initAngle = Robot.subSwing.getSwingAngle();
         deltaSignum = Math.signum(angle - initAngle);
+        System.err.println("Staring swing movement");
     }
     
     // Called repeatedly when this Command is scheduled to run
@@ -57,7 +61,7 @@ public class cmdSwing extends Command {
 		else if (Math.abs(initAngle - currentAngle) <= swingSlowThreshold){
 			throttle = throttle * swingSlowScalar;
 		}
-		
+		System.err.println("Target Angle:" + angle + " Current Swing Angle: " + currentAngle + " current Swing Revs: " + Robot.subSwing.getSwingRevs());
 		Robot.subSwing.setSwingMotor(throttle);
 		if (currentAngle > lowerBound && currentAngle < upperBound) {
             isFinished = true;

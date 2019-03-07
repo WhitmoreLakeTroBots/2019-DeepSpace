@@ -54,21 +54,21 @@ public class OI {
     public final int joyDrivePort = 0;
     public final int joyDriveDock = 1;
     public final int joyDriveInvertDrive = 2;
-    public final int joyDriveLevel3 = 12;
-    public final int joyDriveLevel2 = 11;
+    public final int joyDriveExtendTail = 9;
+    public final int joyDriveExtendLift = 11;
+    public final int joyDriveRetractLift = 7;
     public final int joyDriveIntakeIn = 3;
     public final int joyDriveIntakeOut = 5;
-    public final int joyDriveCargoIn = 4;
-    public final int joyDriveCargoOut = 6;
     public final int joyDriveVision = 8;
     public final int joyArtPort = 1;
+    public final int joyArtAdjustTrac = 1;
+    public final int joyArtAdjustOmni = 2;
     public final int joyArtSwingHome = 9;
-    public final int joyArtSwingCargo = 2;
+    public final int joyArtSwingCargo = 10;
     public final int joyArtSwingLowTracHatch = 7; 
     public final int joyArtSwingLowOnmiHatch = 11;
     public final int joyArtSwingLowTracCargo = 8; 
     public final int joyArtSwingLowOmniCargo = 12;
-    public final int joyArtSwingHighOmni = 10;
     public final int joyArtCargoOut = 5;
     public final int joyArtOffsetHome = 6;
     public final int joyArtCargoIn = 3;
@@ -77,15 +77,17 @@ public class OI {
     public Joystick joyDrive = new Joystick(joyDrivePort);
     public Button dock = new JoystickButton(joyDrive, joyDriveDock);
     public Button invertDrive = new JoystickButton(joyDrive, joyDriveInvertDrive);
-    public Button level3 = new JoystickButton(joyDrive, joyDriveLevel3);
-    public Button level2 = new JoystickButton(joyDrive, joyDriveLevel2);
+    public Button extendTail = new JoystickButton(joyDrive, joyDriveExtendTail);
+    public Button extendLift = new JoystickButton(joyDrive, joyDriveExtendLift);
     public Button intakeIn = new JoystickButton(joyDrive, joyDriveIntakeIn);
     public Button intakeOut = new JoystickButton(joyDrive, joyDriveIntakeOut);
     public Button switchVision = new JoystickButton(joyDrive, joyDriveVision);
 
-    public Button driveTEMP = new JoystickButton(joyDrive, 7);
+    public Button retractLift = new JoystickButton(joyDrive, joyDriveRetractLift);
 
     public Joystick joyArt = new Joystick(joyArtPort);
+    public Button headAdjustOmni = new JoystickButton(joyArt, joyArtAdjustOmni);
+    public Button headAdjustTrac = new JoystickButton(joyArt, joyArtAdjustTrac);
     public Button cargoIn = new JoystickButton(joyArt, joyArtCargoIn);
     public Button cargoOut = new JoystickButton(joyArt, joyArtCargoOut);
     public Button swingHome = new JoystickButton(joyArt,joyArtSwingHome);
@@ -94,7 +96,6 @@ public class OI {
     public Button swingLowOmniHatch = new JoystickButton(joyArt,joyArtSwingLowOnmiHatch);
     public Button swingLowTracCargo = new JoystickButton(joyArt,joyArtSwingLowTracCargo);
     public Button swingLowOmniCargo = new JoystickButton(joyArt,joyArtSwingLowOmniCargo);
-    public Button swingHighOmni = new JoystickButton(joyArt,joyArtSwingHighOmni);
     public Button cargoOffsetHome = new JoystickButton(joyArt,joyArtOffsetHome);
     public Button hatch = new JoystickButton(joyArt, joyArtHatch);
 
@@ -103,15 +104,18 @@ public class OI {
 
         invertDrive.whenPressed(new cmdInvertDriveAuto());
 
-        level3.whenPressed(new cmdGroupLevel3());
-        level2.whenPressed(new cmdGroupLevel2());
+        extendLift.whenPressed(new cmdMoveFrontLift(Robot.subLift.liftHieghttoLevel2/Robot.subLift.liftMetersPerTic, Settings.liftThrottle));
+        extendTail.whenPressed(new cmdManTail(Robot.subTail.tailLength, Settings.tailRaiseThrottle));
+        retractLift.whenPressed(new cmdMoveFrontLift(0, Settings.liftThrottle));
 
         intakeIn.whileHeld(new cmdIntake(Settings.intakeInThrottle));
         intakeOut.whileHeld(new cmdIntake(Settings.intakeOutThrottle));
 
+        headAdjustOmni.whenPressed(new cmdSetCargoOffset(Settings.cargoAdjustOmni, true));
+        headAdjustTrac.whenPressed(new cmdSetCargoOffset(Settings.cargoAdjustTrac, true));
+
         cargoIn.whileHeld(new cmdHeadCargo(Settings.cargoInThrottle));
         cargoOut.whileHeld(new cmdHeadCargo(Settings.cargoOutThrottle));
-
         swingHome.whenPressed(new cmdGroupHeadSwing(Settings.swingHome, Settings.cargoOffsetHome));
         swingPickCargo.whenPressed(new cmdGroupSwingHead(Settings.swingCargoIntake, Settings.cargoOffsetPickCargo));
         swingLowTracHatch.whenPressed(new cmdGroupSwingHead(Settings.swingLowTracHatch, Settings.cargoOffsetTracParrallel));
@@ -122,8 +126,6 @@ public class OI {
         cargoOffsetHome.whenPressed(new cmdSetCargoOffset(Settings.cargoOffsetHome));
 
         hatch.whenPressed(new cmdGraspHatch(Settings.hatchThrottle));
-        driveTEMP.whenPressed(new cmdMoveFrontLift(0, 0.75));
-        //driveTEMP.whenPressed(new cmdGroupSwingHead(-110, -170));
         switchVision.whenPressed(new cmdSwitchLLVision());
     }
 }

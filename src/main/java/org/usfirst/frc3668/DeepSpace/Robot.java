@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
     public static subSwing subSwing;
     public static subIntake subIntake;
 
-    public static boolean isDriveInverted = true;
+    public static boolean isDriveInverted = false;
     public static double navxOffset = 0.0;
     public static int invertedSplineDirection = 1;
     public static double headHoldAngle = 0;
@@ -137,6 +137,9 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("First Destentation", firstLocChooser);
         SmartDashboard.putData("Second Game Type", secondGameTypeChooser);
         SmartDashboard.putData("Second Location", secondLocChooser);
+    
+        lop.setNumber(0);
+        ltp.setNumber(0);
     }   
 
     /**
@@ -145,8 +148,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-        lop.setNumber(0);
-        ltp.setNumber(0);
     }
 
     @Override
