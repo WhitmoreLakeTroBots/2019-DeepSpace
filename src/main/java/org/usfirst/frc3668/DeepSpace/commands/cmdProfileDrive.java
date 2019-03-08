@@ -65,8 +65,8 @@ public class cmdProfileDrive extends Command {
 	protected void initialize() {
 		System.err.println("Initializing");
 		if(_vision){
-			_distance = RobotMath.calcLimeOmniDist(Robot.loy.getDouble(Settings.loDefaultAngle)) - Settings.loDistanceOffset;
-			if(_distance == RobotMath.calcLimeOmniDist(Settings.loDefaultAngle) - Settings.loDistanceOffset || !Robot.lov.getBoolean(false)){
+			_distance = -RobotMath.calcLimeTracDist(Robot.lty.getDouble(Settings.ltDefaultAngle)) + Settings.ltDistanceOffset;
+			if(_distance == -RobotMath.calcLimeTracDist(Settings.ltDefaultAngle) + Settings.ltDistanceOffset || !Robot.ltv.getBoolean(false)){
 				_isFinished = true;
 			}
 			_absDistance = Math.abs(_distance);
@@ -122,8 +122,8 @@ public class cmdProfileDrive extends Command {
 		// _isFinished = true;
 		// Robot.subChassis._isSafeToMove = false;
 		// }
-		if (encoderVal < _absDistance + profileMovementThreshold
-				&& encoderVal > _absDistance - profileMovementThreshold) {
+		if (Math.abs(encoderVal) < _absDistance + profileMovementThreshold
+				&& Math.abs(encoderVal) > _absDistance - profileMovementThreshold) {
 			System.err.println("At Distance");
 			_isFinished = true;
 		}

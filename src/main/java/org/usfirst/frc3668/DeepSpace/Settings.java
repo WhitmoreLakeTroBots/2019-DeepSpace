@@ -58,10 +58,10 @@ public class Settings {
     public static final double intakeOutThrottle = -1.0;
 
     //Head Settings
-    public static final double headThrottleUP = 0.5;
-    public static final double headThrottleDOWN = -0.5;
+    public static final double headThrottleUP = 0.75;
+    public static final double headThrottleDOWN = -0.75;
     public static final double headSlowThreshold = 15;
-    public static final double headSlowScalar = 0.6;
+    public static final double headSlowScalar = 0.4;
     public static final double headWindow = 1.5;
     
 
@@ -78,7 +78,7 @@ public class Settings {
     public static final double cargoOutThrottle = 1.0;
 
     //Auto Settings
-    public static final double autoTurnSpeed = 0.15; //0.12 for tile;
+    public static final double autoTurnSpeed = 0.3; //0.12 for tile;
     public static final double autoProfileDriveSpeed = 3.683; //In meters from 145 inches
 
 
@@ -110,7 +110,7 @@ public class Settings {
     public static final double ltH2T = 0.3786;
     public static final double ltAngleOffset = -30.7245;
     public static final double ltHorzAngleScalar =  0.7655808619;
-    public static final double ltDistanceOffset = 0.24;
+    public static final double ltDistanceOffset = 0.5;
 
     //Spline Settings
     public static final double maxVelocity = 4.667;
