@@ -16,7 +16,7 @@ class SplinePointsLib {
 
     //Cargo Ship Locations
     public static final Waypoint CSCL = new Waypoint(5.36, 4.25, Pathfinder.d2r(0));
-    public static final Waypoint CSCL_Approach = new Waypoint (5.16, 4.25, Pathfinder.d2r(0));
+    public static final Waypoint CSCL_Approach = new Waypoint (4.41, 4.25, Pathfinder.d2r(0));
     public static final Waypoint CSL1 = new Waypoint(6.66, 4.90, Pathfinder.d2r(90));
     public static final Waypoint CSL1_Approach = new Waypoint (6.66, 5.10, Pathfinder.d2r(90));
     public static final Waypoint CSL2 = new Waypoint(7.20, 4.90, Pathfinder.d2r(90));

@@ -33,7 +33,7 @@ public class cmdInvertDriveAuto extends Command {
         if (useABS) {
             Robot.isDriveInverted = absVal;
             if (Robot.isDriveInverted) {
-                setOffsets(180, -1);
+                setOffsets(0, -1);
             } else {
                 setOffsets(0, 1);
             }

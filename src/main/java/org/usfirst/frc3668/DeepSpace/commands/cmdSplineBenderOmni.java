@@ -28,7 +28,11 @@ public class cmdSplineBenderOmni extends Command {
     Trajectory right;
     TankModifier mod;
     File spline;
-    double percentThershold;
+    double percentThershold = 0;
+
+    boolean llContact = false;
+    double lastLLangle = 0;
+    double lastNavXangle = 0;
 
     int pointCount = 0;
     double trajLen;

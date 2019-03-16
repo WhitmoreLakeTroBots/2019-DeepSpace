@@ -1,5 +1,6 @@
 package org.usfirst.frc3668.DeepSpace;
 
+import org.usfirst.frc3668.DeepSpace.Settings.actions;
 import org.usfirst.frc3668.DeepSpace.commands.cmdGroupAutoTemplate;
 import org.usfirst.frc3668.DeepSpace.subsystems.subChassis;
 import org.usfirst.frc3668.DeepSpace.subsystems.subHead;
@@ -36,7 +37,7 @@ public class Robot extends TimedRobot {
     public static subSwing subSwing;
     public static subIntake subIntake;
 
-    public static boolean isDriveInverted = false;
+    public static boolean isDriveInverted = true;
     public static double navxOffset = 0.0;
     public static int invertedSplineDirection = 1;
     public static double headHoldAngle = 0;
@@ -80,7 +81,6 @@ public class Robot extends TimedRobot {
         RobotMap.init();
 
         subChassis = new subChassis();
-        subChassis.resetNavx();
         subLift = new subLift();
         subHead = new subHead();
         subTail = new subTail();
@@ -182,17 +182,8 @@ public class Robot extends TimedRobot {
             parameters[0] = parameters[0] + Settings.startRight;
             break;
         case test:
-            // parameters[0] = parameters[0] + Settings.bend1;
-            // parameters[1] = parameters[1] + Settings.bend1;
-            // parameters[2] = parameters[2] + Settings.bend1;
-            // actions[0] = Settings.actions.invertDrive;
-            // actions[1] = Settings.actions.splineOmni;
-            // actions[2] = Settings.actions.invertDrive;
-
-            // locm.setNumber(Settings.llDriveCam);
-            // lolm.setNumber(Settings.llDriveCam);
-            // ltcm.setNumber(Settings.llDriveCam);
-            // ltlm.setNumber(Settings.llDriveCam);
+            parameters[0] = parameters[0] + Settings.startCenter + Settings.cargoCenterLeft;
+            actions[0] = Settings.actions.splineOmni;
             break;
         }
 

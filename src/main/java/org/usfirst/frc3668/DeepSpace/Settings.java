@@ -5,7 +5,7 @@ public class Settings {
     public static final double chassisWheelbaseWidth = 0.7;
     public static final int magneticEncoderTicsPerRevolution = 4096;
     public static final int talonTimeOut = 10;
-    public static final double chassisWheelDiameter = 0.203; //meters; 8 inches
+    public static final double chassisWheelDiameter = 0.2032; //meters; 8 inches
     public static final int chassisDriveMaxCurrentLimit = 55;
     public static final int chassisDriveMaxCurrentTimeout = 500;
     public static final double chassisTurnKp = 0.007;
@@ -86,9 +86,9 @@ public class Settings {
     public static final String profileTestLogName = "logs\\motionProfileTestResults";
     public static final String profileLogName = "//media//sda1//motionProfile";
     public static final String profileLogFileExtension = ".txt";
-    public static final double profileDriveKp = 0.12;
-	public static final double profileDriveKi = 0.003;
-    public static final double profileDriveKd = 0.0004;
+    public static final double profileDriveKp = 0.25;
+	public static final double profileDriveKi = 0.01;
+    public static final double profileDriveKd = 0.0008;
     
     //Test Settings
     public static final double delayMiliseconds = 24;
@@ -98,7 +98,7 @@ public class Settings {
     public static final double llDriveCam = 1;
 
     public static final double loH2T = 0.3806;
-    public static final double loAngleOffset = -18.7748;
+    public static final double loAngleOffset = -20.212014;//-22.26957;//-18.7748;
     public static final double loHorzAngleScalar = 0.7655808619;
     public static final double loDefaultAngle = 99.00;
     public static final double loAecseptableAngle = 27;
@@ -106,7 +106,6 @@ public class Settings {
 
     public static final double ltDefaultAngle = 99.00;
     public static final double ltAecseptableAngle = 27;
-    public static final double ltDistantceOffset = 25;
     public static final double ltH2T = 0.3786;
     public static final double ltAngleOffset = -28.445842; //a = arctan(H2T/x) + llAngle
     public static final double ltHorzAngleScalar =  1.00;//0.7655808619;
