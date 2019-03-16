@@ -22,7 +22,7 @@ public class cmdTeleopDrive extends Command {
     protected void execute() {
         Robot.subChassis.Drive(Robot.oi.joyDrive);
         //System.err.println("Front Lift Encoder: " + Robot.subLift.getLiftEncoderTics() + " Lift Encoder Meters: " + Robot.subLift.getLiftEncoderMeters() + " Tail Angle: " + Robot.subTail.getTailAngle());
-        //System.err.println(String.format("Heading: %1$.3f\t llAngle: %2$.3f", Robot.subChassis.getNormaliziedNavxAngle(), Robot.ltx.getDouble(Settings.loDefaultAngle)));
+        System.err.println(String.format("Heading: %1$.3f\t llAngle: %2$.3f", Robot.subChassis.getNormaliziedNavxAngle(), Robot.ltx.getDouble(Settings.ltDefaultAngle)));
     }
 
     // Make this return true when this Command no longer needs to run execute()

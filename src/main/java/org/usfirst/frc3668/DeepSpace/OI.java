@@ -11,7 +11,17 @@
 
 package org.usfirst.frc3668.DeepSpace;
 
-import org.usfirst.frc3668.DeepSpace.commands.*;
+import org.usfirst.frc3668.DeepSpace.commands.cmdGraspHatch;
+import org.usfirst.frc3668.DeepSpace.commands.cmdGroupDock;
+import org.usfirst.frc3668.DeepSpace.commands.cmdGroupHeadSwing;
+import org.usfirst.frc3668.DeepSpace.commands.cmdGroupSwingHead;
+import org.usfirst.frc3668.DeepSpace.commands.cmdHeadCargo;
+import org.usfirst.frc3668.DeepSpace.commands.cmdIntake;
+import org.usfirst.frc3668.DeepSpace.commands.cmdManTail;
+import org.usfirst.frc3668.DeepSpace.commands.cmdInvertDriveAuto;
+import org.usfirst.frc3668.DeepSpace.commands.cmdMoveFrontLift;
+import org.usfirst.frc3668.DeepSpace.commands.cmdSetCargoOffset;
+import org.usfirst.frc3668.DeepSpace.commands.cmdSwitchLLVision;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;

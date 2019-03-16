@@ -108,9 +108,9 @@ public class Settings {
     public static final double ltAecseptableAngle = 27;
     public static final double ltDistantceOffset = 25;
     public static final double ltH2T = 0.3786;
-    public static final double ltAngleOffset = -30.7245;
-    public static final double ltHorzAngleScalar =  0.7655808619;
-    public static final double ltDistanceOffset = 0.5;
+    public static final double ltAngleOffset = -28.445842; //a = arctan(H2T/x) + llAngle
+    public static final double ltHorzAngleScalar =  1.00;//0.7655808619;
+    public static final double ltDistanceOffset = 1;
 
     //Spline Settings
     public static final double maxVelocity = 4.667;

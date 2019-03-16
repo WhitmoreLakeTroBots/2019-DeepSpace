@@ -3,9 +3,23 @@ package org.usfirst.frc3668.DeepSpace.commands;
 import org.usfirst.frc3668.DeepSpace.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class cmdInvertDriveAuto extends Command{
+public class cmdInvertDriveAuto extends Command {
 
-    public cmdInvertDriveAuto(){
+    protected boolean useABS = false;
+    protected boolean absVal;
+
+    protected double omniNavXOffset = 0;
+    protected double tracNavXOffset = 180;
+    protected double omniSplineDir = 1;
+    protected double tracSplineDir = 0;
+
+    public cmdInvertDriveAuto() {
+        requires(Robot.subChassis);
+    }
+
+    public cmdInvertDriveAuto(boolean invertAbsolute) {
+        useABS = true;
+        absVal = invertAbsolute;
         requires(Robot.subChassis);
     }
 
@@ -16,16 +30,28 @@ public class cmdInvertDriveAuto extends Command{
 
     @Override
     protected void execute() {
-        if(Robot.isDriveInverted){
-            Robot.isDriveInverted = false;
-            Robot.navxOffset = 180;
-            Robot.invertedSplineDirection = -1;
+        if (useABS) {
+            Robot.isDriveInverted = absVal;
+            if (Robot.isDriveInverted) {
+                setOffsets(180, -1);
+            } else {
+                setOffsets(0, 1);
+            }
         } else {
-            Robot.isDriveInverted = true;
-            Robot.navxOffset = 0;
-            Robot.invertedSplineDirection = 1;
+            if (Robot.isDriveInverted) {
+                Robot.isDriveInverted = false;
+                setOffsets(180, -1);
+            } else {
+                Robot.isDriveInverted = true;
+                setOffsets(0, 1);
+            }
         }
         System.err.println("Drive inverted. isDriveInverted is now set to " + Robot.isDriveInverted);
+    }
+
+    protected void setOffsets(double navX, int splineDir){
+        Robot.navxOffset = navX;
+        Robot.invertedSplineDirection = splineDir;
     }
 
     @Override
