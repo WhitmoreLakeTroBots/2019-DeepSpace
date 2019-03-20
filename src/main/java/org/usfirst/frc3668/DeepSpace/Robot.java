@@ -182,7 +182,7 @@ public class Robot extends TimedRobot {
             parameters[0] = parameters[0] + Settings.startRight;
             break;
         case test:
-            parameters[0] = parameters[0] + Settings.startCenter + Settings.cargoCenterLeft;
+            parameters[0] = parameters[0] + Settings.bend1 ;
             actions[0] = Settings.actions.splineOmni;
             break;
         }

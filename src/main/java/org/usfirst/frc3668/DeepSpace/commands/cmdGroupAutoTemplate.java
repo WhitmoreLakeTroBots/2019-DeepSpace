@@ -22,6 +22,8 @@ public class cmdGroupAutoTemplate extends CommandGroup {
                 addSequential(new cmdSplineBenderOmni(parameters[i]));
              } else if (action[i] == Settings.actions.splineTrac){
                 addSequential(new cmdSplineFollowerTrac(parameters[i]));
+             }else if (action[i] == Settings.actions.switchPipelines){
+               
              }
         }
         addSequential(new cmdSwitchLLVision(Settings.llProcess));

@@ -125,7 +125,7 @@ public class Settings {
 	}
 
     public enum actions{
-        moveArm, placeHatch, graspHatch, placeCargo, graspCargo, invertDrive, splineOmni, splineTrac
+        moveArm, placeHatch, graspHatch, placeCargo, graspCargo, invertDrive, splineOmni, splineTrac, switchPipelines
     }
 
     public enum startLocation{
