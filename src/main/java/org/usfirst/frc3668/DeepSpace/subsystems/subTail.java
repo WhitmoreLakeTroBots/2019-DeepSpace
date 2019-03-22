@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class subTail extends Subsystem {
 
-  public final double tailDegPerRev = 2.16;// (1/100) * (3/5) * 360
+  public final double tailDegPerRev = 1.6615;// (1/100) * (12/26) * 360
   public final double tailMaxTipSpeed = 0.51816;
   public final double tailLength = 0.508;
   public final double tailLimit = -93;

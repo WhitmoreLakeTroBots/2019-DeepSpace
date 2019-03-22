@@ -5,11 +5,18 @@ import org.usfirst.frc3668.DeepSpace.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdSetCargoOffset extends Command {
-    double offset;
+    double offset = 0;
     boolean isFinished = false;
+    boolean adjust = false;
+    double adjustment = 0;
 
     public cmdSetCargoOffset(double offset){
         this.offset = offset;
+    }
+
+    public cmdSetCargoOffset(double adjustment, boolean adjust){
+        this.adjustment = adjustment;
+        this.adjust = adjust;
     }
     // Called just before this Command runs the first time
     @Override
@@ -20,7 +27,11 @@ public class cmdSetCargoOffset extends Command {
     @Override
     protected void execute() {
         System.err.println("Head offset set to " + offset + " POV: " + Robot.oi.joyDrive.getPOV());
-        Robot.headHoldAngle = offset;
+        if(adjust){
+            Robot.headHoldAngle = Robot.headHoldAngle + adjustment;
+        } else {
+            Robot.headHoldAngle = offset;
+        }
         isFinished = true;
     }
     

@@ -33,7 +33,7 @@ public class cmdSwitchLLVision extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-
+        //System.err.println("Switching ll");
         if (System.currentTimeMillis() >= endTime) {
             bDone = true;
         }
@@ -57,13 +57,13 @@ public class cmdSwitchLLVision extends Command {
         }
     }
     protected void setLimeOmniMode(double parameter){
-        Robot.locm.setNumber(parameter);
-        Robot.lolm.setNumber(parameter);
+        Robot.lop.setNumber(Math.abs(parameter-1));
+        
     }
 
     protected void setLimeTracMode(double parameter){
-        Robot.ltcm.setNumber(parameter);
-        Robot.ltlm.setNumber(parameter);
+        Robot.ltp.setNumber(parameter);
+    
     }
 
     // Make this return true when this Command no longer needs to run execute()

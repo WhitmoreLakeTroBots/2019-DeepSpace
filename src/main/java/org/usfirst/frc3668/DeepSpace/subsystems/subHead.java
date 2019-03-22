@@ -36,7 +36,7 @@ public class subHead extends Subsystem {
     }
 
     public double getRotationEncoder() {
-        return RobotMap.headRotationEncoder.get();
+        return -RobotMap.headRotationEncoder.get();
     }
 
     public double getHeadRotationAngle() {
@@ -52,7 +52,7 @@ public class subHead extends Subsystem {
     }
 
     public double getHatchEncoder() {
-        return -1 * RobotMap.hatchManipulatorEncoder.get();
+        return RobotMap.hatchManipulatorEncoder.get();
     }
 
     public void setHatchMotor(double throttle) {

@@ -56,10 +56,10 @@ public class RobotMath {
 		return anglarDelta;
 	}
 
-	public static double calcLimeDist(double vertAngle){
+	public static double calcLimeOmniDist(double vertAngle){
 		return Math.abs(Settings.loH2T / Math.tan(Math.toRadians(vertAngle + Settings.loAngleOffset)));
 	}
-	public static double calcLime2Dist(double vertAngle){
+	public static double calcLimeTracDist(double vertAngle){
 		return Math.abs(Settings.ltH2T / Math.tan(Math.toRadians(vertAngle + Settings.ltAngleOffset)));
 	}
 }

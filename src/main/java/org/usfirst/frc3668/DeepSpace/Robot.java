@@ -1,5 +1,6 @@
 package org.usfirst.frc3668.DeepSpace;
 
+import org.usfirst.frc3668.DeepSpace.Settings.actions;
 import org.usfirst.frc3668.DeepSpace.commands.cmdGroupAutoTemplate;
 import org.usfirst.frc3668.DeepSpace.subsystems.subChassis;
 import org.usfirst.frc3668.DeepSpace.subsystems.subHead;
@@ -52,7 +53,7 @@ public class Robot extends TimedRobot {
     public static NetworkTableEntry lol = null;
     public static NetworkTableEntry locm = null;
     public static NetworkTableEntry lolm = null;
-
+    public static NetworkTableEntry lop = null;
     public static NetworkTable TracTable = null;
     public static NetworkTableEntry ltx = null;
     public static NetworkTableEntry lty = null;
@@ -62,12 +63,13 @@ public class Robot extends TimedRobot {
     public static NetworkTableEntry ltl = null;
     public static NetworkTableEntry ltcm = null;
     public static NetworkTableEntry ltlm = null;
-
+    public static NetworkTableEntry ltp = null;
     public static double ox = 0;
     public static double oy = 0;
     public static double tx = 0;
     public static double ty = 0;
     public static double llCamMode = 0;
+    
     
     /**
      * This function is run when the robot is first started up and should be used
@@ -79,7 +81,6 @@ public class Robot extends TimedRobot {
         RobotMap.init();
 
         subChassis = new subChassis();
-        subChassis.resetNavx();
         subLift = new subLift();
         subHead = new subHead();
         subTail = new subTail();
@@ -96,7 +97,8 @@ public class Robot extends TimedRobot {
         lol = OmniTable.getEntry("tl");
         locm = OmniTable.getEntry("camMode");
         lolm = OmniTable.getEntry("ledMode");
-    
+        lop = OmniTable.getEntry ("pipeline");
+
         TracTable = inst.getTable("limelight-trac");
         ltx = TracTable.getEntry("tx");
         lty = TracTable.getEntry("ty");
@@ -106,7 +108,7 @@ public class Robot extends TimedRobot {
         ltl = TracTable.getEntry("tl");
         ltcm = TracTable.getEntry("camMode");
         ltlm = TracTable.getEntry("ledMode");
-
+        ltp = TracTable.getEntry("pipeline");
         oi = new OI();
 
         startChooser.addOption("Center", Settings.startLocation.center);
@@ -135,6 +137,9 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("First Destentation", firstLocChooser);
         SmartDashboard.putData("Second Game Type", secondGameTypeChooser);
         SmartDashboard.putData("Second Location", secondLocChooser);
+    
+        lop.setNumber(0);
+        ltp.setNumber(0);
     }   
 
     /**
@@ -143,7 +148,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-
     }
 
     @Override
@@ -178,17 +182,8 @@ public class Robot extends TimedRobot {
             parameters[0] = parameters[0] + Settings.startRight;
             break;
         case test:
-            // parameters[0] = parameters[0] + Settings.bend1;
-            // parameters[1] = parameters[1] + Settings.bend1;
-            // parameters[2] = parameters[2] + Settings.bend1;
-            // actions[0] = Settings.actions.invertDrive;
-            // actions[1] = Settings.actions.splineOmni;
-            // actions[2] = Settings.actions.invertDrive;
-
-            // locm.setNumber(Settings.llDriveCam);
-            // lolm.setNumber(Settings.llDriveCam);
-            // ltcm.setNumber(Settings.llDriveCam);
-            // ltlm.setNumber(Settings.llDriveCam);
+            parameters[0] = parameters[0] + Settings.bend1 ;
+            actions[0] = Settings.actions.splineOmni;
             break;
         }
 
@@ -287,10 +282,10 @@ public class Robot extends TimedRobot {
         ty = lty.getDouble(Settings.ltDefaultAngle);
         SmartDashboard.putNumber("lox", ox);
         SmartDashboard.putNumber("loy", oy);
-        SmartDashboard.putNumber("lod", RobotMath.calcLimeDist(oy));
+        SmartDashboard.putNumber("lod", RobotMath.calcLimeOmniDist(oy));
         SmartDashboard.putNumber("ltx", tx);
         SmartDashboard.putNumber("lty", ty);
-        SmartDashboard.putNumber("ltd", RobotMath.calcLime2Dist(ty));
+        SmartDashboard.putNumber("ltd", RobotMath.calcLimeTracDist(ty));
        // xEntry.setDouble(x);
        // yEntry.setDouble(y); 
     }

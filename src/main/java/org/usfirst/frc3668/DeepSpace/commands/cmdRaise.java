@@ -17,7 +17,6 @@ public class cmdRaise extends Command {
     public cmdRaise() {
         requires(Robot.subLift);
         requires(Robot.subTail);
-        requires(Robot.subChassis);
     }
 
     // Called just before this Command runs the first time
@@ -41,7 +40,7 @@ public class cmdRaise extends Command {
         Robot.subLift.setLiftMotor(Math.abs(frontLiftSpeed));
         Robot.subTail.setTail(tailThrottle);
 
-        if(Robot.subTail.getTailAngle() < endThershold && Robot.subLift.getLiftEncoderMeters() >= Robot.subLift.liftHieghttoLevel3){
+        if(Robot.subTail.getTailAngle() < endThershold && Robot.subLift.getLiftEncoderMeters() >= Robot.subLift.liftHieghttoLevel2){
             System.err.println("cmdRaise is done");
             bDone = true;
         }

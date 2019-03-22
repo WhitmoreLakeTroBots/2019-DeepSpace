@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdProfileDrive extends Command {
 
-	public final double profileDriveStraightGyroKp = -0.005;
+	public final double profileDriveStraightGyroKp = -0.01;
     public final double profileMovementThreshold = 0.02;
     public final double profileInitVelocity = 0.0;
     public final double profileEndTimeScalar = 1.3;
@@ -65,8 +65,10 @@ public class cmdProfileDrive extends Command {
 	protected void initialize() {
 		System.err.println("Initializing");
 		if(_vision){
-			_distance = RobotMath.calcLimeDist(Robot.loy.getDouble(Settings.loDefaultAngle)) - Settings.loDistanceOffset;
-			if(_distance == Settings.loDefaultAngle - Settings.loDistanceOffset || !Robot.lov.getBoolean(false)){
+			_distance = -RobotMath.calcLimeTracDist(Robot.lty.getDouble(Settings.ltDefaultAngle));
+			System.err.println("LL Dist: " + _distance);
+			_distance = _distance + Settings.ltDistanceOffset;
+			if(_distance == -RobotMath.calcLimeTracDist(Settings.ltDefaultAngle) + Settings.ltDistanceOffset || !Robot.ltv.getBoolean(false)){
 				_isFinished = true;
 			}
 			_absDistance = Math.abs(_distance);
@@ -95,7 +97,7 @@ public class cmdProfileDrive extends Command {
 		double turnValue = calcTurnRate(currentHeading);
 		double profileVelocity = mp.getProfileCurrVelocity(deltaTime);
 		double throttlePos = (profileVelocity / Settings.maxVelocity);
-		double pidVal = pid.calcPID(profileDist, encoderVal);
+		double pidVal = pid.calcPID(profileDist, Math.abs(encoderVal));
 		double finalThrottle = throttlePos + pidVal;
 
 		String msg = String.format(
@@ -108,12 +110,6 @@ public class cmdProfileDrive extends Command {
 		// Right Encoder: %7$.3f \t Gyro Raw Heading: %8$.3f \t Turn Value: %9$.3f \t
 		// PID Value: %10$.3f \t P Value: %11$.3f \t Final Throttle: %12$.3f
 		System.err.println(msg);
-		// log.makeEntry(msg);
-		// SmartDashboard.putNumber("Drive Left Encoder:",
-		// Robot.subChassis.getLeftEncoderDist());
-		// SmartDashboard.putNumber("Drive Right Encoder: ",
-		// Robot.subChassis.getRightEncoderDist());
-
 		Robot.subChassis.Drive((finalThrottle * _distanceSignum), turnValue);
 
 		// if (deltaTime > _abortTime && Robot.subChassis.getEncoderAvgDistInch() == 0)
@@ -122,8 +118,9 @@ public class cmdProfileDrive extends Command {
 		// _isFinished = true;
 		// Robot.subChassis._isSafeToMove = false;
 		// }
-		if (encoderVal < _absDistance + profileMovementThreshold
-				&& encoderVal > _absDistance - profileMovementThreshold) {
+		if (/*Math.abs(encoderVal) < _absDistance + profileMovementThreshold
+				&&*/ Math.abs(encoderVal) > _absDistance - profileMovementThreshold) {
+			Robot.subChassis.Drive((-3 * finalThrottle * _distanceSignum), 0);
 			System.err.println("At Distance");
 			_isFinished = true;
 		}

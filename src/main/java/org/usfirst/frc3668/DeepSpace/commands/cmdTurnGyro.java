@@ -34,10 +34,10 @@ public class cmdTurnGyro extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		double limeAngle = Robot.lox.getDouble(Settings.loDefaultAngle);
+		double limeAngle = Robot.ltx.getDouble(Settings.ltDefaultAngle);
 		if(_vision){
-			if(limeAngle != Settings.loDefaultAngle){
-			limeAngle = limeAngle * Settings.loHorzAngleScalar;
+			if(limeAngle != Settings.ltDefaultAngle){
+			limeAngle = limeAngle * Settings.ltHorzAngleScalar;
 			_desiredHeading = Robot.subChassis.getNormaliziedNavxAngle() + limeAngle;
 			System.err.println("Lime Angle: " + limeAngle);
 			} else {
@@ -53,6 +53,9 @@ public class cmdTurnGyro extends Command {
 		double headingDelta = RobotMath.headingDelta(currHeading, _desiredHeading);
 		double scaledHeading = pid.calcPID(headingDelta);
 		double scaledHeadingSignum = -Math.signum(scaledHeading);
+		if(!Robot.isDriveInverted){
+			scaledHeadingSignum = -1 * scaledHeadingSignum;
+		}
 		double throttle = (_initThrottle + Math.abs(scaledHeading)) * scaledHeadingSignum;
 		
 		Robot.subChassis.Drive(0, throttle);

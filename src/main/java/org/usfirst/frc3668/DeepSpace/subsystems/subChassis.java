@@ -17,8 +17,9 @@ public class subChassis extends Subsystem {
 	public final double chassisRightSideScalar = 1;
 	public final double chassisLeftSideScalar = 1;
 	public final boolean chassisSquareJoyInput = true;
+	public final double chassisBeltReduction = 39.0/42.0;
     public final double chassisEncoderDeadValueThreshold = 0.5;
-    public final double chassisEncoderDistancePerPulse = (Settings.chassisWheelDiameter * Math.PI) / Settings.magneticEncoderTicsPerRevolution;
+    public final double chassisEncoderDistancePerPulse = 0.000187022937;//(6/5)*(Settings.chassisWheelDiameter * Math.PI) / Settings.magneticEncoderTicsPerRevolution;
 
     public void Drive(Joystick stick) {
         double joyX = stick.getX();
@@ -237,6 +238,11 @@ public class subChassis extends Subsystem {
 	public void periodic() {
 		// Put code here to be run every loop
 
+	}
+
+	public subChassis(){
+		resetNavx();
+		resetBothEncoders();
 	}
 }
 
