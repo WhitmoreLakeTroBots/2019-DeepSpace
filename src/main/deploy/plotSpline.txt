@@ -17,7 +17,9 @@ set datafile separator ','
 set key autotitle columnhead
 unset key
 plot 'Spline_StartCenter_CSCL.cvs' using 2:3 w lp lt rgb 'purple'
+plot 'Spline_StartCenterL_CSCL.cvs' using 2:3 w lp lt rgb 'purple'
 plot 'Spline_StartCenter_CSCR.cvs' using 2:3 w lp lt rgb 'purple'
+plot 'Spline_StartCenterR_CSCR.cvs' using 2:3 w lp lt rgb 'purple'
 plot 'Spline_StartLeft_CSL1.cvs' using 2:3 w lp lt rgb 'blue'
 plot 'Spline_StartLeft2_CSL1.cvs' using 2:3 w lp lt rgb 'blue'
 plot 'Spline_StartRight_CSR1.cvs' using 2:3 w lp lt rgb 'red'

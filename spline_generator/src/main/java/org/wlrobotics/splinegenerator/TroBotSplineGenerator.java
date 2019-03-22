@@ -21,9 +21,17 @@ public class TroBotSplineGenerator extends Object {
 		startCenter_CSCL.generate();
 		startCenter_CSCL = null;
 
+		Spline_StartCenterL_CSCL startCenterL_CSCL = new Spline_StartCenterL_CSCL(config);
+		startCenterL_CSCL.generate();
+		startCenterL_CSCL = null;
+
 		Spline_StartCenter_CSCR startCenter_CSCR = new Spline_StartCenter_CSCR(config);
 		startCenter_CSCR.generate();
 		startCenter_CSCR = null;
+
+		Spline_StartCenterR_CSCR startCenterR_CSCR = new Spline_StartCenterR_CSCR(config);
+		startCenterR_CSCR.generate();
+		startCenterR_CSCR = null;
 
 		Spline_StartLeft_CSL1 startLeft_CSL1 = new Spline_StartLeft_CSL1(config);
 		startLeft_CSL1.generate();

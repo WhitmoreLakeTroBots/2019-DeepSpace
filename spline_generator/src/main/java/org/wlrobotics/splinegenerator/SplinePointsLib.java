@@ -13,7 +13,9 @@ class SplinePointsLib {
     public static final Waypoint startLeft2 = new Waypoint (0.28, 5.12, Pathfinder.d2r(0));
     public static final Waypoint startRight = new Waypoint (1.40, 2.88, Pathfinder.d2r(0));
     public static final Waypoint startRight2 = new Waypoint (0.28, 2.88, Pathfinder.d2r(0));
-
+    public static final Waypoint startCenterL = new Waypoint (1.40, 4.25, Pathfinder.d2r(0));
+    public static final Waypoint startCenterR = new Waypoint (1.40, 7.75, Pathfinder.d2r(0));
+    
     //Cargo Ship Locations
     public static final Waypoint CSCL = new Waypoint(5.36, 4.25, Pathfinder.d2r(0));
     public static final Waypoint CSCL_Approach = new Waypoint (5.16, 4.25, Pathfinder.d2r(0));
