@@ -13,11 +13,11 @@ import jaci.pathfinder.modifiers.TankModifier;
 
 public class cmdSplineBenderOmni extends Command {
 
-    public final double splineOmniKp = 0.0075;
-    public final double splineOmniKi = 0.0055;
-    public final double splineOmniKd = 0.00425;
-    public final double splineOmniKf = 0.10;
-    public final double splineOmniTurnScalar = 0.013;
+    public final double splineOmniKp = 0.13;//0.0075
+    public final double splineOmniKi = 0.005;//0.0055;
+    public final double splineOmniKd = 0.001;//0.00425;
+    public final double splineOmniKf = 0.07;//0.10;
+    public final double splineOmniTurnScalar = 0.02;
 
     double splineLength;
     double turnScalar;
@@ -65,12 +65,12 @@ public class cmdSplineBenderOmni extends Command {
     protected void initialize() {
         Robot.subChassis.resetBothEncoders();
         leftFollower = new EncoderFollower(left);
-        leftFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.magneticEncoderTicsPerRevolution,
+        leftFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), (int)Settings.magneticEncoderTicsPerRevolution,
                 Settings.chassisWheelDiameter);
         leftFollower.configurePIDVA(splineOmniKp, splineOmniKi, splineOmniKd, 1 / Settings.maxVelocity, splineOmniKf);
 
         rightFollower = new EncoderFollower(right);
-        rightFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.magneticEncoderTicsPerRevolution,
+        rightFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), (int)Settings.magneticEncoderTicsPerRevolution,
                 Settings.chassisWheelDiameter);
         rightFollower.configurePIDVA(splineOmniKp, splineOmniKi, splineOmniKd, 1 / Settings.maxVelocity, splineOmniKf);
 
@@ -110,7 +110,8 @@ public class cmdSplineBenderOmni extends Command {
             lastNavXangle = Robot.subChassis.getNormaliziedNavxAngle();
             angleDiff = llAngle;
         } else if (Robot.lov.getDouble(0) == 0 && llContact) {
-            angleDiff = lastNavXangle - lastLLangle;
+            angleDiff = Pathfinder.boundHalfDegrees(Robot.subChassis
+            .gyroNormalize(lastLLangle + (lastNavXangle - Robot.subChassis.getNormaliziedNavxAngle())));
         } else {
             angleDiff = Pathfinder
                     .boundHalfDegrees(Robot.subChassis.gyroNormalize(Pathfinder.r2d(leftFollower.getHeading()))

@@ -3,7 +3,7 @@ package org.usfirst.frc3668.DeepSpace;
 public class Settings {
     
     public static final double chassisWheelbaseWidth = 0.7;
-    public static final int magneticEncoderTicsPerRevolution = 4096;
+    public static final double magneticEncoderTicsPerRevolution = 4096.0;
     public static final int talonTimeOut = 10;
     public static final double chassisWheelDiameter = 0.2032; //meters; 8 inches
     public static final int chassisDriveMaxCurrentLimit = 55;
@@ -144,6 +144,8 @@ public class Settings {
     public static final String filePerfix = "/home/lvuser/deploy/Spline";
 
     public static final String startCenter = "_StartCenter";
+    public static final String startCenterR = "_StartCenterR";
+    public static final String startCenterL = "_StartCenterL";
     public static final String startLeft = "_StartLeft";
     public static final String startRight = "_StartRight";
 
@@ -164,7 +166,7 @@ public class Settings {
 
     public static final String fileExt = ".cvs";
 
-    public static final String test1 = "_test";
+    public static final String test1 = "_StartCenterL_CSCL";
     public static final String test2 = "_test2";
     public static final String bend1 = "_BendTest";
 }

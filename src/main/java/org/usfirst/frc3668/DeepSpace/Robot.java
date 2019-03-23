@@ -138,8 +138,8 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("Second Game Type", secondGameTypeChooser);
         SmartDashboard.putData("Second Location", secondLocChooser);
     
-        lop.setNumber(0);
-        ltp.setNumber(0);
+        lop.setNumber(1);
+        ltp.setNumber(1);
     }   
 
     /**
@@ -182,7 +182,7 @@ public class Robot extends TimedRobot {
             parameters[0] = parameters[0] + Settings.startRight;
             break;
         case test:
-            parameters[0] = parameters[0] + Settings.bend1 ;
+            parameters[0] = parameters[0] + Settings.startCenterL + Settings.cargoCenterLeft;
             actions[0] = Settings.actions.splineOmni;
             break;
         }

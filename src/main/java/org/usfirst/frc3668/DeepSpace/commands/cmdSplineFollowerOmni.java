@@ -49,13 +49,13 @@ public class cmdSplineFollowerOmni extends Command {
     protected void initialize() {
         Robot.subChassis.resetBothEncoders();
         leftFollower = new EncoderFollower(left);
-        leftFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.magneticEncoderTicsPerRevolution,
+        leftFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), (int)Settings.magneticEncoderTicsPerRevolution,
                 Settings.chassisWheelDiameter);
         leftFollower.configurePIDVA(splineOmniKp, splineOmniKi,  splineOmniKd,
                 1 / Settings.maxVelocity, splineOmniKf);
 
         rightFollower = new EncoderFollower(right);
-        rightFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.magneticEncoderTicsPerRevolution,
+        rightFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), (int)Settings.magneticEncoderTicsPerRevolution,
                 Settings.chassisWheelDiameter);
         rightFollower.configurePIDVA(splineOmniKp, splineOmniKi, splineOmniKd,
                 1 / Settings.maxVelocity, splineOmniKf);

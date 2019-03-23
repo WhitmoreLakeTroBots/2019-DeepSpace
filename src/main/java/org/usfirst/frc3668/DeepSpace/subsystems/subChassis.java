@@ -19,7 +19,7 @@ public class subChassis extends Subsystem {
 	public final boolean chassisSquareJoyInput = true;
 	public final double chassisBeltReduction = 39.0/42.0;
     public final double chassisEncoderDeadValueThreshold = 0.5;
-    public final double chassisEncoderDistancePerPulse = 0.000187022937;//(6/5)*(Settings.chassisWheelDiameter * Math.PI) / Settings.magneticEncoderTicsPerRevolution;
+    public final double chassisEncoderDistancePerPulse = (Settings.chassisWheelDiameter * Math.PI) / Settings.magneticEncoderTicsPerRevolution;
 
     public void Drive(Joystick stick) {
         double joyX = stick.getX();

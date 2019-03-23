@@ -6,7 +6,7 @@ public class TroBotSplineGenerator extends Object {
 
 	static final double deltaTime = 0.02;
 	static final double maxJerk   = 5.00;
-	static final double maxVel    = 1.00;
+	static final double maxVel    = 3.00;
 	static final double maxAccel  = 3.00;
 	public static void main(String[] args) {
 		
@@ -103,7 +103,7 @@ public class TroBotSplineGenerator extends Object {
 		config.max_acceleration = 2.5;
 		config.max_jerk = 8;
 		Spline_test2 test2 = new Spline_test2(config);
-		//test2.generate();
+		test2.generate();
 		test2 = null;
 
 		Spline_BendTest bend = new Spline_BendTest(config);

@@ -49,13 +49,13 @@ public class cmdSplineFollowerTrac extends Command {
         System.err.println("Starting spline. trajLen: " + trajLen);
         Robot.subChassis.resetBothEncoders();
         leftFollower = new EncoderFollower(left);
-        leftFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.magneticEncoderTicsPerRevolution,
+        leftFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), (int)Settings.magneticEncoderTicsPerRevolution,
                 Settings.chassisWheelDiameter);
         leftFollower.configurePIDVA(splineTracKp, splineTracKi, splineTracKd,
                 1 / Settings.maxVelocity, splineTracKf);
 
         rightFollower = new EncoderFollower(right);
-        rightFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), Settings.magneticEncoderTicsPerRevolution,
+        rightFollower.configureEncoder(Robot.subChassis.getLeftEncoderTics(), (int)Settings.magneticEncoderTicsPerRevolution,
                 Settings.chassisWheelDiameter);
         rightFollower.configurePIDVA(splineTracKp, splineTracKi, splineTracKd,
                 1 / Settings.maxVelocity, splineTracKf);
