@@ -24,7 +24,7 @@ public class RobotMap {
 	public static final int tailCanID = 5;
 	public static final int swingRotationCanID = 14;//6 for srx
 	public static final int frontLiftCanID = 7;
-	public static final int intakeRotationCanID = 9;
+	public static final int intakePivotCanID = 9;
 	public static final int intakeCanID = 8;
 	public static final int headRotationCanID = 10;
 	public static final int hatchManipulatorCanID = 11;
@@ -46,7 +46,7 @@ public class RobotMap {
 	public static TalonSRX tail;
 	public static TalonSRX swingRotation;
 	public static TalonSRX frontLift;
-	public static TalonSRX intakeRotation;
+	public static TalonSRX intakePivot;
 	public static TalonSRX intake;
 	public static TalonSRX hatchManipulator;
 	public static TalonSRX cargoManipulator;
@@ -123,10 +123,10 @@ public class RobotMap {
 
 		frontLift.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Settings.talonTimeOut);
 
-		intakeRotation = new TalonSRX(intakeRotationCanID);
-		intakeRotation.setNeutralMode(NeutralMode.Brake);
-		intakeRotation.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
-		intakeRotation.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
+		intakePivot = new TalonSRX(intakePivotCanID);
+		intakePivot.setNeutralMode(NeutralMode.Brake);
+		intakePivot.configPeakCurrentLimit(Settings.chassisDriveMaxCurrentLimit, Settings.talonTimeOut);
+		intakePivot.configPeakCurrentDuration(Settings.chassisDriveMaxCurrentTimeout, Settings.talonTimeOut);
 
 		intake = new TalonSRX(intakeCanID);
 		intake.setNeutralMode(NeutralMode.Brake);

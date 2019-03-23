@@ -56,6 +56,8 @@ public class Settings {
     //Intake settings
     public static final double intakeInThrottle = 1.0;
     public static final double intakeOutThrottle = -1.0;
+    public static final double intakeUpThrottle = 1.0;
+    public static final double intakeDownThrottle = -1.0;
 
     //Head Settings
     public static final double headThrottleUP = 0.75;
@@ -169,4 +171,7 @@ public class Settings {
     public static final String test1 = "_StartCenterL_CSCL";
     public static final String test2 = "_test2";
     public static final String bend1 = "_BendTest";
+
+    public static final String llPipesLeft = "1|1|";
+    public static final String llPipesRight = "2|2|";
 }

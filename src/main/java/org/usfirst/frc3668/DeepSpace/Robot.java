@@ -69,8 +69,7 @@ public class Robot extends TimedRobot {
     public static double tx = 0;
     public static double ty = 0;
     public static double llCamMode = 0;
-    
-    
+
     /**
      * This function is run when the robot is first started up and should be used
      * for any initialization code.
@@ -97,7 +96,7 @@ public class Robot extends TimedRobot {
         lol = OmniTable.getEntry("tl");
         locm = OmniTable.getEntry("camMode");
         lolm = OmniTable.getEntry("ledMode");
-        lop = OmniTable.getEntry ("pipeline");
+        lop = OmniTable.getEntry("pipeline");
 
         TracTable = inst.getTable("limelight-trac");
         ltx = TracTable.getEntry("tx");
@@ -137,10 +136,10 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("First Destentation", firstLocChooser);
         SmartDashboard.putData("Second Game Type", secondGameTypeChooser);
         SmartDashboard.putData("Second Location", secondLocChooser);
-    
-        lop.setNumber(1);
-        ltp.setNumber(1);
-    }   
+
+        lop.setNumber(0);
+        ltp.setNumber(0);
+    }
 
     /**
      * This function is called when the disabled button is hit. You can use it to
@@ -164,37 +163,59 @@ public class Robot extends TimedRobot {
         Settings.gameElementType secondGameType = secondGameTypeChooser.getSelected();
         Settings.locations secondLoc = secondLocChooser.getSelected();
 
-        Settings.actions[] actions = new Settings.actions[3];
+        Settings.actions[] actions = new Settings.actions[4];
 
-        String[] parameters = new String[3];
+        String[] parameters = new String[4];
         parameters[0] = Settings.filePerfix;
         parameters[1] = Settings.filePerfix;
         parameters[2] = Settings.filePerfix;
+        parameters[3] = Settings.filePerfix;
 
         switch (startLoc) {
         case center:
-            parameters[0] = parameters[0] + Settings.startCenter;
+            parameters[1] = parameters[1] + Settings.startCenter;
             break;
         case left:
-            parameters[0] = parameters[0] + Settings.startLeft;
+            parameters[1] = parameters[1] + Settings.startLeft;
             break;
         case right:
-            parameters[0] = parameters[0] + Settings.startRight;
+            parameters[1] = parameters[1] + Settings.startRight;
             break;
         case test:
-            parameters[0] = parameters[0] + Settings.startCenterL + Settings.cargoCenterLeft;
-            actions[0] = Settings.actions.splineOmni;
+            actions[0] = Settings.actions.switchPipelines;
+            parameters[0] = Settings.llPipesLeft;
+            parameters[1] = parameters[1] + Settings.startCenterL + Settings.cargoCenterLeft;
+            actions[1] = Settings.actions.splineOmni;
+            break;
+        }
+
+        switch (startGameType) {
+        case hatch:
+            actions[1] = Settings.actions.placeHatch;
+            break;
+        case cargo:
+            actions[1] = Settings.actions.placeCargo;
+            break;
+        case teleop:
             break;
         }
 
         switch (firstLoc) {
         case CSCL:
-            parameters[0] = parameters[0] + Settings.cargoCenterLeft;
+            actions[0] = Settings.actions.switchPipelines;
+            parameters[0] = Settings.llPipesLeft;
             parameters[1] = parameters[1] + Settings.cargoCenterLeft;
+            if(startLoc == Settings.startLocation.center){
+                parameters[1] = Settings.filePerfix + Settings.startCenterL;
+            }
             break;
         case CSCR:
-            parameters[0] = parameters[0] + Settings.cargoCenterRight;
+            actions[0] = Settings.actions.switchPipelines;
+            parameters[0] = Settings.llPipesRight;
             parameters[1] = parameters[1] + Settings.cargoCenterRight;
+            if(startLoc == Settings.startLocation.center){
+                parameters[1] = Settings.filePerfix + Settings.startCenterR;
+            }
             break;
         case teleop:
             break;
@@ -203,49 +224,40 @@ public class Robot extends TimedRobot {
         switch (secondGameType) {
         case hatch:
             if (firstLoc == Settings.locations.CSCL) {
-                parameters[1] = parameters[1] + Settings.loadStationLeft;
+                parameters[2] = parameters[2] + Settings.loadStationLeft;
             } else if (firstLoc == Settings.locations.CSCR) {
-                parameters[1] = parameters[1] + Settings.loadStationRight;
+                parameters[2] = parameters[2] + Settings.loadStationRight;
             }
-            actions[1] = Settings.actions.placeHatch;
+            actions[2] = Settings.actions.placeHatch;
             break;
         case cargo:
             if (firstLoc == Settings.locations.CSCL) {
-                parameters[1] = parameters[1] + Settings.depotCargoLeft;
                 parameters[2] = parameters[2] + Settings.depotCargoLeft;
+                parameters[3] = parameters[3] + Settings.depotCargoLeft;
             } else if (firstLoc == Settings.locations.CSCR) {
-                parameters[1] = parameters[1] + Settings.depotCargoRight;
                 parameters[2] = parameters[2] + Settings.depotCargoRight;
+                parameters[3] = parameters[3] + Settings.depotCargoRight;
             }
-            actions[1] = Settings.actions.placeCargo;
+            actions[2] = Settings.actions.placeCargo;
             break;
         case teleop:
             break;
         }
 
         switch (secondLoc) {
-            case CSCL:
-                parameters[2] = parameters[2] + Settings.cargoCenterLeft;
-                break;
-            case CSCR:
-                parameters[2] = parameters[2] + Settings.cargoCenterRight;
-            case teleop:
-                break;
+        case CSCL:
+            parameters[3] = parameters[3] + Settings.cargoCenterLeft;
+            break;
+        case CSCR:
+            parameters[3] = parameters[3] + Settings.cargoCenterRight;
+        case teleop:
+            break;
         }
 
-        switch (startGameType){
-            case hatch:
-                actions[0] = Settings.actions.placeHatch;
-                break;
-            case cargo:
-                actions[0] = Settings.actions.placeCargo;
-                break;
-            case teleop:
-                break;
-        }
         parameters[0] = parameters[0] + Settings.fileExt;
         parameters[1] = parameters[1] + Settings.fileExt;
         parameters[2] = parameters[2] + Settings.fileExt;
+        parameters[4] = parameters[4] + Settings.fileExt;
 
         autonomousCommand = new cmdGroupAutoTemplate(actions, parameters);
 
@@ -274,7 +286,7 @@ public class Robot extends TimedRobot {
     /**
      * This function is called periodically during operator control
      */
- 
+
     public void update_smartDashboard() {
         ox = lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar;
         oy = loy.getDouble(Settings.loDefaultAngle);
@@ -286,9 +298,10 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("ltx", tx);
         SmartDashboard.putNumber("lty", ty);
         SmartDashboard.putNumber("ltd", RobotMath.calcLimeTracDist(ty));
-       // xEntry.setDouble(x);
-       // yEntry.setDouble(y); 
+        // xEntry.setDouble(x);
+        // yEntry.setDouble(y);
     }
+
     @Override
     public void teleopPeriodic() {
         update_smartDashboard();

@@ -23,7 +23,7 @@ public class cmdGroupAutoTemplate extends CommandGroup {
              } else if (action[i] == Settings.actions.splineTrac){
                 addSequential(new cmdSplineFollowerTrac(parameters[i]));
              }else if (action[i] == Settings.actions.switchPipelines){
-               
+                addSequential(new cmdSwitchLLVision(parameters[i]));
              }
         }
         addSequential(new cmdSwitchLLVision(Settings.llProcess));

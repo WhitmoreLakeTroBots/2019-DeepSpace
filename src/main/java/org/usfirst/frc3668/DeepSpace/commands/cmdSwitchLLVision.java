@@ -10,12 +10,23 @@ public class cmdSwitchLLVision extends Command {
     double parameter = -1;
     long mSecDelay = 100;
     long endTime = 0;
-    
+
+    String[] pipelines = new String[3];
+    double omniPipeline = -1;
+    double tracPipeline = -1;
+
     public cmdSwitchLLVision() {
     }
 
-    public cmdSwitchLLVision(double parameter){
+    public cmdSwitchLLVision(double parameter) {
         this.parameter = parameter;
+    }
+
+    public cmdSwitchLLVision(String pipeline) {
+        String delim = "[|]";
+        this.pipelines = pipeline.split(delim);
+        omniPipeline = Double.valueOf(pipelines[1]);
+        tracPipeline = Double.valueOf(pipelines[2]);
     }
 
     // Called just before this Command runs the first time
@@ -23,30 +34,35 @@ public class cmdSwitchLLVision extends Command {
     protected void initialize() {
         bDone = false;
         endTime = System.currentTimeMillis() + mSecDelay;
-        if(parameter >= 0){
-            switchLLMode(parameter);
+        if (omniPipeline >= 0 && tracPipeline >= 0) {
+            setLimeOmniRaw(omniPipeline);
+            setLimeTracRaw(tracPipeline);
         } else {
-            switchLLMode();
+            if (parameter >= 0) {
+                switchLLMode(parameter);
+            } else {
+                switchLLMode();
+            }
         }
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        //System.err.println("Switching ll");
+        // System.err.println("Switching ll");
         if (System.currentTimeMillis() >= endTime) {
             bDone = true;
         }
     }
 
-    protected void switchLLMode(double parameter){
+    protected void switchLLMode(double parameter) {
         Robot.llCamMode = parameter;
-            setLimeOmniMode(Robot.llCamMode);
-            setLimeTracMode(Robot.llCamMode);
+        setLimeOmniMode(Robot.llCamMode);
+        setLimeTracMode(Robot.llCamMode);
     }
 
-    protected void switchLLMode(){
-        if(Robot.llCamMode == 0){
+    protected void switchLLMode() {
+        if (Robot.llCamMode == 0) {
             Robot.llCamMode = 1;
             setLimeOmniMode(Robot.llCamMode);
             setLimeTracMode(Robot.llCamMode);
@@ -56,14 +72,23 @@ public class cmdSwitchLLVision extends Command {
             setLimeTracMode(Robot.llCamMode);
         }
     }
-    protected void setLimeOmniMode(double parameter){
-        Robot.lop.setNumber(Math.abs(parameter-1));
-        
+
+    protected void setLimeOmniMode(double parameter) {
+        Robot.lop.setNumber(Math.abs(parameter - 1) + 1);
+
     }
 
-    protected void setLimeTracMode(double parameter){
-        Robot.ltp.setNumber(parameter);
-    
+    protected void setLimeTracMode(double parameter) {
+        Robot.ltp.setNumber(parameter + 1);
+
+    }
+
+    protected void setLimeOmniRaw(double pipeline) {
+        Robot.lop.setNumber(pipeline);
+    }
+
+    protected void setLimeTracRaw(double pipeline) {
+        Robot.ltp.setNumber(pipeline);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -81,6 +106,6 @@ public class cmdSwitchLLVision extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
-    protected void interrupted(){
+    protected void interrupted() {
     }
 }

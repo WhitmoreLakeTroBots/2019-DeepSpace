@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class subIntake extends Subsystem {
 
     public subIntake() {
+        resetIntakePivotEncoder();
     }
 
     public void setIntake(double throttle) {
@@ -17,6 +18,18 @@ public class subIntake extends Subsystem {
 
     public void stopIntake() {
         RobotMap.intake.set(ControlMode.PercentOutput, 0);
+    }
+
+    public void setIntakePivot(double throttle){
+        RobotMap.intakePivot.set(ControlMode.PercentOutput, throttle);
+    }
+
+    public double getIntakePivotEncoderTics(){
+        return RobotMap.intakePivot.getSelectedSensorPosition();
+    }
+
+    public void resetIntakePivotEncoder(){
+        RobotMap.intakePivot.setSelectedSensorPosition(0);
     }
 
     @Override
