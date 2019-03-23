@@ -108,6 +108,7 @@ public class Robot extends TimedRobot {
         ltcm = TracTable.getEntry("camMode");
         ltlm = TracTable.getEntry("ledMode");
         ltp = TracTable.getEntry("pipeline");
+
         oi = new OI();
 
         startChooser.addOption("Center", Settings.startLocation.center);
@@ -183,15 +184,15 @@ public class Robot extends TimedRobot {
             break;
         case test:
             actions[0] = Settings.actions.switchPipelines;
-            parameters[0] = Settings.llPipesLeft;
+            parameters[0] = Settings.llPipesRight;
             parameters[1] = parameters[1] + Settings.startCenterL + Settings.cargoCenterLeft;
-            actions[1] = Settings.actions.splineOmni;
+            //actions[1] = Settings.actions.splineOmni;
             break;
         }
 
         switch (startGameType) {
         case hatch:
-            actions[1] = Settings.actions.placeHatch;
+            actions[1] = Settings.actions.splineOmni;
             break;
         case cargo:
             actions[1] = Settings.actions.placeCargo;
@@ -204,10 +205,10 @@ public class Robot extends TimedRobot {
         case CSCL:
             actions[0] = Settings.actions.switchPipelines;
             parameters[0] = Settings.llPipesLeft;
-            parameters[1] = parameters[1] + Settings.cargoCenterLeft;
             if(startLoc == Settings.startLocation.center){
                 parameters[1] = Settings.filePerfix + Settings.startCenterL;
             }
+            parameters[1] = parameters[1] + Settings.cargoCenterLeft;
             break;
         case CSCR:
             actions[0] = Settings.actions.switchPipelines;
@@ -257,7 +258,7 @@ public class Robot extends TimedRobot {
         parameters[0] = parameters[0] + Settings.fileExt;
         parameters[1] = parameters[1] + Settings.fileExt;
         parameters[2] = parameters[2] + Settings.fileExt;
-        parameters[4] = parameters[4] + Settings.fileExt;
+        parameters[3] = parameters[3] + Settings.fileExt;
 
         autonomousCommand = new cmdGroupAutoTemplate(actions, parameters);
 
@@ -298,6 +299,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("ltx", tx);
         SmartDashboard.putNumber("lty", ty);
         SmartDashboard.putNumber("ltd", RobotMath.calcLimeTracDist(ty));
+        SmartDashboard.putNumber("NavX", Robot.subChassis.getNormaliziedNavxAngle());
         // xEntry.setDouble(x);
         // yEntry.setDouble(y);
     }

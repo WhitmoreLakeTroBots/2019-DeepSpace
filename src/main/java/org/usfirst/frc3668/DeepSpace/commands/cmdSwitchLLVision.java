@@ -25,8 +25,8 @@ public class cmdSwitchLLVision extends Command {
     public cmdSwitchLLVision(String pipeline) {
         String delim = "[|]";
         this.pipelines = pipeline.split(delim);
-        omniPipeline = Double.valueOf(pipelines[1]);
-        tracPipeline = Double.valueOf(pipelines[2]);
+        omniPipeline = Double.valueOf(pipelines[0]);
+        tracPipeline = Double.valueOf(pipelines[1]);
     }
 
     // Called just before this Command runs the first time
@@ -35,6 +35,7 @@ public class cmdSwitchLLVision extends Command {
         bDone = false;
         endTime = System.currentTimeMillis() + mSecDelay;
         if (omniPipeline >= 0 && tracPipeline >= 0) {
+            System.err.println("Omni pipe: " + omniPipeline + " Trac pipe: " + tracPipeline);
             setLimeOmniRaw(omniPipeline);
             setLimeTracRaw(tracPipeline);
         } else {
@@ -74,12 +75,12 @@ public class cmdSwitchLLVision extends Command {
     }
 
     protected void setLimeOmniMode(double parameter) {
-        Robot.lop.setNumber(Math.abs(parameter - 1) + 1);
+        Robot.lop.setNumber(Math.abs(parameter - 1));
 
     }
 
     protected void setLimeTracMode(double parameter) {
-        Robot.ltp.setNumber(parameter + 1);
+        Robot.ltp.setNumber(parameter);
 
     }
 
@@ -88,6 +89,7 @@ public class cmdSwitchLLVision extends Command {
     }
 
     protected void setLimeTracRaw(double pipeline) {
+        System.err.println("TRACTION PIPELINE SET TO " + pipeline);
         Robot.ltp.setNumber(pipeline);
     }
 
