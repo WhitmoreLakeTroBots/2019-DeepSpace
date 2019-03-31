@@ -17,7 +17,7 @@ public class cmdSplineBenderOmni extends Command {
     public final double splineOmniKi = 0.005;// 0.0055;
     public final double splineOmniKd = 0.001;// 0.00425;
     public final double splineOmniKf = 0.07;// 0.10;
-    public final double splineOmniTurnScalar = 0.02;
+    public final double splineOmniTurnScalar = 0.035;
 
     double splineLength;
     double turnScalar;
@@ -84,11 +84,11 @@ public class cmdSplineBenderOmni extends Command {
 
         double leftOutput = leftFollower.calculate(Robot.subChassis.getLeftEncoderTics());
         double leftTurnVal = Robot.invertedSplineDirection * turnScalar * leftAngleDifference();
-        double leftThrottle = leftOutput - leftTurnVal;
+        double leftThrottle = leftOutput + leftTurnVal;
 
         double rightOutput = rightFollower.calculate(Robot.subChassis.getRightEncoderTics());
         double rightTurnVal = Robot.invertedSplineDirection * turnScalar * rightAngleDifference();
-        double rightThrottle = rightOutput + rightTurnVal;
+        double rightThrottle = rightOutput - rightTurnVal;
 
         // System.err.println(String.format(
         // "PC: %1$d\tRight Encoder: %2$.3f\tLeft Encoder: %3$.3f\tAngle Diff:
@@ -108,7 +108,7 @@ public class cmdSplineBenderOmni extends Command {
                 leftAngleDifference(), 
                 rightAngleDifference(), 
                 Robot.subChassis.getNormaliziedNavxAngle(),
-                (-Robot.lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar), 
+                (Robot.ox * Settings.loHorzAngleScalar), 
                 percentComplete()));
 
         Robot.subChassis.DriveMan(leftThrottle, rightThrottle);
@@ -116,7 +116,7 @@ public class cmdSplineBenderOmni extends Command {
 
     protected double leftAngleDifference() {
         double angleDiff = 0;
-        double llAngle = -Robot.lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar;
+        double llAngle = Robot.ox * Settings.loHorzAngleScalar;
 
         if (Robot.lov.getDouble(0) == 1 && percentComplete() >= percentThershold) {
             llContact = true;
@@ -125,33 +125,33 @@ public class cmdSplineBenderOmni extends Command {
             angleDiff = llAngle;
         } else if (Robot.lov.getDouble(0) == 0 && llContact) {
             angleDiff = Pathfinder.boundHalfDegrees(Robot.subChassis
-                    .gyroNormalize(lastLLangle - (lastNavXangle - Robot.subChassis.getNormaliziedNavxAngle())));
+                    .gyroNormalize(lastLLangle + (lastNavXangle - Robot.subChassis.getNormaliziedNavxAngle())));
         } else {
             angleDiff = Pathfinder
                     .boundHalfDegrees(Robot.subChassis.gyroNormalize(Pathfinder.r2d(leftFollower.getHeading()))
-                            + Robot.subChassis.getNormaliziedNavxAngle());
+                            - Robot.subChassis.getNormaliziedNavxAngle());
         }
         return angleDiff;
     }
 
     protected double rightAngleDifference() {
         double angleDiff = 0;
-        double llAngle = -Robot.lox.getDouble(Settings.loDefaultAngle) * Settings.loHorzAngleScalar;
+        double llAngle = Robot.ox * Settings.loHorzAngleScalar;
 
         if (Robot.lov.getDouble(0) == 1 && percentComplete() >= percentThershold) {
             llContact = true;
             lastLLangle = llAngle;
             lastNavXangle = Robot.subChassis.getNormaliziedNavxAngle();
             angleDiff = llAngle;
-            System.err.print("   Can see target ");
+            System.err.print("Can see target    ");
         } else if (Robot.lov.getDouble(0) == 0 && llContact) {
             angleDiff = Pathfinder.boundHalfDegrees(Robot.subChassis
-                    .gyroNormalize(lastLLangle - (lastNavXangle - Robot.subChassis.getNormaliziedNavxAngle())));
-            System.err.print(" Could see target ");
+                    .gyroNormalize(lastLLangle + (lastNavXangle - Robot.subChassis.getNormaliziedNavxAngle())));
+            System.err.print("Could see target  ");
         } else {
             angleDiff = Pathfinder
                     .boundHalfDegrees(Robot.subChassis.gyroNormalize(Pathfinder.r2d(rightFollower.getHeading()))
-                            + Robot.subChassis.getNormaliziedNavxAngle());
+                            - Robot.subChassis.getNormaliziedNavxAngle());
             System.err.print("Never seen target ");
         }
         return angleDiff;

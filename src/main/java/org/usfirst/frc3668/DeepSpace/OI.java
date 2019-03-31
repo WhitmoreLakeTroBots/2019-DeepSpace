@@ -67,6 +67,7 @@ public class OI {
     public final int joyDriveExtendTail = 9;
     public final int joyDriveExtendLift = 11;
     public final int joyDriveRetractLift = 7;
+    public final int joyDriveLiftDrive = 12;
     public final int joyDriveIntakeIn = 3;
     public final int joyDriveIntakeOut = 5;
     public final int joyDriveVision = 8;
@@ -92,7 +93,7 @@ public class OI {
     public Button intakeIn = new JoystickButton(joyDrive, joyDriveIntakeIn);
     public Button intakeOut = new JoystickButton(joyDrive, joyDriveIntakeOut);
     public Button switchVision = new JoystickButton(joyDrive, joyDriveVision);
-
+    public Button liftDrive = new JoystickButton(joyDrive, joyDriveLiftDrive);
     public Button retractLift = new JoystickButton(joyDrive, joyDriveRetractLift);
 
     public Joystick joyArt = new Joystick(joyArtPort);
@@ -114,7 +115,7 @@ public class OI {
 
         invertDrive.whenPressed(new cmdInvertDriveAuto());
 
-        extendLift.whenPressed(new cmdMoveFrontLift(Robot.subLift.liftHieghttoLevel2/Robot.subLift.liftMetersPerTic, Settings.liftThrottle));
+        extendLift.whenPressed(new cmdMoveFrontLift(Robot.subLift.liftHieghttoLevel3/Robot.subLift.liftMetersPerTic, Settings.liftThrottle));
         extendTail.whenPressed(new cmdManTail(Robot.subTail.tailLength, Settings.tailRaiseThrottle));
         retractLift.whenPressed(new cmdMoveFrontLift(0, Settings.liftThrottle));
 

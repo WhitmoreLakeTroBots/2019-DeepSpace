@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.usfirst.frc3668.DeepSpace.RobotMap;
 import org.usfirst.frc3668.DeepSpace.Settings;
+import org.usfirst.frc3668.DeepSpace.commands.cmdLiftDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class subLift extends Subsystem {
@@ -21,7 +22,7 @@ public class subLift extends Subsystem {
     @Override
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new cmdLiftDrive());
     }
 
     @Override
@@ -46,7 +47,7 @@ public class subLift extends Subsystem {
     }
 
     public void setLiftMotor(double throttle){
-        if(getLiftEncoderMeters() < liftHieghttoLevel2){
+        if(getLiftEncoderMeters() < liftHieghttoLevel3){
             System.err.print("Moving lift because meters < limit   ");
             RobotMap.frontLift.set(ControlMode.PercentOutput, throttle);
         } else if(throttle < 0) {

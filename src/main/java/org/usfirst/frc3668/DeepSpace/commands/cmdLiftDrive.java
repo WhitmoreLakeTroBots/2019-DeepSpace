@@ -24,6 +24,12 @@ public class cmdLiftDrive extends Command {
         requires(Robot.subLift);
     }
 
+    public cmdLiftDrive() {
+        targetTics = 0;
+        throttle = 0;
+        requires(Robot.subLift);
+    }
+
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
@@ -37,28 +43,35 @@ public class cmdLiftDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        double currentTics = Robot.subLift.getLiftDriveTics();
-        double deltatargetTics = targetTics - currentTics;
-        double finalThrottle;
+        // double currentTics = Robot.subLift.getLiftDriveTics();
+        // double deltatargetTics = targetTics - currentTics;
+        // double finalThrottle;
 
-		deltaSignum = Math.signum(deltatargetTics);
-		if (deltaSignum > 0) {
-			finalThrottle = throttle;
-		} else {
-			finalThrottle = -throttle;
-		}
-		if (Math.abs(deltatargetTics) <= lDriveSlowThreshold) {
-			finalThrottle = throttle *  lDriveSlowScalar;
-		}
-		else if (Math.abs(initTics - currentTics) <= lDriveSlowThreshold){
-			finalThrottle = throttle * lDriveSlowScalar;
-		}
-		System.err.println("tics: " + currentTics);
-		Robot.subLift.setLiftDriveMotor(finalThrottle);
-		if (currentTics > lowerBound && currentTics < upperBound) {
-            isFinished = true;
-            System.err.println("cmdLiftDrive is finished");
-		}
+		// deltaSignum = Math.signum(deltatargetTics);
+		// if (deltaSignum > 0) {
+		// 	finalThrottle = throttle;
+		// } else {
+		// 	finalThrottle = -throttle;
+		// }
+		// if (Math.abs(deltatargetTics) <= lDriveSlowThreshold) {
+		// 	finalThrottle = throttle *  lDriveSlowScalar;
+		// }
+		// else if (Math.abs(initTics - currentTics) <= lDriveSlowThreshold){
+		// 	finalThrottle = throttle * lDriveSlowScalar;
+		// }
+		// System.err.println("tics: " + currentTics);
+		// Robot.subLift.setLiftDriveMotor(finalThrottle);
+		// if (currentTics > lowerBound && currentTics < upperBound) {
+        //     isFinished = true;
+        //     System.err.println("cmdLiftDrive is finished");
+        // }
+        
+        if(Robot.oi.liftDrive.get() == true){
+            Robot.subLift.setLiftDriveMotor(-Robot.oi.joyDrive.getY());
+        } else {
+            Robot.subLift.setLiftDriveMotor(0);
+        }
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
