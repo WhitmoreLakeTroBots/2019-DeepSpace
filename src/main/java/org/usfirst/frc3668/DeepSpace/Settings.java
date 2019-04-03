@@ -1,7 +1,10 @@
 package org.usfirst.frc3668.DeepSpace;
 
 public class Settings {
-    
+    public static final double joystickDeadband = 0.1;
+
+
+    //Chassis Settings
     public static final double chassisWheelbaseWidth = 0.7;
     public static final double magneticEncoderTicsPerRevolution = 4096.0;
     public static final int talonTimeOut = 10;
@@ -36,22 +39,37 @@ public class Settings {
     //Swing settings
     public static final double swingHome = 0;
     public static final double swingCargoIntake = 22;
-    public static final double swingLowTracHatch = 55;
-    public static final double swingLowOmniHatch = -50;
-    public static final double swingLowTracCargo = 75;
-    public static final double swingLowOmniCargo = -110;
+    public static final double swingTracTier1Hatch = 55;
+    public static final double swingOmniTier1Hatch = -50;
+    public static final double swingOmniTier2Hatch = -95;
+    public static final double swingOmniTier3Hatch = -175;
+    public static final double swingTracCargoCS = 75;
+    public static final double swingTracCargoRocketTier1 = 60;
+    public static final double swingOmniCargoCS = -110;
+    public static final double swingOmniCargoRocketTier1 = -45;
+    public static final double swingOmniCargoRocketTier2 = -100;
+    public static final double swingOmniCargoRocketTier3 = -180;
     public static final double swingHighOmni = 120; 
 
     public static final double cargoAdjustOmni = 5;
     public static final double cargoAdjustTrac = -5;
 
-    //Cargo Offsets
-    public static final double cargoOffsetHome = 0;
-    public static final double cargoOffsetTracParrallel = -83; //account for sag in the mech
-    public static final double cargoOffsetOmniParrallel = 83; //account for sag in the mech
-    public static final double cargoOffsetPickCargo = -65;
-    public static final double cargoOffsetPlaceCargoOmni = 170;
-    public static final double cargoOffsetPlaceCargoTrac = 0;
+    //Head Offsets
+    public static final double headOffsetHome = 0;
+    public static final double headOffsetTracParrallel = -83; //account for sag in the mech
+    public static final double headOffsetOmniParrallel = 83; //account for sag in the mech
+
+    public static final double headOffsetPickCargo = -65;
+    public static final double headOffsetOmniCargoCS = 170;
+    public static final double headOffsetOmniCargoRocketTier1 = 40;
+    public static final double headOffsetOmniCargoRocketTier2 = 20;
+    public static final double headOffsetOmniCargoRocketTier3 = 15;
+    public static final double headOffsetTracCargoCS = 0;
+    public static final double headOffsetTracCargoRocketTier1 = 15;
+
+    public static final double headOffsetOmniHatchTier1 = 83;
+    public static final double headOffsetOmniHatchTier2 = 83;
+    public static final double headOffsetOmniHatchTier3 = 83;
 
     //Intake settings
     public static final double intakeInThrottle = 1.0;
