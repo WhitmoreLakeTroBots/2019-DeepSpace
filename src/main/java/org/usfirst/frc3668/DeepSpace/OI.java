@@ -134,6 +134,8 @@ public class OI {
         intakeOut.whileHeld(new cmdIntake(Settings.intakeOutThrottle));
 
         //joyArt
+        swingHome.whenPressed(new cmdGroupHeadSwing(Settings.swingHome, Settings.headOffsetHome));
+
         cargoIn.whileHeld(new cmdHeadCargo(Settings.cargoInThrottle));
         cargoOut.whileHeld(new cmdHeadCargo(Settings.cargoOutThrottle));
         pickCargo.whenPressed(new cmdGroupSwingHead(Settings.swingCargoIntake, Settings.headOffsetPickCargo));

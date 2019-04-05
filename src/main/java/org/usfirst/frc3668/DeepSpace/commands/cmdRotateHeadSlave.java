@@ -31,9 +31,9 @@ public class cmdRotateHeadSlave extends Command {
 		double throttle = 0;
 		double deltaAngle = angle - currentAngle;
         deltaSignum = Math.signum(deltaAngle);
-
-        if(Math.abs(joyY) > Robot.subChassis.joyDriveDeadband){
-        
+        //System.err.println("joyY: " + joyY);
+        if(Math.abs(joyY) < Settings.joystickDeadband){
+        //System.err.println("Auto head movement");
 		if (deltaSignum < 0) {
             throttle = Settings.headThrottleUP;
         

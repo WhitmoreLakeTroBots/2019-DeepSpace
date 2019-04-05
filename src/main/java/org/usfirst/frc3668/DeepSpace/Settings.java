@@ -1,7 +1,7 @@
 package org.usfirst.frc3668.DeepSpace;
 
 public class Settings {
-    public static final double joystickDeadband = 0.1;
+    public static final double joystickDeadband = 0.5;
 
 
     //Chassis Settings
@@ -38,12 +38,12 @@ public class Settings {
     
     //Swing settings
     public static final double swingHome = 0;
-    public static final double swingCargoIntake = 22;
+    public static final double swingCargoIntake = 20;
     public static final double swingTracTier1Hatch = 55;
-    public static final double swingOmniTier1Hatch = -50;
+    public static final double swingOmniTier1Hatch = -60;
     public static final double swingOmniTier2Hatch = -95;
     public static final double swingOmniTier3Hatch = -175;
-    public static final double swingTracCargoCS = 75;
+    public static final double swingTracCargoCS = 82;
     public static final double swingTracCargoRocketTier1 = 60;
     public static final double swingOmniCargoCS = -110;
     public static final double swingOmniCargoRocketTier1 = -45;
@@ -59,12 +59,12 @@ public class Settings {
     public static final double headOffsetTracParrallel = -83; //account for sag in the mech
     public static final double headOffsetOmniParrallel = 83; //account for sag in the mech
 
-    public static final double headOffsetPickCargo = -65;
+    public static final double headOffsetPickCargo = -55;
     public static final double headOffsetOmniCargoCS = 170;
     public static final double headOffsetOmniCargoRocketTier1 = 40;
     public static final double headOffsetOmniCargoRocketTier2 = 20;
     public static final double headOffsetOmniCargoRocketTier3 = 15;
-    public static final double headOffsetTracCargoCS = 0;
+    public static final double headOffsetTracCargoCS = 10;
     public static final double headOffsetTracCargoRocketTier1 = 15;
 
     public static final double headOffsetOmniHatchTier1 = 83;
