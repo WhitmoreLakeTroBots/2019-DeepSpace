@@ -20,7 +20,7 @@ class Spline_test2 extends BaseAutonGenerator {
   //      new Waypoint(0.10, 0.40, Pathfinder.d2r(0)),
   //	    new Waypoint(0.00, 0.40, Pathfinder.d2r(0))
           new Waypoint(0.00, 0.00, Pathfinder.d2r(0)),
-          new Waypoint(2.00, 0.00, Pathfinder.d2r(0))
+          new Waypoint(2.84, 0.00, Pathfinder.d2r(0))
     };
 		return (Pathfinder.generate(points, config));
     }
