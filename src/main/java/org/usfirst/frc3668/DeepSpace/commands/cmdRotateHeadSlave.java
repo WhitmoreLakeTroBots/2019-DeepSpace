@@ -25,11 +25,14 @@ public class cmdRotateHeadSlave extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        double joyY = Robot.oi.joyArt2.getY();
         angle = (-Robot.subSwing.getSwingAngle()) + Robot.headHoldAngle;
         double currentAngle = Robot.subHead.getHeadRotationAngle();
 		double throttle = 0;
 		double deltaAngle = angle - currentAngle;
         deltaSignum = Math.signum(deltaAngle);
+
+        if(Math.abs(joyY) > Robot.subChassis.joyDriveDeadband){
         
 		if (deltaSignum < 0) {
             throttle = Settings.headThrottleUP;
@@ -46,6 +49,10 @@ public class cmdRotateHeadSlave extends Command {
         
         if (currentAngle > angle - Settings.headWindow && currentAngle < angle + Settings.headWindow) {
 			throttle = 0;
+        }
+        } else {
+            throttle = -joyY;
+            Robot.headHoldAngle = Robot.subHead.getHeadRotationAngle();
         }
         //System.err.println(String.format("Target Angle: %1$.3f Current Angle: %2$.3f Current Throttle: %3$.3f", angle, currentAngle, throttle));
 		Robot.subHead.setRotationMotor(throttle);
