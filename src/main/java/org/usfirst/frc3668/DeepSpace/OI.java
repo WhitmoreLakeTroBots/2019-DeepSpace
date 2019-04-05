@@ -114,11 +114,13 @@ public class OI {
     public Button artHatch2 = new JoystickButton(joyArt2, joyArt2Hatch2);
     public Button swingHome2 = new JoystickButton(joyArt2, joyArt2Home);
     public Button omniTier1Hatch = new JoystickButton(joyArt2, joyArt2OmniTier1Hatch);
-    public Button onmiTier2Hatch = new JoystickButton(joyArt2, joyArt2OmniTier2Hatch);
-    public Button onmiTier3Hatch = new JoystickButton(joyArt2, joyArt2OmniTier3Hatch);
+    public Button omniTier2Hatch = new JoystickButton(joyArt2, joyArt2OmniTier2Hatch);
+    public Button omniTier3Hatch = new JoystickButton(joyArt2, joyArt2OmniTier3Hatch);
 
     public OI() {
         //joyDrive
+        switchVision.whenPressed(new cmdSwitchLLVision());
+
         dock.whenPressed(new cmdGroupDock());
 
         invertDrive.whenPressed(new cmdInvertDriveAuto());
@@ -138,19 +140,29 @@ public class OI {
 
         cargoIn.whileHeld(new cmdHeadCargo(Settings.cargoInThrottle));
         cargoOut.whileHeld(new cmdHeadCargo(Settings.cargoOutThrottle));
+
         pickCargo.whenPressed(new cmdGroupSwingHead(Settings.swingCargoIntake, Settings.headOffsetPickCargo));
-        omniTier1Hatch.whenPressed(new cmdGroupSwingHead(Settings.swingOmniTier1Hatch, Settings.headOffsetOmniParrallel));
+
         cargoTracCS.whenPressed(new cmdGroupSwingHead(Settings.swingTracCargoCS, Settings.headOffsetTracCargoCS));
+        cargoTracRocketTier1.whenPressed(new cmdGroupSwingHead(Settings.swingTracCargoRocketTier1, Settings.headOffsetTracCargoRocketTier1));
+
         cargoOmniCS.whenPressed(new cmdGroupSwingHead(Settings.swingOmniCargoCS, Settings.headOffsetOmniCargoCS));
+        cargoOmniRocketTier1.whenPressed(new cmdGroupSwingHead(Settings.swingOmniCargoRocketTier1, Settings.headOffsetOmniCargoRocketTier1));
+        cargoOmniRocketTier2.whenPressed(new cmdGroupSwingHead(Settings.swingOmniCargoRocketTier2, Settings.headOffsetOmniCargoRocketTier2));
+        cargoOmniRocketTier3.whenPressed(new cmdGroupSwingHead(Settings.swingOmniCargoRocketTier3, Settings.headOffsetOmniCargoRocketTier3));
 
         hatch.whenPressed(new cmdGraspHatch(Settings.hatchThrottle));
-        switchVision.whenPressed(new cmdSwitchLLVision());
 
         //joyArt2
         headAdjustOmni.whenPressed(new cmdSetCargoOffset(Settings.cargoAdjustOmni, true));
         headAdjustTrac.whenPressed(new cmdSetCargoOffset(Settings.cargoAdjustTrac, true));
 
         artHatch.whenPressed(new cmdGraspHatch(Settings.hatchThrottle));
+        artHatch2.whenPressed(new cmdGraspHatch(Settings.hatchThrottle));
+
+        omniTier1Hatch.whenPressed(new cmdGroupSwingHead(Settings.swingOmniTier1Hatch, Settings.headOffsetOmniHatchTier1));
+        omniTier2Hatch.whenPressed(new cmdGroupSwingHead(Settings.swingOmniTier2Hatch, Settings.headOffsetOmniHatchTier2));
+        omniTier3Hatch.whenPressed(new cmdGroupSwingHead(Settings.swingOmniTier3Hatch, Settings.headOffsetOmniHatchTier3));
 
         swingHome2.whenPressed(new cmdGroupHeadSwing(Settings.swingHome, Settings.headOffsetHome));
     }
