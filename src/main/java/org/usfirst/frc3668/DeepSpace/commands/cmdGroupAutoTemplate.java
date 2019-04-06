@@ -26,6 +26,6 @@ public class cmdGroupAutoTemplate extends CommandGroup {
                 addSequential(new cmdSwitchLLVision(parameters[i]));
              }
         }
-        addSequential(new cmdSwitchLLVision(Settings.llProcess));
+        //addSequential(new cmdSwitchLLVision(Settings.llProcess));
     }
 }

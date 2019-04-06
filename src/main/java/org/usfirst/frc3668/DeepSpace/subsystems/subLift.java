@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class subLift extends Subsystem {
 
     public final double liftMetersPerTic = 0.000051485; //1 / 19422.8295 Experimental value
-    public final double liftHieghttoLevel3 = 0.5126;
+    public final double liftHieghttoLevel3 = 0.53;
     public final double liftHieghttoLevel2 = 0.1778;
 
     public subLift() {

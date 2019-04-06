@@ -1,12 +1,13 @@
 package org.usfirst.frc3668.DeepSpace.commands;
 
 import org.usfirst.frc3668.DeepSpace.Robot;
+import org.usfirst.frc3668.DeepSpace.Settings;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class cmdSwing extends Command {
 
-    public final double swingThrottleUP = -0.5;
+    public final double swingThrottleUP = -Settings.swingMaxThrottle;
     public final double swingThrottleDOWN = -swingThrottleUP;
     public final double swingWindow = 2.5;
     public final double swingSlowThreshold = 15;

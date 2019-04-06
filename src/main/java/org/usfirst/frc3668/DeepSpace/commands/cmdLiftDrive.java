@@ -67,7 +67,11 @@ public class cmdLiftDrive extends Command {
         // }
         
         if(Robot.oi.liftDrive.get() == true){
-            Robot.subLift.setLiftDriveMotor(-Robot.oi.joyDrive.getY());
+            //if(Robot.isDriveInverted){
+                Robot.subLift.setLiftDriveMotor(Math.abs(Robot.oi.joyDrive.getY()));
+            // } else {
+            //     Robot.subLift.setLiftDriveMotor(Robot.oi.joyDrive.getY());
+            // }
         } else {
             Robot.subLift.setLiftDriveMotor(0);
         }

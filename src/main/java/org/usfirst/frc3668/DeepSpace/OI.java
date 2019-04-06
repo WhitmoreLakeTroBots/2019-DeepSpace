@@ -130,7 +130,7 @@ public class OI {
         retractLift.whenPressed(new cmdMoveFrontLift(0, Settings.liftThrottle));
 
         extendTail.whenPressed(new cmdManTail(Robot.subTail.tailLength, Settings.tailRaiseThrottle));
-        //retractTail.whenPressed(new cmdManTail(0, Settings.tailRaiseThrottle));
+        retractTail.whenPressed(new cmdManTail(0, Settings.tailRaiseThrottle));
 
         intakeIn.whileHeld(new cmdIntake(Settings.intakeInThrottle));
         intakeOut.whileHeld(new cmdIntake(Settings.intakeOutThrottle));

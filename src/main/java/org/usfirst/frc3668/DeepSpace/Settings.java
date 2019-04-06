@@ -37,17 +37,18 @@ public class Settings {
     public static final double tailCalibrateThrottle = -0.1;
     
     //Swing settings
+    public static final double swingMaxThrottle = 0.7;
     public static final double swingHome = 0;
     public static final double swingCargoIntake = 20;
-    public static final double swingTracTier1Hatch = 55;
+    public static final double swingTracTier1Hatch = 57;
     public static final double swingOmniTier1Hatch = -60;
-    public static final double swingOmniTier2Hatch = -95;
+    public static final double swingOmniTier2Hatch = -120;
     public static final double swingOmniTier3Hatch = -175;
     public static final double swingTracCargoCS = 82;
     public static final double swingTracCargoRocketTier1 = 60;
     public static final double swingOmniCargoCS = -110;
-    public static final double swingOmniCargoRocketTier1 = -45;
-    public static final double swingOmniCargoRocketTier2 = -100;
+    public static final double swingOmniCargoRocketTier1 = -85;
+    public static final double swingOmniCargoRocketTier2 = -140;
     public static final double swingOmniCargoRocketTier3 = -180;
     public static final double swingHighOmni = 120; 
 
@@ -61,15 +62,15 @@ public class Settings {
 
     public static final double headOffsetPickCargo = -55;
     public static final double headOffsetOmniCargoCS = 170;
-    public static final double headOffsetOmniCargoRocketTier1 = 40;
-    public static final double headOffsetOmniCargoRocketTier2 = 20;
+    public static final double headOffsetOmniCargoRocketTier1 = 200;
+    public static final double headOffsetOmniCargoRocketTier2 = 200;
     public static final double headOffsetOmniCargoRocketTier3 = 15;
     public static final double headOffsetTracCargoCS = 10;
     public static final double headOffsetTracCargoRocketTier1 = 15;
 
-    public static final double headOffsetOmniHatchTier1 = 83;
-    public static final double headOffsetOmniHatchTier2 = 83;
-    public static final double headOffsetOmniHatchTier3 = 83;
+    public static final double headOffsetOmniHatchTier1 = 70;
+    public static final double headOffsetOmniHatchTier2 = 70;
+    public static final double headOffsetOmniHatchTier3 = 65;
 
     //Intake settings
     public static final double intakeInThrottle = 1.0;

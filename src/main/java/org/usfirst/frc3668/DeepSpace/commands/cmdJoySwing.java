@@ -21,7 +21,7 @@ public class cmdJoySwing extends Command {
         if(Math.abs(y) < Robot.subChassis.joyDriveDeadband){
             y = 0;
         }
-        y = y/2;
+        y = y * Settings.swingMaxThrottle;
         Robot.subSwing.setSwingMotor(y);
     }
 
