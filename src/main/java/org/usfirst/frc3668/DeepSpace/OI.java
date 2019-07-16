@@ -6,12 +6,13 @@ import org.usfirst.frc3668.DeepSpace.commands.cmdGroupHeadSwing;
 import org.usfirst.frc3668.DeepSpace.commands.cmdGroupSwingHead;
 import org.usfirst.frc3668.DeepSpace.commands.cmdHeadCargo;
 import org.usfirst.frc3668.DeepSpace.commands.cmdIntake;
-import org.usfirst.frc3668.DeepSpace.commands.cmdManTail;
 import org.usfirst.frc3668.DeepSpace.commands.cmdInvertDriveAuto;
+import org.usfirst.frc3668.DeepSpace.commands.cmdManTail;
 import org.usfirst.frc3668.DeepSpace.commands.cmdMoveFrontLift;
 import org.usfirst.frc3668.DeepSpace.commands.cmdSetCargoOffset;
 import org.usfirst.frc3668.DeepSpace.commands.cmdSwitchLLVision;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -57,6 +58,8 @@ public class OI {
     public final int joyDriveIntakeIn = 3;
     public final int joyDriveIntakeOut = 5;
     public final int joyDriveVision = 1;
+    public final int joyDriveSolo = 4;
+
 
     public final int joyArtPort = 1;
     public final int joyArtSwingHome = 9;
@@ -93,6 +96,8 @@ public class OI {
     public Button switchVision = new JoystickButton(joyDrive, joyDriveVision);
     public Button liftDrive = new JoystickButton(joyDrive, joyDriveLiftDrive);
     public Button retractLift = new JoystickButton(joyDrive, joyDriveRetractLift);
+    public Button solo = new JoystickButton(joyDrive, joyDriveSolo);
+  
 
     public Joystick joyArt = new Joystick(joyArtPort);
     public Button cargoIn = new JoystickButton(joyArt, joyArtCargoIn);
@@ -134,6 +139,9 @@ public class OI {
 
         intakeIn.whileHeld(new cmdIntake(Settings.intakeInThrottle));
         intakeOut.whileHeld(new cmdIntake(Settings.intakeOutThrottle));
+
+      //  solo.whenPressed(new );
+      
 
         //joyArt
         swingHome.whenPressed(new cmdGroupHeadSwing(Settings.swingHome, Settings.headOffsetHome));

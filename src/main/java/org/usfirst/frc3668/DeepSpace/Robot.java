@@ -1,6 +1,6 @@
 package org.usfirst.frc3668.DeepSpace;
 
-import org.usfirst.frc3668.DeepSpace.Settings.actions;
+
 import org.usfirst.frc3668.DeepSpace.commands.cmdGroupAutoTemplate;
 import org.usfirst.frc3668.DeepSpace.subsystems.subChassis;
 import org.usfirst.frc3668.DeepSpace.subsystems.subHead;
@@ -12,6 +12,8 @@ import org.usfirst.frc3668.DeepSpace.subsystems.subTail;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -69,6 +71,8 @@ public class Robot extends TimedRobot {
     public static double tx = 0;
     public static double ty = 0;
     public static double llCamMode = 0;
+    //public static double Compressor = 0;
+    
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -85,7 +89,18 @@ public class Robot extends TimedRobot {
         subTail = new subTail();
         subSwing = new subSwing();
         subIntake = new subIntake();
+         
+        Compressor c = new Compressor(0);
+        c.setClosedLoopControl(true);
 
+        DoubleSolenoid solo = new DoubleSolenoid(1, 2);
+        solo.set(DoubleSolenoid.Value.kOff);
+        solo.set(DoubleSolenoid.Value.kForward);
+        solo.set(DoubleSolenoid.Value.kReverse);
+
+
+
+       
         inst = NetworkTableInstance.getDefault();
         OmniTable = inst.getTable("limelight-omni");
         lox = OmniTable.getEntry("tx");
