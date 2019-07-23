@@ -90,13 +90,7 @@ public class Robot extends TimedRobot {
         subSwing = new subSwing();
         subIntake = new subIntake();
          
-        Compressor c = new Compressor(0);
-        c.setClosedLoopControl(true);
-
-        DoubleSolenoid solo = new DoubleSolenoid(1, 2);
-        solo.set(DoubleSolenoid.Value.kOff);
-        solo.set(DoubleSolenoid.Value.kForward);
-        solo.set(DoubleSolenoid.Value.kReverse);
+        
 
 
 

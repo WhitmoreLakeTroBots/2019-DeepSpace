@@ -33,7 +33,7 @@ public class Settings {
 
     //Tail Settings
     public static final int tailTicks = 1316;
-    public static final double tailRaiseThrottle = 1.0;
+    public static final double tailRaiseThrottle = .40;
     public static final double tailCalibrateThrottle = -0.1;
     
     //Swing settings

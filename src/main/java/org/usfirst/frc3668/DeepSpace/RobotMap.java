@@ -4,17 +4,15 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.Encoder;
-
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Spark;
 import com.revrobotics.CANEncoder;
-import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.CANPIDController;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel;
+
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SPI;
 
 public class RobotMap {
 	public static final int rightDrive1CanID = 1;
@@ -22,7 +20,7 @@ public class RobotMap {
 	public static final int leftDrive1CanID = 3;
 	public static final int leftDrive2CanID = 4;
 	public static final int tailCanID = 5;
-	public static final int swingRotationCanID = 14;//6 for srx
+	public static final int swingRotationCanID = 14;// 6 for srx
 	public static final int frontLiftCanID = 7;
 	public static final int intakePivotCanID = 9;
 	public static final int intakeCanID = 8;
@@ -59,8 +57,20 @@ public class RobotMap {
 	public static CANSparkMax tailSpark;
 	public static CANSparkMax swingSpark;
 	public static CANEncoder tailCanEncoder;
+	public static DoubleSolenoid solo;
 
 	public static void init() {
+
+		//pnumatic solenoid
+
+		solo = new DoubleSolenoid(0, 1);
+		solo.set(DoubleSolenoid.Value.kOff);
+
+		Compressor c = new Compressor(0);
+        c.setClosedLoopControl(true);
+
+		
+
 		rightDrive1 = new TalonSRX(rightDrive1CanID);
 		rightDrive1.setNeutralMode(NeutralMode.Brake);
 		rightDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Settings.talonTimeOut);

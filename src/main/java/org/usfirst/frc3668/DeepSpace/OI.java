@@ -11,9 +11,11 @@ import org.usfirst.frc3668.DeepSpace.commands.cmdManTail;
 import org.usfirst.frc3668.DeepSpace.commands.cmdMoveFrontLift;
 import org.usfirst.frc3668.DeepSpace.commands.cmdSetCargoOffset;
 import org.usfirst.frc3668.DeepSpace.commands.cmdSwitchLLVision;
+import org.usfirst.frc3668.DeepSpace.subsystems.subLift;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -58,7 +60,7 @@ public class OI {
     public final int joyDriveIntakeIn = 3;
     public final int joyDriveIntakeOut = 5;
     public final int joyDriveVision = 1;
-    public final int joyDriveSolo = 4;
+    public final int joyDrivevalve = 4;
 
 
     public final int joyArtPort = 1;
@@ -96,7 +98,7 @@ public class OI {
     public Button switchVision = new JoystickButton(joyDrive, joyDriveVision);
     public Button liftDrive = new JoystickButton(joyDrive, joyDriveLiftDrive);
     public Button retractLift = new JoystickButton(joyDrive, joyDriveRetractLift);
-    public Button solo = new JoystickButton(joyDrive, joyDriveSolo);
+    public Button valve = new JoystickButton(joyDrive, joyDrivevalve);
   
 
     public Joystick joyArt = new Joystick(joyArtPort);
@@ -140,7 +142,9 @@ public class OI {
         intakeIn.whileHeld(new cmdIntake(Settings.intakeInThrottle));
         intakeOut.whileHeld(new cmdIntake(Settings.intakeOutThrottle));
 
-      //  solo.whenPressed(new );
+        
+
+        
       
 
         //joyArt

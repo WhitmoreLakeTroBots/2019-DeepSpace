@@ -26,6 +26,7 @@ public class cmdManTail extends Command {
         System.err.println("Delta Signum: " + deltaSignum);
         bDone = false;
     }
+    
 
     // Called repeatedly when this Command is scheduled to run
     @Override
@@ -38,8 +39,12 @@ public class cmdManTail extends Command {
 		System.err.println("CurrentAngle: " + currentAngle + " deltaAngle: " + deltaAngle);
 		Robot.subTail.setTail(finalThrottle);
 		if (currentAngle > targetAngle) {
-			bDone = true;
-		}
+            bDone = true;
+            
+        }
+        if (Robot.subLift.getLiftEncoderMeters() < Robot.subLift.liftHieghttoLevel3*.75){
+            bDone = true;
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
