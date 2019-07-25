@@ -1,14 +1,17 @@
 
 package org.usfirst.frc3668.DeepSpace.commands;
 
-import org.usfirst.frc3668.DeepSpace.RobotMap;
+import java.lang.module.ModuleDescriptor.Requires;
 
+import org.usfirst.frc3668.DeepSpace.RobotMap;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class SolenoidTest extends Command {
   public SolenoidTest() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    Requires(RobotMap);
   }
   
   // Called just before this Command runs the first time
