@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Solenoid;
 
 public class RobotMap {
 	public static final int rightDrive1CanID = 1;
@@ -58,13 +59,17 @@ public class RobotMap {
 	public static CANSparkMax swingSpark;
 	public static CANEncoder tailCanEncoder;
 	public static DoubleSolenoid solo;
+	public static Solenoid han;
 
 	public static void init() {
 
 		//pnumatic solenoid
 
-		solo = new DoubleSolenoid(0, 1);
-		solo.set(DoubleSolenoid.Value.kOff);
+		//solo = new DoubleSolenoid(1, 2);
+		//solo.set(DoubleSolenoid.Value.kOff);
+
+		Solenoid han = new Solenoid(6);
+
 
 		Compressor c = new Compressor(0);
         c.setClosedLoopControl(true);

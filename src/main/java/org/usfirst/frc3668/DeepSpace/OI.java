@@ -1,5 +1,6 @@
 package org.usfirst.frc3668.DeepSpace;
 
+import org.usfirst.frc3668.DeepSpace.commands.SolenoidTest;
 import org.usfirst.frc3668.DeepSpace.commands.cmdGraspHatch;
 import org.usfirst.frc3668.DeepSpace.commands.cmdGroupDock;
 import org.usfirst.frc3668.DeepSpace.commands.cmdGroupHeadSwing;
@@ -11,11 +12,8 @@ import org.usfirst.frc3668.DeepSpace.commands.cmdManTail;
 import org.usfirst.frc3668.DeepSpace.commands.cmdMoveFrontLift;
 import org.usfirst.frc3668.DeepSpace.commands.cmdSetCargoOffset;
 import org.usfirst.frc3668.DeepSpace.commands.cmdSwitchLLVision;
-import org.usfirst.frc3668.DeepSpace.subsystems.subLift;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -54,13 +52,13 @@ public class OI {
     public final int joyDriveExtendTail = 9;
     public final int joyDriveExtendLiftLevel3 = 11;
     public final int joyDriveExtendLiftLevel2 = 12;
-    public final int joyDriveRetractLift = 7;
+    public final int joyDriveRetractLift = 4;
     public final int joyDriveRetractTail = 8;
     public final int joyDriveLiftDrive = 10;
     public final int joyDriveIntakeIn = 3;
     public final int joyDriveIntakeOut = 5;
     public final int joyDriveVision = 1;
-    public final int joyDrivevalve = 4;
+    public final int joyDrivevalve = 7;
 
 
     public final int joyArtPort = 1;
@@ -141,7 +139,7 @@ public class OI {
 
         intakeIn.whileHeld(new cmdIntake(Settings.intakeInThrottle));
         intakeOut.whileHeld(new cmdIntake(Settings.intakeOutThrottle));
-
+        valve.whenPressed(new SolenoidTest());
         
 
         
